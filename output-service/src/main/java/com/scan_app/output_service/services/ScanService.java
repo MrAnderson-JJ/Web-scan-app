@@ -78,6 +78,7 @@ public class ScanService {
         Host host = nmaprun.getHost();
         host.setId(new ObjectId().toString());
         host.setNmapRunRefId(nmaprun.get_id());
+        System.out.println("ports: **** : " + host.getPorts());
 
         Ports ports = new Ports();
         if (host.getPorts() != null) {
