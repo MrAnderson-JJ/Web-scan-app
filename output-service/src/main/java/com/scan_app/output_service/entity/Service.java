@@ -11,9 +11,14 @@ import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "conf",
-    "method",
-    "name"
+        "name",
+        "product",
+        "version",
+        "extrainfo",
+        "ostype",
+        "method",
+        "conf",
+        "cpe"
 })
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,23 +26,73 @@ import lombok.NoArgsConstructor;
 @Generated("jsonschema2pojo")
 public class Service {
 
-    @JsonProperty("conf")
-    private String conf;
-    @JsonProperty("method")
-    private String method;
     @JsonProperty("name")
     private String name;
+    @JsonProperty("product")
+    private String product;
+    @JsonProperty("version")
+    private String version;
+    @JsonProperty("extrainfo")
+    private String extrainfo;
+    @JsonProperty("ostype")
+    private String ostype;
+    @JsonProperty("method")
+    private String method;
+    @JsonProperty("conf")
+    private String conf;
+    @JsonProperty("cpe")
+    private String cpe;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("conf")
-    public String getConf() {
-        return conf;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
-    @JsonProperty("conf")
-    public void setConf(String conf) {
-        this.conf = conf;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JsonProperty("product")
+    public String getProduct() {
+        return product;
+    }
+
+    @JsonProperty("product")
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    @JsonProperty("version")
+    public String getVersion() {
+        return version;
+    }
+
+    @JsonProperty("version")
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @JsonProperty("extrainfo")
+    public String getExtrainfo() {
+        return extrainfo;
+    }
+
+    @JsonProperty("extrainfo")
+    public void setExtrainfo(String extrainfo) {
+        this.extrainfo = extrainfo;
+    }
+
+    @JsonProperty("ostype")
+    public String getOstype() {
+        return ostype;
+    }
+
+    @JsonProperty("ostype")
+    public void setOstype(String ostype) {
+        this.ostype = ostype;
     }
 
     @JsonProperty("method")
@@ -50,14 +105,24 @@ public class Service {
         this.method = method;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("conf")
+    public String getConf() {
+        return conf;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("conf")
+    public void setConf(String conf) {
+        this.conf = conf;
+    }
+
+    @JsonProperty("cpe")
+    public String getCpe() {
+        return cpe;
+    }
+
+    @JsonProperty("cpe")
+    public void setCpe(String cpe) {
+        this.cpe = cpe;
     }
 
     @JsonAnyGetter

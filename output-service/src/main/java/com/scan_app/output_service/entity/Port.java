@@ -2,6 +2,7 @@
 package com.scan_app.output_service.entity;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 
@@ -14,7 +15,8 @@ import lombok.NoArgsConstructor;
     "portid",
     "protocol",
     "service",
-    "state"
+    "state",
+    "script"
 })
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +32,8 @@ public class Port {
     private Service service;
     @JsonProperty("state")
     private State state;
+    @JsonProperty("script")
+    private List<Script> script;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -71,6 +75,16 @@ public class Port {
     @JsonProperty("state")
     public void setState(State state) {
         this.state = state;
+    }
+
+    @JsonProperty("script")
+    public List<Script> getScript() {
+        return script;
+    }
+
+    @JsonProperty("script")
+    public void setScript(List<Script> script) {
+        this.script = script;
     }
 
     @JsonAnyGetter

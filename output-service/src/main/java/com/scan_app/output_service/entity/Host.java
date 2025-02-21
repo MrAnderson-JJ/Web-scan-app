@@ -14,13 +14,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "endtime",
-    "starttime",
-    "address",
-    "hostnames",
-    "ports",
-    "status",
-    "times"
+        "endtime",
+        "starttime",
+        "address",
+        "hostnames",
+        "ports",
+        "status",
+        "os",
+        "uptime",
+        "distance",
+        "tcpsequence",
+        "ipidsequence",
+        "tcptssequence",
+        "trace",
+        "times"
 })
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,19 +39,32 @@ public class Host {
     @Id
     private String id;
     private String nmapRunRefId;
-    @JsonProperty("endtime")
-    private Integer endtime;
     @JsonProperty("starttime")
-    private Integer starttime;
-    @JsonProperty("address")
-    private Address address;
-    @JsonProperty("hostnames")
-    private Hostnames hostnames;
-    @JsonProperty("ports")
-    @Transient // Do not save ports directly here
-    private Ports ports;
+    private String starttime;
+    @JsonProperty("endtime")
+    private String endtime;
     @JsonProperty("status")
-    private Status status;
+    private Status__1 status;
+    @JsonProperty("address")
+    private Address__1 address;
+    @JsonProperty("hostnames")
+    private Hostnames__1 hostnames;
+    @JsonProperty("ports")
+    private Ports ports;
+    @JsonProperty("os")
+    private Os os;
+    @JsonProperty("uptime")
+    private Uptime uptime;
+    @JsonProperty("distance")
+    private Distance distance;
+    @JsonProperty("tcpsequence")
+    private Tcpsequence tcpsequence;
+    @JsonProperty("ipidsequence")
+    private Ipidsequence ipidsequence;
+    @JsonProperty("tcptssequence")
+    private Tcptssequence tcptssequence;
+    @JsonProperty("trace")
+    private Trace trace;
     @JsonProperty("times")
     private Times times;
     @JsonIgnore
@@ -66,43 +86,53 @@ public class Host {
         this.nmapRunRefId = nmapRunRefId;
     }
 
-    @JsonProperty("endtime")
-    public Integer getEndtime() {
-        return endtime;
-    }
-
-    @JsonProperty("endtime")
-    public void setEndtime(Integer endtime) {
-        this.endtime = endtime;
-    }
-
     @JsonProperty("starttime")
-    public Integer getStarttime() {
+    public String getStarttime() {
         return starttime;
     }
 
     @JsonProperty("starttime")
-    public void setStarttime(Integer starttime) {
+    public void setStarttime(String starttime) {
         this.starttime = starttime;
     }
 
+    @JsonProperty("endtime")
+    public String getEndtime() {
+        return endtime;
+    }
+
+    @JsonProperty("endtime")
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    @JsonProperty("status")
+    public Status__1 getStatus() {
+        return status;
+    }
+
+    @JsonProperty("status")
+    public void setStatus(Status__1 status) {
+        this.status = status;
+    }
+
     @JsonProperty("address")
-    public Address getAddress() {
+    public Address__1 getAddress() {
         return address;
     }
 
     @JsonProperty("address")
-    public void setAddress(Address address) {
+    public void setAddress(Address__1 address) {
         this.address = address;
     }
 
     @JsonProperty("hostnames")
-    public Hostnames getHostnames() {
+    public Hostnames__1 getHostnames() {
         return hostnames;
     }
 
     @JsonProperty("hostnames")
-    public void setHostnames(Hostnames hostnames) {
+    public void setHostnames(Hostnames__1 hostnames) {
         this.hostnames = hostnames;
     }
 
@@ -116,14 +146,74 @@ public class Host {
         this.ports = ports;
     }
 
-    @JsonProperty("status")
-    public Status getStatus() {
-        return status;
+    @JsonProperty("os")
+    public Os getOs() {
+        return os;
     }
 
-    @JsonProperty("status")
-    public void setStatus(Status status) {
-        this.status = status;
+    @JsonProperty("os")
+    public void setOs(Os os) {
+        this.os = os;
+    }
+
+    @JsonProperty("uptime")
+    public Uptime getUptime() {
+        return uptime;
+    }
+
+    @JsonProperty("uptime")
+    public void setUptime(Uptime uptime) {
+        this.uptime = uptime;
+    }
+
+    @JsonProperty("distance")
+    public Distance getDistance() {
+        return distance;
+    }
+
+    @JsonProperty("distance")
+    public void setDistance(Distance distance) {
+        this.distance = distance;
+    }
+
+    @JsonProperty("tcpsequence")
+    public Tcpsequence getTcpsequence() {
+        return tcpsequence;
+    }
+
+    @JsonProperty("tcpsequence")
+    public void setTcpsequence(Tcpsequence tcpsequence) {
+        this.tcpsequence = tcpsequence;
+    }
+
+    @JsonProperty("ipidsequence")
+    public Ipidsequence getIpidsequence() {
+        return ipidsequence;
+    }
+
+    @JsonProperty("ipidsequence")
+    public void setIpidsequence(Ipidsequence ipidsequence) {
+        this.ipidsequence = ipidsequence;
+    }
+
+    @JsonProperty("tcptssequence")
+    public Tcptssequence getTcptssequence() {
+        return tcptssequence;
+    }
+
+    @JsonProperty("tcptssequence")
+    public void setTcptssequence(Tcptssequence tcptssequence) {
+        this.tcptssequence = tcptssequence;
+    }
+
+    @JsonProperty("trace")
+    public Trace getTrace() {
+        return trace;
+    }
+
+    @JsonProperty("trace")
+    public void setTrace(Trace trace) {
+        this.trace = trace;
     }
 
     @JsonProperty("times")
