@@ -1,4 +1,4 @@
-package com.scan_app.output_service.dto;
+package com.scan_app.output_service.dto.scan;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

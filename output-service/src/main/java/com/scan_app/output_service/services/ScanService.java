@@ -1,10 +1,10 @@
 package com.scan_app.output_service.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.scan_app.output_service.Repository.HostRepository;
-import com.scan_app.output_service.Repository.NmapRepository;
-import com.scan_app.output_service.Repository.PortRepository;
-import com.scan_app.output_service.dto.*;
+import com.scan_app.output_service.repository.HostRepository;
+import com.scan_app.output_service.repository.NmapRepository;
+import com.scan_app.output_service.repository.PortRepository;
+import com.scan_app.output_service.dto.scan.*;
 import com.scan_app.output_service.entity.Host;
 import com.scan_app.output_service.entity.Nmaprun;
 import com.scan_app.output_service.entity.Port;

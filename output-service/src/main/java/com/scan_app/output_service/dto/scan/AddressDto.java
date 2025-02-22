@@ -1,4 +1,4 @@
-package com.scan_app.output_service.dto;
+package com.scan_app.output_service.dto.scan;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HostStatusDto {
-    private String reason;
-    private String reasonTtl;
-    private String state;
+public class AddressDto {
+    private String addr;
+    private String addrType;
 }

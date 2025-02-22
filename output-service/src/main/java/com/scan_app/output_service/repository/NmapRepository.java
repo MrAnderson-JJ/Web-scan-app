@@ -1,11 +1,10 @@
-package com.scan_app.output_service.Repository;
+package com.scan_app.output_service.repository;
 
 import com.scan_app.output_service.entity.Nmaprun;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface NmapRepository extends MongoRepository<Nmaprun, String> {
     List<Nmaprun> findByScanner(String scanner);

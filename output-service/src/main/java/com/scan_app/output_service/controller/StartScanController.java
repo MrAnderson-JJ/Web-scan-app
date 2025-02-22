@@ -1,11 +1,10 @@
 package com.scan_app.output_service.controller;
 
 import com.scan_app.output_service.client.ScanClient;
-import com.scan_app.output_service.dto.RabbitDto.ScanRequest;
+import com.scan_app.output_service.dto.asynchCommunication.ScanRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

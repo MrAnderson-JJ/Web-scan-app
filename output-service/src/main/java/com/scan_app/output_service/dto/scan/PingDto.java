@@ -1,6 +1,5 @@
-package com.scan_app.output_service.dto;
+package com.scan_app.output_service.dto.scan;
 
-import com.scan_app.output_service.entity.Host;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

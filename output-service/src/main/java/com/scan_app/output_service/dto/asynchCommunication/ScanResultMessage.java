@@ -1,9 +1,6 @@
-package com.scan_app.output_service.dto.RabbitDto;
+package com.scan_app.output_service.dto.asynchCommunication;
 
-import com.scan_app.output_service.scanUtil.ScanTypes;
 import lombok.*;
-
-import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor

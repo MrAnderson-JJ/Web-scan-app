@@ -1,8 +1,8 @@
 package com.scan_app.output_service.controller;
 
-import com.scan_app.output_service.dto.HostDto;
-import com.scan_app.output_service.dto.PingDto;
-import com.scan_app.output_service.dto.PortDto;
+import com.scan_app.output_service.dto.scan.HostDto;
+import com.scan_app.output_service.dto.scan.PingDto;
+import com.scan_app.output_service.dto.scan.PortDto;
 import com.scan_app.output_service.entity.Nmaprun;
 import com.scan_app.output_service.services.ScanService;
 import org.springframework.beans.factory.annotation.Autowired;

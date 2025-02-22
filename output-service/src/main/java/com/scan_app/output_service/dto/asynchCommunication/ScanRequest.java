@@ -1,6 +1,5 @@
-package com.scan_app.output_service.dto.RabbitDto;
+package com.scan_app.output_service.dto.asynchCommunication;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.scan_app.output_service.scanUtil.ScanTypes;
 import lombok.*;
 

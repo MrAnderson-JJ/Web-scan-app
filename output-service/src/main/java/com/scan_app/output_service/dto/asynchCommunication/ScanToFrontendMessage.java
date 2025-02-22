@@ -1,4 +1,4 @@
-package com.scan_app.output_service.dto.RabbitDto;
+package com.scan_app.output_service.dto.asynchCommunication;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

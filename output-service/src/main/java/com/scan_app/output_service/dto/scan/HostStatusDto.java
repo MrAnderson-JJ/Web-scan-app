@@ -1,4 +1,4 @@
-package com.scan_app.output_service.dto;
+package com.scan_app.output_service.dto.scan;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PortDto {
-    private Integer portId;
-    private String protocol;
+public class HostStatusDto {
+    private String reason;
+    private String reasonTtl;
     private String state;
-    private String service;
-    private String version;
 }

@@ -1,6 +1,6 @@
 package com.scan_app.output_service.client;
 
-import com.scan_app.output_service.dto.RabbitDto.ScanRequest;
+import com.scan_app.output_service.dto.asynchCommunication.ScanRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

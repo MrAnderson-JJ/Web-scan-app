@@ -1,8 +1,7 @@
 package com.scan_app.output_service.services;
 
 import com.scan_app.output_service.controller.ScanResultWebSocketController;
-import com.scan_app.output_service.dto.RabbitDto.ScanRequest;
-import com.scan_app.output_service.dto.RabbitDto.ScanResultMessage;
+import com.scan_app.output_service.dto.asynchCommunication.ScanResultMessage;
 import com.scan_app.output_service.entity.Nmaprun;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

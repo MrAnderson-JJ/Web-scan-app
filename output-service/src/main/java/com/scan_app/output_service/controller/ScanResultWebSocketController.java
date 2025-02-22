@@ -1,7 +1,7 @@
 package com.scan_app.output_service.controller;
 
-import com.scan_app.output_service.dto.RabbitDto.ScanResultMessage;
-import com.scan_app.output_service.dto.RabbitDto.ScanToFrontendMessage;
+import com.scan_app.output_service.dto.asynchCommunication.ScanResultMessage;
+import com.scan_app.output_service.dto.asynchCommunication.ScanToFrontendMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
