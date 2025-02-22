@@ -44,11 +44,11 @@ public class Host {
     @JsonProperty("endtime")
     private String endtime;
     @JsonProperty("status")
-    private Status__1 status;
+    private Status status;
     @JsonProperty("address")
-    private Address__1 address;
+    private Address address;
     @JsonProperty("hostnames")
-    private Hostnames__1 hostnames;
+    private Hostnames hostnames;
     @JsonProperty("ports")
     private Ports ports;
     @JsonProperty("os")
@@ -107,32 +107,32 @@ public class Host {
     }
 
     @JsonProperty("status")
-    public Status__1 getStatus() {
+    public Status getStatus() {
         return status;
     }
 
     @JsonProperty("status")
-    public void setStatus(Status__1 status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
     @JsonProperty("address")
-    public Address__1 getAddress() {
+    public Address getAddress() {
         return address;
     }
 
     @JsonProperty("address")
-    public void setAddress(Address__1 address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
     @JsonProperty("hostnames")
-    public Hostnames__1 getHostnames() {
+    public Hostnames getHostnames() {
         return hostnames;
     }
 
     @JsonProperty("hostnames")
-    public void setHostnames(Hostnames__1 hostnames) {
+    public void setHostnames(Hostnames hostnames) {
         this.hostnames = hostnames;
     }
 
