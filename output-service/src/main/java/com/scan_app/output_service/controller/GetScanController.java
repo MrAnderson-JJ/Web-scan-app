@@ -64,4 +64,12 @@ public class GetScanController {
         System.out.println("controller ping scan: ");
         return pingResult;
     }
+
+    @GetMapping("/getintense/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<HostDto> getIntenseScanByScanId(@PathVariable String id) {
+        List<HostDto> scan = scanService.getQuickScanByScanId(id);
+        System.out.println("controller scan: " + scan.getFirst().getAddress().getAddr());
+        return scan;
+    }
 }

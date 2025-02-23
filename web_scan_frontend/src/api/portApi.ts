@@ -35,6 +35,16 @@ export const fetchPing = async (scanId: string): Promise<Ping> => {
   }
 };
 
+export const fetchIntense = async (scanId: string): Promise<Host[]> => {
+  try {
+    const response = await api.get<Host[]>(`/scans/getintense/${scanId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching ports:", error);
+    throw error; // Propagate the error to the caller
+  }
+};
+
 export const startScanFromOutput = async (ip: string, options: string[], scanType: ScanTypes): Promise<string> => {
   try {
     console.log(ip, options, scanType);

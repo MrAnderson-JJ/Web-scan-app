@@ -19,6 +19,7 @@ public class Os {
     @JsonProperty("portused")
     private List<Portused> portused;
     @JsonProperty("osmatch")
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private List<Osmatch> osmatch;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();

@@ -19,7 +19,7 @@ public class ScanReportProducer {
     }
 
     public void sendMessage(String webSocketId ,String jsonOutput, ScanTypes scanType) {
-        ScanResultMessage message = new ScanResultMessage(webSocketId, jsonOutput);
+        ScanResultMessage message = new ScanResultMessage(webSocketId, jsonOutput, scanType);
         System.out.println(message.getWebSocketId());
         System.out.println(message.getJsonData());
         ScanRequest scanRequest = new ScanRequest();

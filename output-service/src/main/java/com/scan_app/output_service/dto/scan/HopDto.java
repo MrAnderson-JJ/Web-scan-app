@@ -5,15 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HostDto {
-    private HostStatusDto hostStatusDto;
-    private AddressDto address;
-    private List<PortDto> ports;
-    private TraceDto trace;
+public class HopDto {
+    private String ip; //ip address of the hop
+    private String rtt; //round trip time
+    private String ttl; //time to live
+    private String host; //host name
 }

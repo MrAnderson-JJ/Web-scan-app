@@ -11,9 +11,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HostDto {
-    private HostStatusDto hostStatusDto;
-    private AddressDto address;
-    private List<PortDto> ports;
-    private TraceDto trace;
+public class TraceDto {
+    private String port;
+    private String proto;
+    private List<HopDto> hop;
 }

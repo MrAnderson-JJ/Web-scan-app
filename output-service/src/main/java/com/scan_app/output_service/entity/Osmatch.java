@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.*;
 
 import javax.annotation.Generated;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -24,7 +25,8 @@ public class Osmatch {
     @JsonProperty("line")
     private String line;
     @JsonProperty("osclass")
-    private Osclass osclass;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Osclass> osclass;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -59,12 +61,12 @@ public class Osmatch {
     }
 
     @JsonProperty("osclass")
-    public Osclass getOsclass() {
+    public List<Osclass> getOsclass() {
         return osclass;
     }
 
     @JsonProperty("osclass")
-    public void setOsclass(Osclass osclass) {
+    public void setOsclass(List<Osclass> osclass) {
         this.osclass = osclass;
     }
 

@@ -33,6 +33,7 @@ public class Port {
     @JsonProperty("state")
     private State state;
     @JsonProperty("script")
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private List<Script> script;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();

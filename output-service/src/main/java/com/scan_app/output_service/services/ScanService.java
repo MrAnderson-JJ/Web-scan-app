@@ -1,14 +1,11 @@
 package com.scan_app.output_service.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.scan_app.output_service.entity.*;
 import com.scan_app.output_service.repository.HostRepository;
 import com.scan_app.output_service.repository.NmapRepository;
 import com.scan_app.output_service.repository.PortRepository;
 import com.scan_app.output_service.dto.scan.*;
-import com.scan_app.output_service.entity.Host;
-import com.scan_app.output_service.entity.Nmaprun;
-import com.scan_app.output_service.entity.Port;
-import com.scan_app.output_service.entity.Ports;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
@@ -18,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -159,6 +157,24 @@ public class ScanService {
                 .build();
     }
 
+    public List<HostDto> getIntenseScanByScanId(String id) {
+        List<Host> hosts = hostRepository.findByNmapRunRefId(id);
+        if (hosts.isEmpty()) {
+            throw new NoSuchElementException("No hosts found for scan ID: " + id);
+        }
+
+        List<PortDto> portDtos = getPortsByScanId(id);
+
+        List<HostDto> result = new ArrayList<>();
+        for (Host host:
+                hosts) {
+            HostDto hostDto = mapToHost(host, portDtos);
+            result.add(hostDto);
+        }
+
+        return result;
+    }
+
     public PortDto mapToPorts(Port port) {
         return PortDto.builder()
                 .portId(Integer.valueOf(port.getPortid()))
@@ -188,6 +204,24 @@ public class ScanService {
                 .hostStatusDto(mapToHostStatus(host))
                 .address(mapToAddress(host))
                 .ports(portsDto)
+                .trace(Optional.ofNullable(host.getTrace()).map(this::mapToTrace).orElse(null))
+                .build();
+    }
+
+    public HopDto mapToHop(Hop hop) {
+        return HopDto.builder()
+                .ip(hop.getIpaddr())
+                .rtt(hop.getRtt())
+                .ttl(hop.getTtl())
+                .host(hop.getHost())
+                .build();
+    }
+
+    public TraceDto mapToTrace(Trace trace) {
+        return TraceDto.builder()
+                .proto(trace.getProto())
+                .port(trace.getPort())
+                .hop(trace.getHop().stream().map(this::mapToHop).toList())
                 .build();
     }
 }

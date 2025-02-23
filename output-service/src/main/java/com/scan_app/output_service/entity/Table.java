@@ -11,15 +11,12 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "key",
-    "elem"
 })
 @Generated("jsonschema2pojo")
 public class Table {
 
     @JsonProperty("key")
     private String key;
-    @JsonProperty("elem")
-    private List<String> elem;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -31,16 +28,6 @@ public class Table {
     @JsonProperty("key")
     public void setKey(String key) {
         this.key = key;
-    }
-
-    @JsonProperty("elem")
-    public List<String> getElem() {
-        return elem;
-    }
-
-    @JsonProperty("elem")
-    public void setElem(List<String> elem) {
-        this.elem = elem;
     }
 
     @JsonAnyGetter

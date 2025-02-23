@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import useWebSocket from "../../api/webSocket/useWebSocket";
 import { Host } from "../../types";
-import { fetchPing, fetchQuick } from "../../api/portApi";
+import { fetchPing, fetchQuick, fetchIntense } from "../../api/portApi";
 import PingTable from "../table/PingTable";
+import HostTable from "../table/HostTable";
 import { Ping } from "@/types/Ping";
+import { ScanTypes } from "@/types/ScanType";
+import TraceRouteChart from "../table/intenseScan/TraceRoute";
 
 interface MessageProps {
   webSocketId: string;
@@ -12,16 +15,26 @@ interface MessageProps {
 const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
   const { scanResult, isConnected } = useWebSocket(webSocketId);
   const [message, setMessage] = useState<string>("Čekání na výsledek skenu...");
-  const [hosts, setHosts] = useState<Ping>();
+  const [pings, setPing] = useState<Ping>();
+  const [hosts, setHosts] = useState<Host[]>();
+  const [intenseScan, setIntenseScan] = useState<Host[]>();
 
   // Update message when scanResult is received
   useEffect(() => {
     if (scanResult) {
+      console.log(scanResult.scanResultMessage.scanType);
       const loadHosts = async () => {
         try {
-          const data = await fetchPing(scanResult.scanId);
-          console.log(data);
-          setHosts(data);
+          if (scanResult.scanResultMessage.scanType === ScanTypes.SCAN_PING) {
+            const data = await fetchPing(scanResult.scanId);
+            setPing(data);
+          } else if (scanResult.scanResultMessage.scanType === ScanTypes.SCAN_QUICK) {
+            const data = await fetchQuick(scanResult.scanId);
+            setHosts(data);
+          } else if (scanResult.scanResultMessage.scanType === ScanTypes.SCAN_FULL) {
+            const data = await fetchIntense(scanResult.scanId);
+            setIntenseScan(data);
+          }
         } catch (err) {
           console.error("Failed to load hosts.");
         }
@@ -41,7 +54,9 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
       >
         <div style={{ padding: "20px" }}>
           <h1>Host Table</h1>
-          {hosts && <PingTable ping={hosts} />}{" "}
+            {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_PING && pings && <PingTable ping={pings} />}
+          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_QUICK && hosts && <HostTable hosts={hosts} />}
+          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_FULL && intenseScan && intenseScan[0]?.trace && <TraceRouteChart data={intenseScan[0].trace} />}
         </div>
       </pre>
     </div>

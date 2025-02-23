@@ -2,6 +2,7 @@
 package com.scan_app.output_service.entity;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 
@@ -41,7 +42,8 @@ public class Service {
     @JsonProperty("conf")
     private String conf;
     @JsonProperty("cpe")
-    private String cpe;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<String> cpe;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -115,13 +117,11 @@ public class Service {
         this.conf = conf;
     }
 
-    @JsonProperty("cpe")
-    public String getCpe() {
+    public List<String> getCpe() {
         return cpe;
     }
 
-    @JsonProperty("cpe")
-    public void setCpe(String cpe) {
+    public void setCpe(List<String> cpe) {
         this.cpe = cpe;
     }
 

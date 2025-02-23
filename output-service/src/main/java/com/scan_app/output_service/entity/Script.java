@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.*;
 
 import javax.annotation.Generated;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
     "output",
-    "elem",
     "table"
 })
 @Generated("jsonschema2pojo")
@@ -21,10 +21,9 @@ public class Script {
     private String id;
     @JsonProperty("output")
     private String output;
-    @JsonProperty("elem")
-    private String elem;
     @JsonProperty("table")
-    private Table table;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Table> table;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -48,23 +47,13 @@ public class Script {
         this.output = output;
     }
 
-    @JsonProperty("elem")
-    public String getElem() {
-        return elem;
-    }
-
-    @JsonProperty("elem")
-    public void setElem(String elem) {
-        this.elem = elem;
-    }
-
     @JsonProperty("table")
-    public Table getTable() {
+    public List<Table> getTable() {
         return table;
     }
 
     @JsonProperty("table")
-    public void setTable(Table table) {
+    public void setTable(List<Table> table) {
         this.table = table;
     }
 
