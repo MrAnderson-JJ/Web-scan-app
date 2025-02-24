@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/scan")
+@RequestMapping("/api/output")
 @RequiredArgsConstructor
 @Slf4j
 public class StartScanController {
