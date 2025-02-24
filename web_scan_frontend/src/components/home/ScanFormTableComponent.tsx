@@ -29,7 +29,7 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
             const data = await fetchPing(scanResult.scanId);
             setPing(data);
           } else if (scanResult.scanResultMessage.scanType === ScanTypes.SCAN_QUICK) {
-            const data = await fetchQuick(scanResult.scanId);
+            const data = await fetchIntense(scanResult.scanId);
             setHosts(data);
           } else if (scanResult.scanResultMessage.scanType === ScanTypes.SCAN_FULL) {
             const data = await fetchIntense(scanResult.scanId);
@@ -56,8 +56,8 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
         <div style={{ padding: "0px" }}>
           <h1>Host Table</h1>
             {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_PING && pings && <PingTable ping={pings} />}
-          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_QUICK && hosts && <HostTable hosts={hosts} />}
-          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_FULL && intenseScan && intenseScan[0]?.trace && intenseScan[0]?.os && <ChartsDashboard osData={intenseScan[0].os} traceData={intenseScan[0].trace} />}
+          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_QUICK && hosts && <ChartsDashboard host={hosts[0]} />}
+          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_FULL && intenseScan && intenseScan[0]?.trace && intenseScan[0]?.os && <ChartsDashboard host={intenseScan[0]} />}
         </div>
       </pre>
     </div>
