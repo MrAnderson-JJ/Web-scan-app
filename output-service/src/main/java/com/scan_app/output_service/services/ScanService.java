@@ -205,6 +205,7 @@ public class ScanService {
                 .address(mapToAddress(host))
                 .ports(portsDto)
                 .trace(Optional.ofNullable(host.getTrace()).map(this::mapToTrace).orElse(null))
+                .os(Optional.ofNullable(host.getOs()).map(this::mapToOs).orElse(null))
                 .build();
     }
 
@@ -222,6 +223,31 @@ public class ScanService {
                 .proto(trace.getProto())
                 .port(trace.getPort())
                 .hop(trace.getHop().stream().map(this::mapToHop).toList())
+                .build();
+    }
+
+    public OsClassDto mapToOsClass(Osclass osclass) {
+        return OsClassDto.builder()
+                .cpe(osclass.getCpe())
+                .type(osclass.getType())
+                .vendor(osclass.getVendor())
+                .osfamily(osclass.getOsfamily())
+                .accuracy(osclass.getAccuracy())
+                .build();
+    }
+
+    public OsMatchDto mapToOsMatch(Osmatch osmatch) {
+        return OsMatchDto.builder()
+                .name(osmatch.getName())
+                .accuracy(osmatch.getAccuracy())
+                .line(osmatch.getLine())
+                .osclass(osmatch.getOsclass().stream().map(this::mapToOsClass).toList())
+                .build();
+    }
+
+    public OsDto mapToOs(Os os) {
+        return OsDto.builder()
+                .osMatch(os.getOsmatch().stream().map(this::mapToOsMatch).toList())
                 .build();
     }
 }

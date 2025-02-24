@@ -6,7 +6,7 @@ import PingTable from "../table/PingTable";
 import HostTable from "../table/HostTable";
 import { Ping } from "@/types/Ping";
 import { ScanTypes } from "@/types/ScanType";
-import TraceRouteChart from "../table/intenseScan/TraceRoute";
+import ChartsDashboard from "../table/intenseScan/ScanTable";
 
 interface MessageProps {
   webSocketId: string;
@@ -33,6 +33,7 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
             setHosts(data);
           } else if (scanResult.scanResultMessage.scanType === ScanTypes.SCAN_FULL) {
             const data = await fetchIntense(scanResult.scanId);
+            console.log(data);
             setIntenseScan(data);
           }
         } catch (err) {
@@ -46,17 +47,17 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
   }, [scanResult]);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "0px" }}>
       <h2>Status WebSocketu: {isConnected ? "🔵 Připojeno" : "🔴 Odpojeno"}</h2>
       <h1>Výsledek skenu:</h1>
       <pre
-        style={{ background: "#f4f4f4", padding: "10px", borderRadius: "5px" }}
+        style={{borderRadius: "0px" }}
       >
-        <div style={{ padding: "20px" }}>
+        <div style={{ padding: "0px" }}>
           <h1>Host Table</h1>
             {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_PING && pings && <PingTable ping={pings} />}
           {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_QUICK && hosts && <HostTable hosts={hosts} />}
-          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_FULL && intenseScan && intenseScan[0]?.trace && <TraceRouteChart data={intenseScan[0].trace} />}
+          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_FULL && intenseScan && intenseScan[0]?.trace && intenseScan[0]?.os && <ChartsDashboard osData={intenseScan[0].os} traceData={intenseScan[0].trace} />}
         </div>
       </pre>
     </div>

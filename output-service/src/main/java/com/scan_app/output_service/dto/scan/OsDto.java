@@ -1,5 +1,6 @@
 package com.scan_app.output_service.dto.scan;
 
+import com.scan_app.output_service.entity.Osmatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +12,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HostDto {
-    private HostStatusDto hostStatusDto;
-    private AddressDto address;
-    private List<PortDto> ports;
-    private TraceDto trace;
-    private OsDto os;
+public class OsDto {
+    private List<OsMatchDto> osMatch;
 }

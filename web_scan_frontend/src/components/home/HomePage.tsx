@@ -3,6 +3,16 @@ import ScanForm from "../scanForm/scanForm";
 import ScanFormIp from "../scanForm/scanFormIp";
 import HomeHostTable from "./HomeTableComponent";
 import ScanFormTable from "./ScanFormTableComponent";
+import OsPieChart from "../table/intenseScan/ScanTable";
+import { Os } from "../../types/Os";
+
+const mockData: Os = {
+  osMatch: [
+    { name: "Linux 5.0 - 5.4", accuracy: "87", line: "68121", osClass: [] },
+    { name: "Windows Server 2016", accuracy: "80", line: "68054", osClass: [] },
+    { name: "Linux 4.15 - 5.8", accuracy: "85", line: "67250", osClass: [] }
+  ]
+};
 
 const HomePage = () => {
   const [scanId, setScanId] = useState("");
