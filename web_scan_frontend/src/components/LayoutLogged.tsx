@@ -1,25 +1,34 @@
-import { useEffect, useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 import UserLayout from "../components/Layout";
 import { loginPath } from "../routes/routePaths";
+import { useKeycloak } from "@react-keycloak/web";
+import { useState, useEffect } from "react";
 
 const ProtectedRoute = () => {
-  const navigate = useNavigate();
-  const [checkingAuth, setCheckingAuth] = useState(true);
+  const { keycloak, initialized } = useKeycloak();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
-  const isAuthenticated = true;
-
+  // Effect to handle authentication state safely
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate(loginPath, { replace: true });
-    } else {
-      setCheckingAuth(false);
+    if (initialized) {
+      setIsAuthenticated((prev) => {
+        if (prev !== keycloak.authenticated) {
+          console.log("User ID:", keycloak.subject); // Logs only when authentication changes
+        }
+        return keycloak.authenticated ?? false;
+      });
     }
-  }, [isAuthenticated, navigate]);
+  }, [initialized, keycloak.authenticated]);
 
-  if (checkingAuth) {
+  // Prevent rendering while Keycloak is initializing
+  if (!initialized || isAuthenticated === null) {
     return <Loader />;
+  }
+
+  // If user is not authenticated, redirect to login **once**
+  if (!isAuthenticated) {
+    return <Navigate to={loginPath} replace />;
   }
 
   return (

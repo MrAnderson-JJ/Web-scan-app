@@ -25,6 +25,7 @@ import {
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import AppNavBar from "../appBar/AppNavBar";
+import { useKeycloak } from "@react-keycloak/web";
 
 // Example user data
 const user = {
@@ -44,6 +45,7 @@ const drawerItems = [
 ];
 
 const Sidebar = () => {
+  const { keycloak } = useKeycloak();
   const [smallOpen, setsmallOpen] = useState(false);
 
   // Toggle Drawer for small
@@ -88,7 +90,7 @@ const Sidebar = () => {
           startIcon={<Logout />}
           fullWidth
           sx={{ mt: 2 }}
-          onClick={() => alert("Logging out...")}
+          onClick={() => keycloak.logout()}
         >
           Logout
         </Button>
