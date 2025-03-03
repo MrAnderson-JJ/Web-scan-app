@@ -1,0 +1,19 @@
+server:
+  port: 9000
+  forward-headers-strategy: native
+
+spring:
+  cloud:
+    gateway:
+      forwarded:
+        enabled: true
+  application:
+    name: api-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/network-scanner
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

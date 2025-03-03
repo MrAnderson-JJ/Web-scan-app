@@ -90,7 +90,9 @@ const Sidebar = () => {
           startIcon={<Logout />}
           fullWidth
           sx={{ mt: 2 }}
-          onClick={() => keycloak.logout()}
+          onClick={() => keycloak.logout({
+            redirectUri: 'http://localhost:5173/login'
+          })}
         >
           Logout
         </Button>

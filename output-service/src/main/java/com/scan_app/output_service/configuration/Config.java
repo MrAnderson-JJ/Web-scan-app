@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/*
 @Configuration
 public class Config {
     @Bean
@@ -13,11 +14,11 @@ public class Config {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOriginPatterns("http://localhost:5173", "http://localhost:8081") // Povolíme pouze frontendovou doménu
+                        .allowedOriginPatterns("http://localhost:9000", "http://localhost:8081") // Povolíme pouze frontendovou doménu
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(true); // Povolit cookies/autentizaci
+                        .allowCredentials(false); // Povolit cookies/autentizaci
             }
         };
     }
-}
+}*/

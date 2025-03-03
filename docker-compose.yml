@@ -1,0 +1,79 @@
+version: '4'
+
+services:
+  # Keycloak Database (MySQL)
+  keycloak-mysql:
+    container_name: keycloak-mysql
+    image: mysql:8
+    volumes:
+      - ./volume-data/mysql_keycloak_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+
+  # Keycloak Authentication Service
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:24.0.1
+    command: [ "start-dev", "--import-realm" ]
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: keycloak-mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8181:8080"
+    volumes:
+      - ./docker/keycloak/realms/:/opt/keycloak/data/import/
+    depends_on:
+      - keycloak-mysql
+
+  # MongoDB for Scan Service
+  scan-service-mongodb:
+    image: mongo:7.0.5
+    container_name: scan-service-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: scan-service
+    volumes:
+      - ./data/scan-service:/data/db
+    networks:
+      - backend
+
+  # MongoDB for Scan Processing Output
+  scan-processing-output-mongodb:
+    image: mongo:7.0.5
+    container_name: scan-processing-output-mongodb
+    ports:
+      - "27018:27017"  # Different port to avoid conflict
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: web-scan-app
+    volumes:
+      - ./data/scan-processing:/data/db
+    networks:
+      - backend
+
+  # RabbitMQ for Messaging
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: scan-rabbitmq
+    hostname: my-rabbit
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

@@ -28,7 +28,8 @@ public class Ports {
     private String id;
     private String hostRefId;
     @JsonProperty("extraports")
-    private Extraports extraports;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Extraports> extraports;
     @JsonProperty("port")
     private List<Port> port;
     @JsonIgnore
@@ -51,12 +52,12 @@ public class Ports {
     }
 
     @JsonProperty("extraports")
-    public Extraports getExtraports() {
+    public List<Extraports> getExtraports() {
         return extraports;
     }
 
     @JsonProperty("extraports")
-    public void setExtraports(Extraports extraports) {
+    public void setExtraports(List<Extraports> extraports) {
         this.extraports = extraports;
     }
 

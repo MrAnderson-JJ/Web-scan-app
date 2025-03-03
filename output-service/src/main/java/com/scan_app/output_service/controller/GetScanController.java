@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/scans")
+@RequestMapping("/api/output/scans")
 public class GetScanController {
 
     @Autowired
@@ -71,5 +71,14 @@ public class GetScanController {
         List<HostDto> scan = scanService.getQuickScanByScanId(id);
         System.out.println("controller scan: " + scan.getFirst().getAddress().getAddr());
         return scan;
+    }
+
+    @GetMapping("/test/{id}")
+    public ResponseEntity<String> getScanB(@PathVariable String id) {
+        try {
+            return ResponseEntity.ok("Ahoj "+id);
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(null);
+        }
     }
 }

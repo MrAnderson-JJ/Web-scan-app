@@ -129,6 +129,7 @@
 	</dependencyManagement>
 
 	<build>
+			<finalName>output-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
