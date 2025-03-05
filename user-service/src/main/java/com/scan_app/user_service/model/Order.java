@@ -1,4 +1,4 @@
-package com.web_scan.user.model;
+package com.scan_app.user_service.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

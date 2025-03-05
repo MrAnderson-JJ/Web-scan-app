@@ -1,4 +1,4 @@
-package com.web_scan.user.dto;
+package com.scan_app.user_service.dto;
 
 import java.math.BigDecimal;
 

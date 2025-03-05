@@ -1,9 +1,5 @@
-CREATE TABLE `orders`
+CREATE TABLE `user`
 (
-    `id` bigint(20) NOT NULL AUTO_INCREMENT,
-    `order_number` varchar(255) DEFAULT NULL,
-    `sku_code` varchar(255),
-    `price` decimal(19,2),
-    `quantity` int(11),
+    `id` bigint(20) NOT NULL,
     PRIMARY KEY (`id`)
 );

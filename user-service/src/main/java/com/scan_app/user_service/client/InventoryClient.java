@@ -1,4 +1,4 @@
-package com.web_scan.user.client;
+package com.scan_app.user_service.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
