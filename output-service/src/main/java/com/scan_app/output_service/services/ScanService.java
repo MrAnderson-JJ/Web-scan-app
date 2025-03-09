@@ -175,6 +175,13 @@ public class ScanService {
         return result;
     }
 
+    public NmapRunDto getNmapRunByScanId(String id) {
+        List<HostDto> hosts = getQuickScanByScanId(id);
+        NmapRunDto nmapRunDto = new NmapRunDto(hosts);
+
+        return nmapRunDto;
+    }
+
     public PortDto mapToPorts(Port port) {
         return PortDto.builder()
                 .portId(Integer.valueOf(port.getPortid()))

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { startScanFromOutput } from "../../api/portApi";
 import { ScanTypes, ScanTypeLabels } from "@/types/ScanType";
+import { useKeycloak } from "@react-keycloak/web";
 
 
 interface ScanFormProps {
@@ -20,6 +21,7 @@ const ScanFormIp = ({ onSubmit }: ScanFormProps) => {
   const [scanId, setScanId] = useState("");
   const [scanFlags, setScanFlags] = useState("");
   const [scanOption, setScanOption] = useState(ScanTypes.SCAN_PING);
+  const { keycloak } = useKeycloak();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,8 +29,11 @@ const ScanFormIp = ({ onSubmit }: ScanFormProps) => {
       console.log(scanId, scanFlags);
       const flags: string[] = scanFlags.split(",");
       console.log(flags);
-      console.log(onSubmit(await startScanFromOutput(scanId, flags, scanOption)));
-      onSubmit(await startScanFromOutput(scanId, flags, scanOption));
+      if (!keycloak.subject) {
+        throw new Error("Keycloak subject is not set");
+      }
+      console.log(onSubmit(await startScanFromOutput(scanId, keycloak.subject, flags, scanOption)));
+      onSubmit(await startScanFromOutput(scanId, keycloak.subject, flags, scanOption));
     } catch (error) {
       console.error("Error starting scan:", error);
     }

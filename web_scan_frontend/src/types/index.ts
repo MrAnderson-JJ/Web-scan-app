@@ -7,3 +7,6 @@ export * from "./Trace";
 export * from "./Os";
 export * from "./OsMatch";
 export * from "./OsClass";
+
+//User
+export * from "./user/UserScan";

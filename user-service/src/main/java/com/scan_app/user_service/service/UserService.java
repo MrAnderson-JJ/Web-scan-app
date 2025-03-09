@@ -13,13 +13,19 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void createUserByIdIfDoesntExist(String userId) {
+    public String createUserByIdIfDoesntExist(String userId) {
         if (!userExistsInDb(userId)) {
             userRepository.save(new User(userId));
+            return "User created successfully";
+        } else{
+            return "User already exists";
         }
     }
 
     public boolean userExistsInDb(String userId) {
         return userRepository.existsById(userId);
+    }
+    public User getUserById(String userId) {
+        return userRepository.findById(userId).orElse(null);
     }
 }

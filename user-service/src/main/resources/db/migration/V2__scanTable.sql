@@ -1,8 +1,8 @@
 CREATE TABLE `scan` (
-    `scanId` BIGINT(20) NOT NULL,
-    `userId` BIGINT(20) NOT NULL,
-    `scanType` VARCHAR(255),
-    `scanStartTime` TIMESTAMP,
-    PRIMARY KEY (`scanId`),
-    FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON DELETE CASCADE
+    `scan_id` BIGINT(20) NOT NULL,
+    `user_id` BIGINT(20) NOT NULL,
+    `scan_type` VARCHAR(255),
+    `scan_start_time` TIMESTAMP,
+    PRIMARY KEY (`scan_id`),
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
 );

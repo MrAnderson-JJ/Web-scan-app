@@ -14,4 +14,5 @@ public class ScanResultMessage {
     private String webSocketId;
     private String jsonData;
     private ScanTypes scanType;
+    private String userId;
 }

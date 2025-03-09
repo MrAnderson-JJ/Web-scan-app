@@ -7,9 +7,9 @@ ALTER TABLE `user`
 
 -- Change column types in `scan` table
 ALTER TABLE `scan`
-    MODIFY COLUMN `scanId` VARCHAR(255) NOT NULL,
-    MODIFY COLUMN `userId` VARCHAR(255) NOT NULL;
+    MODIFY COLUMN `scan_id` VARCHAR(255) NOT NULL,
+    MODIFY COLUMN `user_id` VARCHAR(255) NOT NULL;
 
 -- Drop and re-add foreign key constraint
 ALTER TABLE `scan`
-    ADD CONSTRAINT scan_user_fk FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON DELETE CASCADE;
+    ADD CONSTRAINT scan_user_fk FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE;

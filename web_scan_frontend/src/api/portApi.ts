@@ -45,10 +45,10 @@ export const fetchIntense = async (scanId: string): Promise<Host[]> => {
   }
 };
 
-export const startScanFromOutput = async (ip: string, options: string[], scanType: ScanTypes): Promise<string> => {
+export const startScanFromOutput = async (ip: string, userId: string, options: string[], scanType: ScanTypes): Promise<string> => {
   try {
     console.log(ip, options, scanType);
-    const response = await api.post<string>(`/output/scan/send`, {ip, options, scanType});
+    const response = await api.post<string>(`/output/scan/send`, {ip, userId, options, scanType});
     console.log(response.data);
     return response.data;
   } catch (error) {

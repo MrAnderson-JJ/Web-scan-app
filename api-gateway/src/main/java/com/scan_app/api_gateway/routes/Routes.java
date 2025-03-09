@@ -22,4 +22,11 @@ public class Routes {
                 .route(RequestPredicates.path("/api/scan/**"), HandlerFunctions.http("http://localhost:8080"))
                 .build();
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> userServiceRoute() {
+        return GatewayRouterFunctions.route("user-service")
+                .route(RequestPredicates.path("/api/user/**"), HandlerFunctions.http("http://localhost:8083"))
+                .build();
+    }
 }

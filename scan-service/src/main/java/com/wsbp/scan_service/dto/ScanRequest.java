@@ -12,6 +12,7 @@ import java.util.List;
 public class ScanRequest {
     @NonNull
     private String ip;
+    private String userId;
     private List<String> options;
     private ScanTypes scanType;
     private String webSocketId;

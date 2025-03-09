@@ -1,10 +1,12 @@
 package com.scan_app.output_service.controller;
 
 import com.scan_app.output_service.dto.scan.HostDto;
+import com.scan_app.output_service.dto.scan.NmapRunDto;
 import com.scan_app.output_service.dto.scan.PingDto;
 import com.scan_app.output_service.dto.scan.PortDto;
 import com.scan_app.output_service.entity.Nmaprun;
 import com.scan_app.output_service.services.ScanService;
+import com.scan_app.output_service.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ public class GetScanController {
 
     @Autowired
     private ScanService scanService;
+    @Autowired
+    private UserService userService;
 
     //upload scan by xml file path
     @PostMapping("/upload")
@@ -80,5 +84,13 @@ public class GetScanController {
         } catch (Exception e) {
             return ResponseEntity.status(404).body(null);
         }
+    }
+
+    @GetMapping("/getScanByUserId/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<NmapRunDto> getScansByUserId(@PathVariable String userId) {
+        List<NmapRunDto> scans = userService.getNmapRunsByUserId(userId);
+        System.out.println("Get scans by user id:");
+        return scans;
     }
 }
