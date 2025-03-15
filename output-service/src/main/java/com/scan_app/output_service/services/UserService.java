@@ -1,8 +1,8 @@
 package com.scan_app.output_service.services;
 
 import com.scan_app.output_service.client.UserClient;
-import com.scan_app.output_service.dto.scan.HostDto;
 import com.scan_app.output_service.dto.scan.NmapRunDto;
+import com.scan_app.output_service.dto.userServiceCommunication.CheckScanRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +25,13 @@ public class UserService {
         }
 
         return nmapRunDtos;
+    }
+
+    public boolean scansBelongToUser(CheckScanRequest checkScanRequest) {
+        return userClient.scansBelongToUser(checkScanRequest);
+    }
+
+    public void deleteScans(CheckScanRequest checkScanRequest) {
+        userClient.deleteScans(checkScanRequest);
     }
 }

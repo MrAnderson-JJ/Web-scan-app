@@ -3,7 +3,7 @@ import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
 import { WebSocketMessage } from "./model/webSocetMessage";
 
-const WEBSOCKET_URL = "http://localhost:8081/ws"; // URL backendu
+const WEBSOCKET_URL = "http://localhost:8443/ws"; // URL backendu
 
 const useWebSocket = (webSocketId: string | null) => {
   const [scanResult, setScanResult] = useState<WebSocketMessage | null>(null);

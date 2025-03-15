@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -27,6 +28,8 @@ public class Ports {
     @Id
     private String id;
     private String hostRefId;
+    @DBRef // References host collection
+    private Host host;
     @JsonProperty("extraports")
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private List<Extraports> extraports;

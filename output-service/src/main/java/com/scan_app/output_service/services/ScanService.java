@@ -182,6 +182,11 @@ public class ScanService {
         return nmapRunDto;
     }
 
+    public boolean deleteScans(List<String> scanIds) {
+        nmaprunRepository.deleteAllById(scanIds);
+        return nmaprunRepository.findAllById(scanIds).isEmpty();
+    }
+
     public PortDto mapToPorts(Port port) {
         return PortDto.builder()
                 .portId(Integer.valueOf(port.getPortid()))

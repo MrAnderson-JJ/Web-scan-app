@@ -29,4 +29,12 @@ public class Routes {
                 .route(RequestPredicates.path("/api/user/**"), HandlerFunctions.http("http://localhost:8083"))
                 .build();
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> frontendRoute() {
+        return GatewayRouterFunctions.route("frontend-service")
+                .route(RequestPredicates.all(), HandlerFunctions.http("http://localhost:5173"))
+                .build();
+    }
+
 }

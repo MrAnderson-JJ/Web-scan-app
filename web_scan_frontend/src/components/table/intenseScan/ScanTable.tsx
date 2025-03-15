@@ -12,7 +12,7 @@ interface ChartsDashboardProps {
 
 const ChartsDashboard: React.FC<ChartsDashboardProps> = ({ host }) => {
     const theme = useTheme();
-  
+   
     return (
       <Grid container spacing={3} sx={{ padding: 3 }}>
         {/* Host Table */}

@@ -1,64 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import useWebSocket from "../../api/webSocket/useWebSocket";
+import { Host } from "../../types";
+import { fetchPing, fetchQuick, fetchIntense } from "../../api/portApi";
+import PingTable from "../table/PingTable";
+import HostTable from "../table/HostTable";
+import { Ping } from "@/types/Ping";
+import { ScanTypes } from "@/types/ScanType";
+import ChartsDashboard from "../table/intenseScan/ScanTable";
 import { Container, TextField, Button, MenuItem, Select, FormControl, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const ScanDashboard: React.FC = () => {
-    const [ip, setIp] = useState('');
-    const [scanType, setScanType] = useState('');
-    const [completedScans, setCompletedScans] = useState<Array<{ ip: string, scanType: string, result: string }>>([]);
-
-    const handleScan = () => {
-        // Simulate a scan result
-        const result = `Result for ${scanType} scan on IP ${ip}`;
-        setCompletedScans([...completedScans, { ip, scanType, result }]);
-    };
+    const [pings, setPing] = useState<Ping>();
+    const [hosts, setHosts] = useState<Host[]>();
+    const [intenseScan, setIntenseScan] = useState<Host[]>();
+  
+    // Update message when scanResult is received
+    useEffect(() => {
+        const loadHosts = async () => {
+          try {
+              const scanId = window.location.pathname.split('/').pop();
+              if (scanId) {
+                const data = await fetchIntense(scanId);
+                console.log(data);
+                setIntenseScan(data);
+              } else {
+                console.error("scanId not found in URL.");
+              }
+          } catch (err) {
+            console.error("Failed to load hosts.");
+          }
+        };
+        loadHosts();
+    }, []);
 
     return (
-        <Container>
-            <form noValidate autoComplete="off">
-                <TextField
-                    label="IP Address"
-                    value={ip}
-                    onChange={(e) => setIp(e.target.value)}
-                    fullWidth
-                    margin="normal"
-                />
-                <FormControl fullWidth margin="normal">
-                    <InputLabel>Scan Type</InputLabel>
-                    <Select
-                        value={scanType}
-                        onChange={(e) => setScanType(e.target.value as string)}
-                    >
-                        <MenuItem value="Ping">Ping</MenuItem>
-                        <MenuItem value="Port">Port</MenuItem>
-                        <MenuItem value="Traceroute">Traceroute</MenuItem>
-                    </Select>
-                </FormControl>
-                <Button variant="contained" color="primary" onClick={handleScan}>
-                    Start Scan
-                </Button>
-            </form>
-            <TableContainer component={Paper} style={{ marginTop: '20px' }}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>IP Address</TableCell>
-                            <TableCell>Scan Type</TableCell>
-                            <TableCell>Result</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {completedScans.map((scan, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{scan.ip}</TableCell>
-                                <TableCell>{scan.scanType}</TableCell>
-                                <TableCell>{scan.result}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Container>
-    );
+        <div style={{ padding: "0px" }}>
+          <h1>Výsledek skenu:</h1>
+          <pre
+            style={{borderRadius: "0px" }}
+          >
+            <div style={{ padding: "0px" }}>
+              <h1>Host Table</h1>
+              { intenseScan && intenseScan[0]?.trace && intenseScan[0]?.os && <ChartsDashboard host={intenseScan[0]} />}
+            </div>
+          </pre>
+        </div>
+      );
 };
 
 export default ScanDashboard;

@@ -1,5 +1,6 @@
 package com.scan_app.user_service.service;
 
+import com.scan_app.user_service.dto.CheckScanRequest;
 import com.scan_app.user_service.dto.UserScanRequest;
 import com.scan_app.user_service.dto.UserScanResponse;
 import com.scan_app.user_service.model.Scan;
@@ -61,4 +62,21 @@ public class ScanService {
         ScanTypes scanType = ScanTypes.valueOf(scan.getScanType());
         return new UserScanRequest(scan.getScanId(), scanType);
     }
+
+    public List<Scan> getScansByScanIds(List<String> scanIds) {
+        return scanRepository.findByScanIdIn(scanIds);
+    }
+
+    public boolean deleteScans(CheckScanRequest checkScanRequest) {
+        scanRepository.deleteAllById(checkScanRequest.scanIds());
+        return scanRepository.findAllById(checkScanRequest.scanIds()).isEmpty();
+    }
+
+    public boolean doAllScansBelongToUser(CheckScanRequest checkScanRequest) {
+        List<String> scanIds = checkScanRequest.scanIds();
+        List<Scan> scans = scanRepository.findByScanIdIn(scanIds);
+
+        return scans.size() == scanIds.size() && scans.stream().allMatch(scan -> scan.getUser().getId().equals(checkScanRequest.userId()));
+    }
+
 }

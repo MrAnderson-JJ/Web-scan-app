@@ -78,7 +78,16 @@ public class GetScanController {
     }
 
     @GetMapping("/test/{id}")
-    public ResponseEntity<String> getScanB(@PathVariable String id) {
+    public ResponseEntity<String> getScanB(@PathVariable String id, @RequestHeader("X-User-ID") String userId) {
+        try {
+            return ResponseEntity.ok("Ahoj "+id + " userId: " + userId);
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(null);
+        }
+    }
+
+    @GetMapping("/tst/{id}")
+    public ResponseEntity<String> getTest(@PathVariable String id) {
         try {
             return ResponseEntity.ok("Ahoj "+id);
         } catch (Exception e) {
@@ -93,4 +102,5 @@ public class GetScanController {
         System.out.println("Get scans by user id:");
         return scans;
     }
+
 }

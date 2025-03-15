@@ -1,5 +1,6 @@
 package com.scan_app.user_service.controller;
 
+import com.scan_app.user_service.dto.CheckScanRequest;
 import com.scan_app.user_service.dto.UserScanRequest;
 import com.scan_app.user_service.dto.UserScanResponse;
 import com.scan_app.user_service.service.ScanService;
@@ -35,5 +36,17 @@ public class UserScanController {
     @ResponseStatus(HttpStatus.OK)
     public List<UserScanRequest> getScansByUserId(@PathVariable String userId) {
         return scanService.getScansByUserId(userId);
+    }
+
+    @PostMapping("/checkScans")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean checkScans(@RequestBody CheckScanRequest checkScanRequest) {
+        return scanService.doAllScansBelongToUser(checkScanRequest);
+    }
+
+    @PostMapping("/deleteScans")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean deleteScans(@RequestBody CheckScanRequest checkScanRequest) {
+        return scanService.deleteScans(checkScanRequest);
     }
 }

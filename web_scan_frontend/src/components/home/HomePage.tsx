@@ -7,14 +7,6 @@ import OsPieChart from "../table/intenseScan/ScanTable";
 import { Os } from "../../types/Os";
 import { fetchTest } from "../../api/portApi";
 
-const mockData: Os = {
-  osMatch: [
-    { name: "Linux 5.0 - 5.4", accuracy: "87", line: "68121", osClass: [] },
-    { name: "Windows Server 2016", accuracy: "80", line: "68054", osClass: [] },
-    { name: "Linux 4.15 - 5.8", accuracy: "85", line: "67250", osClass: [] }
-  ]
-};
-
 const HomePage = () => {
   const [scanId, setScanId] = useState("");
   fetchTest("test");
