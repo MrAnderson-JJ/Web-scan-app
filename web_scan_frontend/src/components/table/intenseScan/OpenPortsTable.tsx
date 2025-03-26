@@ -10,7 +10,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { Port } from "../../../types/Port";
+import { Port } from "../../../types/scan/Port";
 
 interface OpenPortsTableProps {
   ports: Port[];

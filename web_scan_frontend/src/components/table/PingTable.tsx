@@ -8,7 +8,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { Ping } from "@/types/Ping";
+import { Ping } from "@/types/scan/Ping";
 
 interface PingTableProps {
   ping: Ping;

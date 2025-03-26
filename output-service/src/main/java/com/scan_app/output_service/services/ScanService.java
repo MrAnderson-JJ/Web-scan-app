@@ -129,18 +129,12 @@ public class ScanService {
     }
 
     public PingDto getPingByScanId(String id) {
-        List<Host> hosts = hostRepository.findByNmapRunRefId(id);
         Nmaprun nmaprun = getScanById(id);
-
-        List<HostDto> result = new ArrayList<>();
-        for (Host host:
-                hosts) {
-            HostDto hostDto = mapToHost(host, null);
-            result.add(hostDto);
-        }
+        Host host = nmaprun.getHost();
+        List<HostDto> hosts = getQuickScanByScanId(id);
 
         return PingDto.builder()
-                .host(result.getFirst())
+                .host(hosts.get(0))
                 .elapsed(nmaprun.getRunstats().getFinished().getElapsed())
                 .build();
     }

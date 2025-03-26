@@ -20,7 +20,7 @@ const useWebSocket = (webSocketId: string | null) => {
     });
 
     stompClient.onConnect = () => {
-      console.log("✅ WebSocket připojen");
+      console.log("WebSocket připojen");
       setIsConnected(true);
 
       // Přihlášení k odběru zpráv po úspěšném připojení
@@ -33,12 +33,12 @@ const useWebSocket = (webSocketId: string | null) => {
             const parsedMessage: WebSocketMessage = JSON.parse(message.body);
             setScanResult(parsedMessage);
           } catch (error) {
-            console.error("🚨 Error parsing WebSocket message:", error);
+            console.error("Error parsing WebSocket message:", error);
           }
         }
       );
 
-      console.log(`📡 Přihlášen k odběru: /topic/scanResults/${webSocketId}`);
+      console.log(`Přihlášen k odběru: /topic/scanResults/${webSocketId}`);
 
       // Odpojení při unmountu
       return () => {
@@ -51,13 +51,6 @@ const useWebSocket = (webSocketId: string | null) => {
       console.log("❌ WebSocket odpojen");
       setIsConnected(false);
     };
-
-/*     socket.onclose = (event) => {
-      console.error("🚫 WebSocket uzavřen!", event);
-      if (event.reason) {
-        console.error("Důvod:", event.reason);
-      }
-    }; */
 
     stompClient.activate(); // Aktivace WebSocket připojení
 

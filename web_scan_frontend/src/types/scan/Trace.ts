@@ -1,4 +1,4 @@
-import { Hop } from "./index";
+import { Hop } from "../index";
 
 export interface Trace {
     port: String;

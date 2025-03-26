@@ -1,6 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { Os } from "../../../types/Os";
+import { Os } from "../../../types/scan/Os";
 
 interface OsPieChartProps {
   data: Os;

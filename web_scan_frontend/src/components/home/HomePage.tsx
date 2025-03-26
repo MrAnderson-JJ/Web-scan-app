@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ScanFormIp from "../scanForm/scanFormIp";
+import ScanFormIp from "./scanFormIp";
 import ScanFormTable from "./ScanFormTableComponent";
-import { fetchTest } from "../../api/portApi";
+import { fetchTest } from "../../api/scanApi";
 import { Card, Typography } from "@mui/material";
 
 const HomePage = () => {

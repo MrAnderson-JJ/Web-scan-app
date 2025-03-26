@@ -8,8 +8,8 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { startScanFromOutput } from "../../api/portApi";
-import { ScanTypes, ScanTypeLabels } from "@/types/ScanType";
+import { startScanFromOutput } from "../../api/scanApi";
+import { ScanTypes, ScanTypeLabels } from "@/types/scan/ScanType";
 import { useKeycloak } from "@react-keycloak/web";
 
 
@@ -60,7 +60,7 @@ const ScanFormIp = ({ onSubmit }: ScanFormProps) => {
         required
       />
       
-      {/* ✅ Dropdown with human-readable labels */}
+      {/* Dropdown with human-readable labels */}
       <FormControl variant="outlined" required sx={{ minWidth: 200 }}>
         <InputLabel>Scan Option</InputLabel>
         <Select

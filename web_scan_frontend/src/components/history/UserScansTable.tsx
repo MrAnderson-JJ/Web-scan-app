@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserScan } from "@/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
@@ -6,6 +7,8 @@ import Button from "@mui/material/Button";
 import { deleteUserScans } from "@/api/userApi";
 import { useKeycloak } from "@react-keycloak/web";
 import { format } from "date-fns";
+import { Outlet, Navigate } from "react-router-dom";
+import { dashboardPath } from "../../routes/routePaths";
 
 interface UserScansTableProps {
   userScans: UserScan[];
@@ -15,6 +18,7 @@ const paginationModel = { page: 0, pageSize: 10 };
 
 const UserScansTable: React.FC<UserScansTableProps> = ({ userScans }) => {
   const { keycloak } = useKeycloak();
+  const navigate = useNavigate(); // navigate to use navigate
   const [rows, setRows] = useState<UserScan[]>(userScans);
 
   useEffect(() => {
@@ -39,11 +43,12 @@ const UserScansTable: React.FC<UserScansTableProps> = ({ userScans }) => {
     },
     [keycloak.subject]
   );
+
   const handleButtonDetail = useCallback(
     (scanId: string) => {
-      window.location.href = `/dashboard/${scanId}`;
+      navigate(`/dashboard/${scanId}`); // Navigate programmatically
     },
-    [keycloak.subject]
+    [navigate]
   );
 
   const columns: GridColDef[] = [
@@ -88,7 +93,7 @@ const UserScansTable: React.FC<UserScansTableProps> = ({ userScans }) => {
     { 
       field: "dateEnd", 
       headerName: "Scan finished", 
-      width: 160,
+      width: 1,
       renderCell: (params) => params.value ? format(new Date(params.value), "dd.MM.yyyy HH:mm:ss") : "N/A"
     },
   ];

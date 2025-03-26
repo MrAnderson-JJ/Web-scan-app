@@ -1,4 +1,4 @@
-import { Port, Address, HostStatus, Trace, Os } from "./index";
+import { Port, Address, HostStatus, Trace, Os } from "../index";
 
 export interface Host {
     hostStatusDto: HostStatus;

@@ -1,8 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { TextField, Button, Grid, MenuItem, Paper } from "@mui/material";
-import { startScanFromOutput } from "../../api/portApi";
-import { ScanTypes, ScanTypeLabels } from "@/types/ScanType";
-import { useKeycloak } from "@react-keycloak/web";
 import { FilterScansDto } from "@/types";
 
 export type FilterValues = {
@@ -22,10 +19,6 @@ interface UserScanProps {
 const osOptions = ["Windows", "Linux", "macOS", "Other"];
 
 const UserScanFilterForm = ({ onFilter }: UserScanProps) => {
-  const [scanId, setScanId] = useState("");
-  const [scanFlags, setScanFlags] = useState("");
-  const [scanOption, setScanOption] = useState(ScanTypes.SCAN_PING);
-
 const [filters, setFilters] = useState<FilterScansDto>({});
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import OsPieChart from "./OsTable";
 import TraceRouteChart from "./TraceRoute";
 import HostTable from "./HostTable";
-import { Host } from "../../../types/Host";
+import { Host } from "../../../types/scan/Host";
 
 interface ChartsDashboardProps {
     host: Host;

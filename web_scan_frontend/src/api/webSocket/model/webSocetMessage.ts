@@ -1,4 +1,3 @@
-import { ScanTypes } from '@/types/ScanType';
 import { ScanResultMessage } from './scanResultMessage';
 
 export interface WebSocketMessage {

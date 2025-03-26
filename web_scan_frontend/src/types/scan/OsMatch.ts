@@ -1,4 +1,4 @@
-import { OsClass } from "./index";
+import { OsClass } from "../index";
 
 export interface OsMatch {
     name: string;

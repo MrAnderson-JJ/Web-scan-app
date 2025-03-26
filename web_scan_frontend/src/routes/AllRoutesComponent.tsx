@@ -1,13 +1,13 @@
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import {
   history,
   dashboardPath,
   loginPath,
   rootPath
 } from "./routePaths"
-import LayoutLogged from "@/components/LayoutLogged";
-import LayoutUnlogged from "@/components/LayoutUnlogged";
+import LayoutLogged from "@/components/layout/LayoutLogged";
+import LayoutUnlogged from "@/components/layout/LayoutUnlogged";
 
 import Loader from "../components/loader/Loader";
 /* import ProtectedRoute from "./protectedRoute"; */

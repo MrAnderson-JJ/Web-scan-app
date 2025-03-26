@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import useWebSocket from "../../api/webSocket/useWebSocket";
 import { Host } from "../../types";
-import { fetchPing, fetchQuick, fetchIntense } from "../../api/portApi";
+import { fetchPing, fetchQuick, fetchIntense } from "../../api/scanApi";
 import PingTable from "../table/PingTable";
-import HostTable from "../table/HostTable";
-import { Ping } from "@/types/Ping";
-import { ScanTypes } from "@/types/ScanType";
+import { Ping } from "@/types/scan/Ping";
+import { ScanTypes } from "@/types/scan/ScanType";
 import ChartsDashboard from "../table/intenseScan/ScanTable";
 import { CircularProgress, Typography  } from "@mui/material";
 

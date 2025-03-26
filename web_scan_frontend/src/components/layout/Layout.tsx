@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Box, Toolbar, useTheme } from "@mui/material";
-import Navbar from "./layout/navbar/Navbar"; // Includes both Sidebar & AppBar
-import Footer from "./layout/footer/Footer";
+import Navbar from "./navbar/Navbar"; // Includes both Sidebar & AppBar
+import Footer from "./footer/Footer";
 
 interface LayoutProps {
   children?: React.ReactNode;

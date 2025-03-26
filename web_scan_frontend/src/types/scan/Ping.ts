@@ -1,4 +1,4 @@
-import { Host } from "./index";
+import { Host } from "../index";
 
 export interface Ping {
     host: Host;

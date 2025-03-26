@@ -17,7 +17,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp, Search } from "@mui/icons-material";
-import { Host } from "../../../types/Host";
+import { Host } from "../../../types/scan/Host";
 import OpenPortsTable from "./OpenPortsTable";
 
 interface HostTableProps {

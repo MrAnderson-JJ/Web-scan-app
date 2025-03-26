@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom";
-import Loader from "../components/loader/Loader";
-import UserLayout from "../components/Layout";
-import { loginPath } from "../routes/routePaths";
+import { loginPath } from "../../routes/routePaths";
+import Loader from "../loader/Loader";
+import UserLayout from "./Layout";
 import { useKeycloak } from "@react-keycloak/web";
 import { useState, useEffect } from "react";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchUserScans } from "@/api/userApi";
 import { useKeycloak } from "@react-keycloak/web";
 import { FilterScansDto, UserScan } from "@/types";

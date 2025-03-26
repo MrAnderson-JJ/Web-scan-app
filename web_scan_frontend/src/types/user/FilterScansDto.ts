@@ -1,4 +1,4 @@
-import { ScanTypes } from "../ScanType";
+import { ScanTypes } from "../scan/ScanType";
 
 export interface FilterScansDto {
     port?: number;

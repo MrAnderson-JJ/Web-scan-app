@@ -1,9 +1,9 @@
 import { Outlet, Navigate, useLocation } from "react-router-dom";
-import Loader from "../components/loader/Loader";
+import Loader from "../loader/Loader";
 import { Box, Toolbar } from "@mui/material";
-import AppNavBar from "./layout/appBar/AppNavBar";
-import Footer from "./layout/footer/Footer";
-import { rootPath, loginPath } from "../routes/routePaths";
+import AppNavBar from "./appBar/AppNavBar";
+import Footer from "./footer/Footer";
+import { rootPath, loginPath } from "../../routes/routePaths";
 import { useKeycloak } from "@react-keycloak/web";
 import { useState, useEffect } from "react";
 
@@ -24,7 +24,7 @@ export default function Layout() {
     return <Loader />;
   }
 
-  // 🚨 **Fix Infinite Redirects**
+  // **Fix Infinite Redirects**
   // - Only redirect when the user is on `/login` and they are authenticated
   if (isAuthenticated && location.pathname === loginPath) {
     return <Navigate to={rootPath} replace />;
