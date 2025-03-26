@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class Port {
 
     @JsonProperty("portid")
-    private String portid;
+    private Integer portid;
     @JsonProperty("protocol")
     private String protocol;
     @JsonProperty("service")
@@ -39,12 +39,12 @@ public class Port {
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("portid")
-    public String getPortid() {
+    public Integer getPortid() {
         return portid;
     }
 
     @JsonProperty("portid")
-    public void setPortid(String portid) {
+    public void setPortid(Integer portid) {
         this.portid = portid;
     }
 

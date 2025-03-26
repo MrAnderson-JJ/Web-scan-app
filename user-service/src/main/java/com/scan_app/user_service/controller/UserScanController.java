@@ -3,6 +3,8 @@ package com.scan_app.user_service.controller;
 import com.scan_app.user_service.dto.CheckScanRequest;
 import com.scan_app.user_service.dto.UserScanRequest;
 import com.scan_app.user_service.dto.UserScanResponse;
+import com.scan_app.user_service.dto.filter.FilterScansDto;
+import com.scan_app.user_service.model.Scan;
 import com.scan_app.user_service.service.ScanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ public class UserScanController {
     @PostMapping("/saveScan")
     @ResponseStatus(HttpStatus.CREATED)
     public String saveScan(@RequestBody UserScanResponse userScanResponse) {
+        System.out.println(userScanResponse.scanIp());
         scanService.saveScan(userScanResponse);
         return "Scan saved successfully";
     }
@@ -35,6 +38,7 @@ public class UserScanController {
     @GetMapping("/getScans/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public List<UserScanRequest> getScansByUserId(@PathVariable String userId) {
+        System.out.println(scanService.getScansByUserId(userId).getFirst().elapsedTime());
         return scanService.getScansByUserId(userId);
     }
 
@@ -48,5 +52,11 @@ public class UserScanController {
     @ResponseStatus(HttpStatus.OK)
     public boolean deleteScans(@RequestBody CheckScanRequest checkScanRequest) {
         return scanService.deleteScans(checkScanRequest);
+    }
+
+    @PostMapping("/getFilteredScans")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserScanRequest> getFilteredScans(@RequestBody FilterScansDto filterScansDto, @RequestHeader("X-User-ID") String userId) {
+        return scanService.getFilteredScans(filterScansDto, userId);
     }
 }

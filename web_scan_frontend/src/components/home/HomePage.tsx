@@ -1,33 +1,38 @@
 import React, { useState } from "react";
-import ScanForm from "../scanForm/scanForm";
 import ScanFormIp from "../scanForm/scanFormIp";
-import HomeHostTable from "./HomeTableComponent";
 import ScanFormTable from "./ScanFormTableComponent";
-import OsPieChart from "../table/intenseScan/ScanTable";
-import { Os } from "../../types/Os";
 import { fetchTest } from "../../api/portApi";
+import { Card, Typography } from "@mui/material";
 
 const HomePage = () => {
-  const [scanId, setScanId] = useState("");
   fetchTest("test");
   console.log(fetchTest("test"));
   const [webSocketId, setScanMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleScanResult = (result: string) => {
+    setLoading(false);
+    setScanMessage(result);
+    console.log("KOKOKOOKOKOKOT", result);
+  };
 
   return (
     <>
-      <div style={{ padding: "20px" }}>
-        <h1>Scan start</h1>
-        <ScanFormIp onSubmit={setScanMessage} />
-        {webSocketId && <ScanFormTable webSocketId={webSocketId} />}{" "}
-        {/* ✅ Shows table only when scanId is set */}
-      </div>
-
-      <div style={{ padding: "20px" }}>
-        <h1>Scan Database</h1>
-        <ScanForm onSubmit={setScanId} />{" "}
-        {/* ✅ Updates scanId when submitted */}
-        {scanId && <HomeHostTable scanId={scanId} />}{" "}
-        {/* ✅ Shows table only when scanId is set */}
+      <div style={{ padding: "40px", maxWidth: "1600px", margin: "0 auto" }}>
+        <Typography variant="h4" gutterBottom>
+          Síťový skener
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          Zadejte IP adresu nebo rozsah pro spuštění nového skenování sítě.
+        </Typography>
+        <Card style={{ padding: "20px", marginBottom: "20px" }}>
+          <Typography variant="h5" style={{ paddingBottom: "5px" }}>
+            Nové skenování sítě
+          </Typography>
+          <ScanFormIp onSubmit={handleScanResult} />
+        </Card>
+        {webSocketId && <ScanFormTable key={webSocketId} webSocketId={webSocketId} />}{" "} {/** when the key changes it remounts whole component */}
+        {/* Shows table only when scanId is set */}
       </div>
     </>
   );

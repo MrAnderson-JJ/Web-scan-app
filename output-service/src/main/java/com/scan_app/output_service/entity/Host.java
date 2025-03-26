@@ -53,7 +53,6 @@ public class Host {
     @JsonProperty("hostnames")
     private Hostnames hostnames;
     @JsonProperty("ports")
-    @Transient
     private Ports ports;
     @JsonProperty("os")
     private Os os;

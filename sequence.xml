@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Sekvenční diagram - Filtrování skenů" id="m2jxZkQk93rLe-5BkFcG">
+    <mxGraphModel dx="1264" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Entities -->
+        <mxCell id="2" value="Frontend" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="100" height="600" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="API Gateway" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="100" y="0" width="100" height="600" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="User Service" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="200" y="0" width="100" height="600" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="Output Service" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="300" y="0" width="100" height="600" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="MongoDB" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="400" y="0" width="100" height="600" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="MySQL" style="swimlane" vertex="1" parent="1">
+          <mxGeometry x="500" y="0" width="100" height="600" as="geometry"/>
+        </mxCell>
+        
+        <!-- Arrows (messages) -->
+        <mxCell id="10" value="GET /scans?filters=..." style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="GET /user/scans?filters=..." style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="3" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="POST /output/filter-scans" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="4" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Find scans by filters" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="5" target="6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="Returns scanIds" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="6" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="Returns scanIds" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="5" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="SELECT * FROM scans WHERE id IN (...)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="4" target="7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="Returns scan details" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="7" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="Returns data" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="4" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="19" value="Returns data" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="3" target="2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -29,7 +29,8 @@ public class StartScanService {
                             // send this xml output to queue
                             try {
                                 String scanOutputToJson = xmlToJsonService.jsonConvert(xmlOutput);
-                                scanReportProducer.sendMessage(scanRequest.getWebSocketId() ,scanOutputToJson, scanRequest.getScanType(), scanRequest.getUserId());
+                                System.out.println("scanIP: " + scanRequest.getIp());
+                                scanReportProducer.sendMessage(scanRequest.getWebSocketId() ,scanOutputToJson, scanRequest.getScanType(), scanRequest.getUserId(), scanRequest.getIp());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

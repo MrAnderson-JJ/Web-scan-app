@@ -17,14 +17,6 @@ public class ScanResultWebSocketController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    // Method to receive WebSocket messages from frontend
-    @MessageMapping("/scan") // Maps messages sent to "/app/scan"
-    @SendTo("/topic/scanResults") // Broadcast result to all subscribers
-    public ScanResultMessage receiveScanResult(@Payload ScanResultMessage message) {
-        System.out.println("WebSocket message received: " + message);
-        return message; // Automatically sent to /topic/scanResults
-    }
-
     // Method to send WebSocket messages from backend to frontend
     public void notifyScanResult(ScanResultMessage message, String scanId) {
         ScanToFrontendMessage scanToFrontendMessage = new ScanToFrontendMessage(scanId, message);

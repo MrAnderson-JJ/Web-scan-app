@@ -11,3 +11,4 @@ export * from "./OsClass";
 //User
 export * from "./user/UserScan";
 export * from "./user/CheckScanRequest";
+export * from "./user/FilterScansDto";

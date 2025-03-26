@@ -2,17 +2,17 @@ import axios, { AxiosInstance } from 'axios';
 import keycloak from "./../auth/keycloak";
 
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: '/api/',
+    baseURL: 'http://localhost:8081/api/',
     headers: {"ngrok-skip-browser-warning": "true"}
 });
 
 const axiosInstanceScan: AxiosInstance = axios.create({
-    baseURL: '/api/scan/',
+    baseURL: 'http://localhost:8080/api/scan/',
     headers: {"ngrok-skip-browser-warning": "true"}
 });
 
 const axiosInstanceApiGateway: AxiosInstance = axios.create({
-    baseURL: '/api/',
+    baseURL: 'http://localhost:9000/api/',
     headers: {"ngrok-skip-browser-warning": "true"}
 });
 

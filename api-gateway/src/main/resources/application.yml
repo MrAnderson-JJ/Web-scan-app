@@ -1,13 +1,35 @@
 server:
-  ssl:
-    key-store: src/main/resources/springboot.p12
-    key-store-password: password
-    key-store-type: pkcs12
-    key-alias: springboot
-    key-password: password
-  port: 8443
+  port: 9000
 
 spring:
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: output-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/output/**
+        - id: scan-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/scan/**
+        - id: user-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/user/**
+        - id: frontend
+          uri: http://localhost:5173
+          predicates:
+            - Path=/**
+          filters:
+            - SetRequestHeader=X-Forwarded-Proto, https
+        - id: websocket-route
+          uri: ws://localhost:8082  # Adresa WebSocket služby
+          predicates:
+              - Path=/ws
+
   application:
     name: api-gateway
   security:

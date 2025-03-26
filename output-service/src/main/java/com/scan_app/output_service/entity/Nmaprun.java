@@ -44,7 +44,7 @@ public class Nmaprun {
     @JsonProperty("scanner")
     private String scanner;
     @JsonProperty("start")
-    private String start;
+    private Long start;
     @JsonProperty("startstr")
     private String startstr;
     @JsonProperty("version")
@@ -54,7 +54,6 @@ public class Nmaprun {
     @JsonProperty("debugging")
     private Debugging debugging;
     @JsonProperty("host")
-    @Transient
     private Host host;
     @JsonProperty("hosthint")
     private Hosthint hosthint;
@@ -100,12 +99,12 @@ public class Nmaprun {
     }
 
     @JsonProperty("start")
-    public String getStart() {
+    public Long getStart() {
         return start;
     }
 
     @JsonProperty("start")
-    public void setStart(String start) {
+    public void setStart(Long start) {
         this.start = start;
     }
 

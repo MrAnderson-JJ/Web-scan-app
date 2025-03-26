@@ -7,6 +7,7 @@ import HostTable from "../table/HostTable";
 import { Ping } from "@/types/Ping";
 import { ScanTypes } from "@/types/ScanType";
 import ChartsDashboard from "../table/intenseScan/ScanTable";
+import { CircularProgress, Typography  } from "@mui/material";
 
 interface MessageProps {
   webSocketId: string;
@@ -47,15 +48,23 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
   }, [scanResult]);
 
   return (
-    <div style={{ padding: "0px" }}>
-      <h2>Status WebSocketu: {isConnected ? "🔵 Připojeno" : "🔴 Odpojeno"}</h2>
-      <h1>Výsledek skenu:</h1>
+    <div>
+      <Typography variant="h6">
+        Status WebSocketu: {isConnected ? "🔵 Připojeno" : "🔴 Odpojeno"}
+      </Typography>
+      {!scanResult && 
+              <div style={{ textAlign: "center" }}>
+                <Typography variant="h5" gutterBottom style={{marginBottom: "10px"}}>
+                  Scanning host..
+                </Typography>
+                <CircularProgress size={60} />
+            </div>
+      }
       <pre
         style={{borderRadius: "0px" }}
       >
         <div style={{ padding: "0px" }}>
-          <h1>Host Table</h1>
-            {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_PING && pings && <PingTable ping={pings} />}
+          {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_PING && pings && <PingTable ping={pings} />}
           {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_QUICK && hosts && <ChartsDashboard host={hosts[0]} />}
           {scanResult?.scanResultMessage.scanType === ScanTypes.SCAN_FULL && intenseScan && intenseScan[0]?.trace && intenseScan[0]?.os && <ChartsDashboard host={intenseScan[0]} />}
         </div>

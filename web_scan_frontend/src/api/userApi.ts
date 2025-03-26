@@ -1,5 +1,5 @@
 import { axiosInstanceApiGateway as api } from "./axiosConfig";
-import { CheckScanRequest, UserScan } from "@/types";
+import { CheckScanRequest, FilterScansDto, UserScan } from "@/types";
 
 // Function to fetch ports by scan ID
 export const saveUserIfNotExists = async (userId: string): Promise<Boolean> => {
@@ -26,6 +26,16 @@ export const fetchUserScans = async (userId: string): Promise<UserScan[]> => {
 export const deleteUserScans = async (userId: string, scanIds: string[]): Promise<string> => {
   try {
     const response = await api.post<string>(`/output/scans/delete`, { userId, scanIds });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching userScans:", error);
+    throw error;
+  }
+};
+
+export const fetchFilteredScans = async (filterScansDto: FilterScansDto): Promise<UserScan[]> => {
+  try {
+    const response = await api.post<UserScan[]>(`/user/scan/getFilteredScans`, filterScansDto);
     return response.data;
   } catch (error) {
     console.error("Error fetching userScans:", error);

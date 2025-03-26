@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,5 +15,10 @@ import lombok.NoArgsConstructor;
 public class UserScanSaveRequest {
     private String scanId;
     private String userId;
+    private String scanIp;
     private ScanTypes scanType;
+    private Date dateStart;
+    private Date dateEnd;
+    private Double elapsedTime;
+    private boolean active;
 }

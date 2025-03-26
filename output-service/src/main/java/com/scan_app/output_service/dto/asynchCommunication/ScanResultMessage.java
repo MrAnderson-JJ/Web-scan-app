@@ -13,4 +13,5 @@ public class ScanResultMessage {
     private String jsonData;
     private ScanTypes scanType;
     private String userId;
+    private String scanIp;
 }

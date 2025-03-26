@@ -3,6 +3,7 @@ package com.scan_app.output_service.services;
 import com.scan_app.output_service.client.UserClient;
 import com.scan_app.output_service.dto.scan.NmapRunDto;
 import com.scan_app.output_service.dto.userServiceCommunication.CheckScanRequest;
+import com.scan_app.output_service.dto.userServiceCommunication.UserScanSaveRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,9 @@ public class UserService {
 
     public void deleteScans(CheckScanRequest checkScanRequest) {
         userClient.deleteScans(checkScanRequest);
+    }
+
+    public void saveScan(UserScanSaveRequest userScanSaveRequest) {
+        userClient.saveScan(userScanSaveRequest);
     }
 }

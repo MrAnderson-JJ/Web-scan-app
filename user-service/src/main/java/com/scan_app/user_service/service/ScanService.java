@@ -1,8 +1,10 @@
 package com.scan_app.user_service.service;
 
+import com.scan_app.user_service.client.OutputClient;
 import com.scan_app.user_service.dto.CheckScanRequest;
 import com.scan_app.user_service.dto.UserScanRequest;
 import com.scan_app.user_service.dto.UserScanResponse;
+import com.scan_app.user_service.dto.filter.FilterScansDto;
 import com.scan_app.user_service.model.Scan;
 import com.scan_app.user_service.repository.ScanRepository;
 import com.scan_app.user_service.util.ScanTypes;
@@ -26,6 +28,8 @@ public class ScanService {
     @Autowired
     private UserService userService;
 
+    private final OutputClient outputClient;
+
     public void saveScan(UserScanResponse userScanResponse) {
         scanRepository.save(mapToScan(userScanResponse));
     }
@@ -33,10 +37,18 @@ public class ScanService {
     public Scan mapToScan(UserScanResponse userScanResponse) {
         if (userService.userExistsInDb(userScanResponse.userId())) {
 
+            System.out.println(userScanResponse.dateStart());
+            System.out.println(userScanResponse.elapsedTime());
+            System.out.println(userScanResponse.active());
         Scan scan = Scan.builder()
                 .user(userService.getUserById(userScanResponse.userId()))
                 .scanId(userScanResponse.scanId())
                 .scanType(userScanResponse.scanType().name())
+                .scanStartTime(userScanResponse.dateStart())
+                .scanEndTime(userScanResponse.dateEnd())
+                .elapsedTime(userScanResponse.elapsedTime())
+                .active(userScanResponse.active())
+                .scanIp(userScanResponse.scanIp())
                 .build();
 
         return scan;
@@ -60,7 +72,7 @@ public class ScanService {
 
     public UserScanRequest mapScanToRequest(Scan scan) {
         ScanTypes scanType = ScanTypes.valueOf(scan.getScanType());
-        return new UserScanRequest(scan.getScanId(), scanType);
+        return new UserScanRequest(scan.getScanId(), scanType, scan.getScanStartTime(), scan.getScanEndTime(), scan.getElapsedTime(), scan.getScanIp());
     }
 
     public List<Scan> getScansByScanIds(List<String> scanIds) {
@@ -79,4 +91,10 @@ public class ScanService {
         return scans.size() == scanIds.size() && scans.stream().allMatch(scan -> scan.getUser().getId().equals(checkScanRequest.userId()));
     }
 
+    public List<UserScanRequest> getFilteredScans(FilterScansDto filterScansDto, String userId) {
+        filterScansDto.setScanIds(getScansIdByUserId(userId));
+        List<String> filteredScans = outputClient.getFilteredScanIds(filterScansDto);
+
+        return getScansByScanIds(filteredScans).stream().map(this::mapScanToRequest).toList();
+    }
 }

@@ -3,7 +3,7 @@ import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
 import { WebSocketMessage } from "./model/webSocetMessage";
 
-const WEBSOCKET_URL = "http://localhost:8443/ws"; // URL backendu
+const WEBSOCKET_URL = "ws://localhost:8081/ws"; // URL backendu
 
 const useWebSocket = (webSocketId: string | null) => {
   const [scanResult, setScanResult] = useState<WebSocketMessage | null>(null);
@@ -12,9 +12,9 @@ const useWebSocket = (webSocketId: string | null) => {
   useEffect(() => {
     if (!webSocketId) return;
 
-    const socket = new SockJS(WEBSOCKET_URL); // Vytvoření SockJS klienta
+
     const stompClient = new Client({
-      webSocketFactory: () => socket,
+      brokerURL: WEBSOCKET_URL,
       reconnectDelay: 5000, // Automatické připojení po odpojení
       debug: (msg) => console.log("WebSocket Debug:", msg),
     });
@@ -52,12 +52,12 @@ const useWebSocket = (webSocketId: string | null) => {
       setIsConnected(false);
     };
 
-    socket.onclose = (event) => {
+/*     socket.onclose = (event) => {
       console.error("🚫 WebSocket uzavřen!", event);
       if (event.reason) {
         console.error("Důvod:", event.reason);
       }
-    };
+    }; */
 
     stompClient.activate(); // Aktivace WebSocket připojení
 

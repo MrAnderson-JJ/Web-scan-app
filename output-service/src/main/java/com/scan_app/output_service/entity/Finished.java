@@ -30,7 +30,7 @@ public class Finished {
     @JsonProperty("summary")
     private String summary;
     @JsonProperty("time")
-    private String time;
+    private Long time;
     @JsonProperty("timestr")
     private String timestr;
     @JsonIgnore
@@ -67,12 +67,12 @@ public class Finished {
     }
 
     @JsonProperty("time")
-    public String getTime() {
+    public Long getTime() {
         return time;
     }
 
     @JsonProperty("time")
-    public void setTime(String time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 

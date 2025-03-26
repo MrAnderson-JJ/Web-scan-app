@@ -1,12 +1,9 @@
 package com.scan_app.api_gateway.routes;
 
-import org.springframework.cloud.gateway.server.mvc.handler.GatewayRouterFunctions;
-import org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.function.*;
 
-@Configuration
+/*@Configuration
 public class Routes {
 
     @Bean
@@ -37,4 +34,4 @@ public class Routes {
                 .build();
     }
 
-}
+}*/

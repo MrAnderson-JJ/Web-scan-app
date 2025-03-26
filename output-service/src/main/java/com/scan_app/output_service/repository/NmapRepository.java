@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface NmapRepository extends MongoRepository<Nmaprun, String> {
+public interface NmapRepository extends MongoRepository<Nmaprun, String>, NmapCustomRepository {
     List<Nmaprun> findByScanner(String scanner);
 
     @Query(value = "{ '_id': ?0 }", fields = "{ 'host.ports.port': 1, '_id': 0 }")

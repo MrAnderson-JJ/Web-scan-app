@@ -18,8 +18,8 @@ public class ScanReportProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendMessage(String webSocketId ,String jsonOutput, ScanTypes scanType, String userId) {
-        ScanResultMessage message = new ScanResultMessage(webSocketId, jsonOutput, scanType, userId);
+    public void sendMessage(String webSocketId ,String jsonOutput, ScanTypes scanType, String userId, String scanIp) {
+        ScanResultMessage message = new ScanResultMessage(webSocketId, jsonOutput, scanType, userId, scanIp);
         System.out.println(message.getWebSocketId());
         System.out.println(message.getJsonData());
         ScanRequest scanRequest = new ScanRequest();

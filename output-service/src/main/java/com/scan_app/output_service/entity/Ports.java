@@ -28,7 +28,6 @@ public class Ports {
     @Id
     private String id;
     private String hostRefId;
-    @DBRef // References host collection
     private Host host;
     @JsonProperty("extraports")
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)

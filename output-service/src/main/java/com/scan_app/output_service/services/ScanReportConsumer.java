@@ -9,13 +9,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
+
 @Service
 @RequiredArgsConstructor
 public class ScanReportConsumer {
 
     private final ScanService scanService;
     private final ScanResultWebSocketController webSocketController;
-    private final UserClient userClient;
+    private final UserScanService userScanService;
 
     @RabbitListener(queues = "reportQueue")
     public void processScanResult(ScanResultMessage message) {
@@ -25,8 +28,8 @@ public class ScanReportConsumer {
         try {
             Nmaprun nmaprun = scanService.saveScanJson(message.getJsonData());
             if (message.getUserId() != null) {
-                UserScanSaveRequest userScanSaveRequest = new UserScanSaveRequest(nmaprun.get_id(), message.getUserId(), message.getScanType());
-                userClient.saveScan(userScanSaveRequest);
+                System.out.println(message.getScanIp());
+                userScanService.saveScan(message.getUserId(), message.getScanIp(), nmaprun, message.getScanType());
             }
             System.out.println("report conusmet " + message.getWebSocketId());
             webSocketController.notifyScanResult(message, nmaprun.get_id());
