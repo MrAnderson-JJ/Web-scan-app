@@ -1,0 +1,7 @@
+
+### Mysql user service###
+/mysql/
+### Mongodb output service###
+/data/
+### Mysql keycloak###
+/volume-data/

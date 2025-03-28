@@ -1,0 +1,27 @@
+{
+  "realm" : "network-scanner",
+  "users" : [ {
+    "id" : "46c27012-df53-444b-90a7-b4a365133c3b",
+    "username" : "test",
+    "firstName" : "test",
+    "lastName" : "test",
+    "email" : "test@test.com",
+    "emailVerified" : false,
+    "createdTimestamp" : 1740872689591,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "7bd6b0ad-d352-4de2-83b1-fc2796f2d916",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1740872700654,
+      "secretData" : "{\"value\":\"TntQVxD9IR7mq4Jub7PwTDmW8sZgUKBmiDHhKsXrAUC9XUwmDW1CWUTbGAXBmnfacS4jxaShSCcLpD3CeMbCfQ==\",\"salt\":\"Q+Az64YUM0hZ5KQaAmb27A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":210000,\"algorithm\":\"pbkdf2-sha512\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-network-scanner" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}
