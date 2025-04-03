@@ -26,18 +26,6 @@ public class GetScanController {
     @Autowired
     private UserService userService;
 
-    //upload scan by xml file path
-    @PostMapping("/upload")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Nmaprun> uploadScan(@RequestBody String path) {
-        try {
-            Nmaprun savedScan = scanService.saveScan(path);
-            return ResponseEntity.ok(savedScan);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
-        }
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Nmaprun> getScanById(@PathVariable String id) {
         try {
@@ -46,22 +34,6 @@ public class GetScanController {
         } catch (Exception e) {
             return ResponseEntity.status(404).body(null);
         }
-    }
-
-    @GetMapping("/getports/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<PortDto> getPortsByScanId(@PathVariable String id) {
-            List<PortDto> scan = scanService.getPortsByScanId(id);
-            System.out.println("controller scan: " + scan.getFirst().getPortId());
-            return scan;
-    }
-
-    @GetMapping("/gethostsquick/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<HostDto> getHostsQuickByScanId(@PathVariable String id) {
-        List<HostDto> scan = scanService.getQuickScanByScanId(id);
-        System.out.println("controller scan: " + scan.getFirst().getAddress().getAddr());
-        return scan;
     }
 
     @GetMapping("/getping/{id}")
@@ -89,21 +61,18 @@ public class GetScanController {
         }
     }
 
-    @GetMapping("/tst/{id}")
-    public ResponseEntity<String> getTest(@PathVariable String id) {
-        try {
-            return ResponseEntity.ok("Ahoj "+id);
-        } catch (Exception e) {
-            return ResponseEntity.status(404).body(null);
-        }
-    }
-
     @GetMapping("/getScanByUserId/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public List<NmapRunDto> getScansByUserId(@PathVariable String userId) {
         List<NmapRunDto> scans = userService.getNmapRunsByUserId(userId);
         System.out.println("Get scans by user id:");
         return scans;
+    }
+
+    @GetMapping("/getLatestUserScan")
+    @ResponseStatus(HttpStatus.OK)
+    public NmapRunDto getLatestUserScan(@RequestHeader("X-User-ID") String userId) {
+        return userService.getLatestUserScan(userId);
     }
 
     @PostMapping("/filterScans")

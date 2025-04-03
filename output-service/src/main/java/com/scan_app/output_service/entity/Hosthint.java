@@ -1,7 +1,9 @@
 
 package com.scan_app.output_service.entity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 
@@ -22,7 +24,8 @@ import lombok.NoArgsConstructor;
 public class Hosthint {
 
     @JsonProperty("address")
-    private Address__1 address;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Address__1> address = new ArrayList<>();
     @JsonProperty("hostnames")
     private Hostnames__1 hostnames;
     @JsonProperty("status")
@@ -31,12 +34,12 @@ public class Hosthint {
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("address")
-    public Address__1 getAddress() {
+    public List<Address__1> getAddress() {
         return address;
     }
 
     @JsonProperty("address")
-    public void setAddress(Address__1 address) {
+    public void setAddress(List<Address__1> address) {
         this.address = address;
     }
 

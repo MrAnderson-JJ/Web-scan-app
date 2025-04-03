@@ -1,10 +1,7 @@
 package com.scan_app.output_service.controller;
 
-import com.scan_app.output_service.dto.asynchCommunication.ScanResultMessage;
-import com.scan_app.output_service.dto.asynchCommunication.ScanToFrontendMessage;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
+import com.scan_app.output_service.dto.processCommunication.ScanResultMessage;
+import com.scan_app.output_service.dto.processCommunication.ScanToFrontendMessage;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 

@@ -1,12 +1,10 @@
 package com.scan_app.output_service.services;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.scan_app.output_service.dto.FilterScansDto;
 import com.scan_app.output_service.entity.*;
-import com.scan_app.output_service.repository.HostRepository;
-import com.scan_app.output_service.repository.NmapCustomRepositoryImpl;
 import com.scan_app.output_service.repository.NmapRepository;
-import com.scan_app.output_service.repository.PortRepository;
 import com.scan_app.output_service.dto.scan.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,51 +24,11 @@ public class ScanService {
 
     @Autowired
     private NmapRepository nmaprunRepository;
-    @Autowired
-    private HostRepository hostRepository;
-    @Autowired
-    private PortRepository portRepository;
-
-    private final XmlToJsonService xmlToJsonService;
-
-    public Nmaprun saveScan(String filePathXml) throws Exception {
-        // Convert XML to JSON
-        String jsonOutput = xmlToJsonService.jsonConvert(filePathXml);
-
-        System.out.println(jsonOutput);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        System.out.println("before map");
-        Nmaprun nmaprun = objectMapper.readValue(jsonOutput, Nmaprun.class);
-        nmaprun.set_id(new ObjectId().toString());
-
-        Host host = nmaprun.getHost();
-        host.setId(new ObjectId().toString());
-        host.setNmapRunRefId(nmaprun.get_id());
-
-        System.out.println(nmaprun.getScanner());
-        System.out.println("here");
-        Ports ports = new Ports();
-        System.out.println("asdasdsdaasd");
-        if (host.getPorts() != null) {
-            System.out.println("in if");
-            ports = host.getPorts();
-            ports.setId(new ObjectId().toString());
-            ports.setHostRefId(host.getId());
-        }
-        System.out.println("after ports");
-        System.out.println("id: " + nmaprun.get_id());
-        nmaprunRepository.save(nmaprun);
-        hostRepository.save(host);
-        if (host.getPorts() != null) {
-            portRepository.save(ports);
-        }
-        return nmaprun;
-    }
 
     public Nmaprun saveScanJson(String json) throws Exception {
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
         Nmaprun nmaprun = objectMapper.readValue(json, Nmaprun.class);
         nmaprun.set_id(new ObjectId().toString());
 
@@ -88,40 +45,19 @@ public class ScanService {
         }
     }
 
-    public List<PortDto> getPortsByScanId(String id) {
-        List<Host> hosts = hostRepository.findByNmapRunRefId(id);
-        if (hosts.isEmpty()) {
-            throw new NoSuchElementException("No hosts found for scan ID: " + id);
-        }
-
-        List<String> hostIds = hosts.stream()
-                .map(Host::getId)
-                .collect(Collectors.toList());
-
-        if (portRepository.findByHostRefIdIn(hostIds) == null) {
-            return null;
-        }
-        List<Port> ports = portRepository.findByHostRefIdIn(hostIds).getPort();
-
-        System.out.println("output: " + ports.getFirst().getPortid());
-        return ports.stream().map(this::mapToPorts).toList();
-    }
-
     public List<HostDto> getQuickScanByScanId(String id) {
         Nmaprun nmaprun = getScanById(id);
-        Host host = nmaprun.getHost();
-        List<Host> hosts = new ArrayList<>();
-        hosts.add(host);
+        //Host host = nmaprun.getHost();
+        List<Host> hosts = nmaprun.getHost();
+        //hosts.add(host);
         if (hosts.isEmpty()) {
             throw new NoSuchElementException("No hosts found for scan ID: " + id);
         }
-
-        List<PortDto> portDtos = host.getPorts().getPort().stream().map(this::mapToPorts).toList();
 
         List<HostDto> result = new ArrayList<>();
         for (Host hostn:
              hosts) {
-            HostDto hostDto = mapToHost(hostn, portDtos);
+            HostDto hostDto = mapToHost(hostn);
             result.add(hostDto);
         }
 
@@ -130,31 +66,12 @@ public class ScanService {
 
     public PingDto getPingByScanId(String id) {
         Nmaprun nmaprun = getScanById(id);
-        Host host = nmaprun.getHost();
         List<HostDto> hosts = getQuickScanByScanId(id);
 
         return PingDto.builder()
                 .host(hosts.get(0))
                 .elapsed(nmaprun.getRunstats().getFinished().getElapsed())
                 .build();
-    }
-
-    public List<HostDto> getIntenseScanByScanId(String id) {
-        List<Host> hosts = hostRepository.findByNmapRunRefId(id);
-        if (hosts.isEmpty()) {
-            throw new NoSuchElementException("No hosts found for scan ID: " + id);
-        }
-
-        List<PortDto> portDtos = getPortsByScanId(id);
-
-        List<HostDto> result = new ArrayList<>();
-        for (Host host:
-                hosts) {
-            HostDto hostDto = mapToHost(host, portDtos);
-            result.add(hostDto);
-        }
-
-        return result;
     }
 
     public NmapRunDto getNmapRunByScanId(String id) {
@@ -174,14 +91,21 @@ public class ScanService {
                 .portId(Integer.valueOf(port.getPortid()))
                 .protocol(port.getProtocol())
                 .state(port.getState().getState())
-                .service(port.getService().getName())
+                .service(Optional.ofNullable(port.getService())
+                        .map(com.scan_app.output_service.entity.Service::getName)
+                        .orElse(null))
                 .build();
+
     }
 
     public AddressDto mapToAddress(Host host) {
+        Address address = host.getAddress().stream()
+                .filter(a -> "ipv4".equalsIgnoreCase(a.getAddrtype()))
+                .findFirst()
+                .orElse(null);
         return AddressDto.builder()
-                .addr(host.getAddress().getAddr())
-                .addrType(host.getAddress().getAddrtype())
+                .addr(address.getAddr())
+                .addrType(address.getAddrtype())
                 .build();
     }
 
@@ -193,11 +117,12 @@ public class ScanService {
                 .build();
     }
 
-    public HostDto mapToHost(Host host, List<PortDto> portsDto) {
+    public HostDto mapToHost(Host host) {
         return HostDto.builder()
                 .hostStatusDto(mapToHostStatus(host))
                 .address(mapToAddress(host))
-                .ports(portsDto)
+                //.ports(portsDto)
+                .ports(Optional.ofNullable(host.getPorts()).map(ports -> ports.getPort().stream().map(this::mapToPorts).toList()).orElse(null))
                 .trace(Optional.ofNullable(host.getTrace()).map(this::mapToTrace).orElse(null))
                 .os(Optional.ofNullable(host.getOs()).map(this::mapToOs).orElse(null))
                 .build();

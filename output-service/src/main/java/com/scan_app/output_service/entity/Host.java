@@ -1,7 +1,9 @@
 
 package com.scan_app.output_service.entity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 
@@ -49,7 +51,8 @@ public class Host {
     @JsonProperty("status")
     private Status status;
     @JsonProperty("address")
-    private Address address;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Address> address = new ArrayList<>();;
     @JsonProperty("hostnames")
     private Hostnames hostnames;
     @JsonProperty("ports")
@@ -120,12 +123,12 @@ public class Host {
     }
 
     @JsonProperty("address")
-    public Address getAddress() {
+    public List<Address> getAddress() {
         return address;
     }
 
     @JsonProperty("address")
-    public void setAddress(Address address) {
+    public void setAddress(List<Address> address) {
         this.address = address;
     }
 

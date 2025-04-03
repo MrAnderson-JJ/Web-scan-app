@@ -1,6 +1,7 @@
 
 package com.scan_app.output_service.entity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +55,11 @@ public class Nmaprun {
     @JsonProperty("debugging")
     private Debugging debugging;
     @JsonProperty("host")
-    private Host host;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Host> host= new ArrayList<>();
     @JsonProperty("hosthint")
-    private Hosthint hosthint;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Hosthint> hosthint = new ArrayList<>();
     @JsonProperty("runstats")
     private Runstats runstats;
     @JsonProperty("scaninfo")
@@ -149,22 +152,22 @@ public class Nmaprun {
     }
 
     @JsonProperty("host")
-    public Host getHost() {
+    public List<Host> getHost() {
         return host;
     }
 
     @JsonProperty("host")
-    public void setHost(Host host) {
+    public void setHost(List<Host> host) {
         this.host = host;
     }
 
     @JsonProperty("hosthint")
-    public Hosthint getHosthint() {
+    public List<Hosthint> getHosthint() {
         return hosthint;
     }
 
     @JsonProperty("hosthint")
-    public void setHosthint(Hosthint hosthint) {
+    public void setHosthint(List<Hosthint> hosthint) {
         this.hosthint = hosthint;
     }
 

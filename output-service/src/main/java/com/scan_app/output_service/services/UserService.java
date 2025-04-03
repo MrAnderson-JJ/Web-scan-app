@@ -28,6 +28,11 @@ public class UserService {
         return nmapRunDtos;
     }
 
+    public NmapRunDto getLatestUserScan(String userId) {
+        String latestScan = userClient.getLatestUserScan(userId);
+        return scanService.getNmapRunByScanId(latestScan);
+    }
+
     public boolean scansBelongToUser(CheckScanRequest checkScanRequest) {
         return userClient.scansBelongToUser(checkScanRequest);
     }

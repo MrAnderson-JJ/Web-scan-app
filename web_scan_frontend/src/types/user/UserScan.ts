@@ -1,4 +1,4 @@
-import { ScanTypes } from "../scan/ScanType";
+import { ScanTypes } from "../scan/scanCommand/ScanType";
 
 export interface UserScan {
     scanId: string;

@@ -24,4 +24,7 @@ public interface UserClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/user/scan/deleteScans")
     public Boolean deleteScans(@RequestBody CheckScanRequest checkScanRequest);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/api/user/scan/getLatestUserScan")
+    public String getLatestUserScan(@RequestBody String userId);
 }

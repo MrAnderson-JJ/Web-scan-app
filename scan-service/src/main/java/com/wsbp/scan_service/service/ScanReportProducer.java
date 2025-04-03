@@ -22,9 +22,6 @@ public class ScanReportProducer {
         ScanResultMessage message = new ScanResultMessage(webSocketId, jsonOutput, scanType, userId, scanIp);
         System.out.println(message.getWebSocketId());
         System.out.println(message.getJsonData());
-        ScanRequest scanRequest = new ScanRequest();
-        scanRequest.setIp("scanme");
-        scanRequest.setOptions(List.of("-sn"));
         rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_REPORT, RabbitMqConfig.ROUTING_REPORT, message);
         System.out.println("Zpráva odeslána: " + webSocketId);
     }

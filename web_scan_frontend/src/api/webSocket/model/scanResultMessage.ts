@@ -1,4 +1,4 @@
-import { ScanTypes } from "../../../types/scan/ScanType";
+import { ScanTypes } from "../../../types/scan/scanCommand/ScanType";
 
 export interface ScanResultMessage {
     wenSocketId: string;

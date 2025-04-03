@@ -7,6 +7,7 @@ export * from "./scan/Trace";
 export * from "./scan/Os";
 export * from "./scan/OsMatch";
 export * from "./scan/OsClass";
+export * from "./scan/NmapRunDto";
 
 //User
 export * from "./user/UserScan";

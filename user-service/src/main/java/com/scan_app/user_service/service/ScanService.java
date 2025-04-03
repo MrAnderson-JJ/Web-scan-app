@@ -2,8 +2,8 @@ package com.scan_app.user_service.service;
 
 import com.scan_app.user_service.client.OutputClient;
 import com.scan_app.user_service.dto.CheckScanRequest;
-import com.scan_app.user_service.dto.UserScanRequest;
 import com.scan_app.user_service.dto.UserScanResponse;
+import com.scan_app.user_service.dto.UserScanRequest;
 import com.scan_app.user_service.dto.filter.FilterScansDto;
 import com.scan_app.user_service.model.Scan;
 import com.scan_app.user_service.repository.ScanRepository;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service class for handling user scan requests
@@ -30,11 +31,11 @@ public class ScanService {
 
     private final OutputClient outputClient;
 
-    public void saveScan(UserScanResponse userScanResponse) {
+    public void saveScan(UserScanRequest userScanResponse) {
         scanRepository.save(mapToScan(userScanResponse));
     }
 
-    public Scan mapToScan(UserScanResponse userScanResponse) {
+    public Scan mapToScan(UserScanRequest userScanResponse) {
         if (userService.userExistsInDb(userScanResponse.userId())) {
 
             System.out.println(userScanResponse.dateStart());
@@ -61,8 +62,8 @@ public class ScanService {
         return scanRepository.findByUserId(userId).stream().map(Scan::getScanId).toList();
     }
 
-    public List<UserScanRequest> getScansByUserId(String userId) {
-        List<UserScanRequest> scansResponse = new ArrayList<>();
+    public List<UserScanResponse> getScansByUserId(String userId) {
+        List<UserScanResponse> scansResponse = new ArrayList<>();
         List<Scan> scansEntity = scanRepository.findByUserId(userId);
         for (Scan scan: scansEntity) {
             scansResponse.add(mapScanToRequest(scan));
@@ -70,9 +71,9 @@ public class ScanService {
         return scansResponse;
     }
 
-    public UserScanRequest mapScanToRequest(Scan scan) {
+    public UserScanResponse mapScanToRequest(Scan scan) {
         ScanTypes scanType = ScanTypes.valueOf(scan.getScanType());
-        return new UserScanRequest(scan.getScanId(), scanType, scan.getScanStartTime(), scan.getScanEndTime(), scan.getElapsedTime(), scan.getScanIp());
+        return new UserScanResponse(scan.getScanId(), scanType, scan.getScanStartTime(), scan.getScanEndTime(), scan.getElapsedTime(), scan.getScanIp());
     }
 
     public List<Scan> getScansByScanIds(List<String> scanIds) {
@@ -91,10 +92,16 @@ public class ScanService {
         return scans.size() == scanIds.size() && scans.stream().allMatch(scan -> scan.getUser().getId().equals(checkScanRequest.userId()));
     }
 
-    public List<UserScanRequest> getFilteredScans(FilterScansDto filterScansDto, String userId) {
+    public List<UserScanResponse> getFilteredScans(FilterScansDto filterScansDto, String userId) {
         filterScansDto.setScanIds(getScansIdByUserId(userId));
         List<String> filteredScans = outputClient.getFilteredScanIds(filterScansDto);
 
         return getScansByScanIds(filteredScans).stream().map(this::mapScanToRequest).toList();
+    }
+
+    public String getUserLatestScan(String userId) {
+        return scanRepository.findTopByUser_IdOrderByScanEndTimeDesc(userId)
+                .map(Scan::getScanId)
+                .orElse(null);
     }
 }

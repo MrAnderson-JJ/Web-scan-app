@@ -1,15 +1,11 @@
 package com.scan_app.output_service.services;
 
-import com.scan_app.output_service.client.UserClient;
 import com.scan_app.output_service.controller.ScanResultWebSocketController;
-import com.scan_app.output_service.dto.asynchCommunication.ScanResultMessage;
-import com.scan_app.output_service.dto.userServiceCommunication.UserScanSaveRequest;
+import com.scan_app.output_service.dto.processCommunication.ScanResultMessage;
 import com.scan_app.output_service.entity.Nmaprun;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 
 @Service
@@ -22,16 +18,19 @@ public class ScanReportConsumer {
 
     @RabbitListener(queues = "reportQueue")
     public void processScanResult(ScanResultMessage message) {
-        System.out.println("Obdržena zpráva s ID: " + message);
 
         // Odeslat výsledek na WebSocket frontend
+        if (message.getJsonData() == null) {
+            System.out.println("Scan result is null");
+            webSocketController.notifyScanResult(message, "null");
+            return;
+        }
         try {
             Nmaprun nmaprun = scanService.saveScanJson(message.getJsonData());
             if (message.getUserId() != null) {
                 System.out.println(message.getScanIp());
                 userScanService.saveScan(message.getUserId(), message.getScanIp(), nmaprun, message.getScanType());
             }
-            System.out.println("report conusmet " + message.getWebSocketId());
             webSocketController.notifyScanResult(message, nmaprun.get_id());
         } catch (Exception e) {
             e.printStackTrace();

@@ -97,9 +97,11 @@ const HostTable: React.FC<HostTableProps> = ({ host }) => {
                     }}
                   >
                     <TableCell>
-                      <IconButton size="small" onClick={() => setOpenRows(!openRows)}>
-                        {openRows ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-                      </IconButton>
+                        {host.ports && host.ports.length > 0 && (
+                        <IconButton size="small" onClick={() => setOpenRows(!openRows)}>
+                          {openRows ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                        </IconButton>
+                        )}
                     </TableCell>
                     <TableCell>{host.address.addr}</TableCell>
                     <TableCell>{host.address.addrType}</TableCell>

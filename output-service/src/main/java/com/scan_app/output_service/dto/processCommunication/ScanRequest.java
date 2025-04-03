@@ -1,6 +1,6 @@
-package com.wsbp.scan_service.dto;
+package com.scan_app.output_service.dto.processCommunication;
 
-import com.wsbp.scan_service.scanUtil.ScanTypes;
+import com.scan_app.output_service.scanUtil.ScanTypes;
 import lombok.*;
 
 import java.util.List;

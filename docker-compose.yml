@@ -26,13 +26,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mysql
     ports:
-      - "3306:3306"
+       - "3306:3306"
     volumes:
       - ./mysql:/var/lib/mysql
       - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  # Api gateway service and authentication service
-
+  # Api gateway service and authentication service (Keycloak)
   keycloak-mysql:
     container_name: keycloak-mysql
     image: mysql:8
@@ -65,3 +64,17 @@ services:
     depends_on:
       - keycloak-mysql
     restart: always  
+  
+  # User service
+  userservice:
+    build: ./user-service
+    container_name: userservice
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/users
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    ports:
+      - "8083:8083" # otevře se pro vývoj, později můžeš skrýt
+    restart: always

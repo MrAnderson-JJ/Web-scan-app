@@ -2,6 +2,8 @@ package com.wsbp.scan_service.service;
 
 import com.wsbp.scan_service.dto.ScanRequest;
 import com.wsbp.scan_service.scanUtil.Command;
+import com.wsbp.scan_service.scanUtil.Flags;
+import com.wsbp.scan_service.scanUtil.ScanTypes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,10 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -21,11 +26,23 @@ public class StartScanService {
     private final XmlToJsonService xmlToJsonService;
 
     public void startScanByUser(ScanRequest scanRequest) {
-        List<String> options = Command.getFlagsByScanType(scanRequest.getScanType()).getFlags();
+        // create options for nmap scan
+        Flags flags = Command.getFlagsByScanType(scanRequest.getScanType());
+        if (scanRequest.getScanType()!= ScanTypes.SCAN_PING) {
+            flags.addFlag(scanRequest.getScanTiming());
+            if (!Objects.equals(scanRequest.getPortRange(), "")) {
+                flags.addFlag(scanRequest.getPortRange());
+            }
+        }
+        List<String> options = flags.getFlags();
         startScanAsync(scanRequest.getIp(), options)
                 .thenAccept(xmlOutput ->
                         {
                             System.out.println(xmlOutput);
+                            if (xmlOutput == null) {
+                                System.out.println("dasdasdasdas");
+                                scanReportProducer.sendMessage(scanRequest.getWebSocketId() ,null, scanRequest.getScanType(), scanRequest.getUserId(), scanRequest.getIp());
+                            }
                             // send this xml output to queue
                             try {
                                 String scanOutputToJson = xmlToJsonService.jsonConvert(xmlOutput);
@@ -49,19 +66,28 @@ public class StartScanService {
                 processBuilder.redirectErrorStream(true); // Combine stdout and stderr
                 Process process = processBuilder.start();
 
+                BufferedReader readerE = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 // Uložíme XML výstup do proměnné
                 StringBuilder xmlOutput = new StringBuilder();
                 try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         xmlOutput.append(line).append("\n");
+                        if (line.contains("exit=\"error\"")) {
+                            System.out.println("Detected scan error - killing process.");
+                            process.destroyForcibly();
+                            return null;
+                        }
                     }
                 }
 
+
                 int exitCode = process.waitFor();
                 String rawXml = xmlOutput.toString().trim();
+
                 if (exitCode == 0) {
-                    return xmlOutput.toString().trim(); // Vrátí čisté XML
+                    return rawXml;
+                    //return xmlOutput.toString().trim(); // Vrátí čisté XML
                 } else {
                     throw new Exception("Scan failed with exit code: " + exitCode);
                 }
