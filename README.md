@@ -12,39 +12,39 @@ Nutno mít nainstalované:
 
 ## Jak aplikaci spustit
 
-1. Naklonovat repozitář:
+### 1. Naklonovat repozitář:
 
 ```bash
 git clone https://github.com/MrAnderson-JJ/Web-scan-app
 cd web-scan-app
 ```
 
-2. Spusť aplikaci (jen Windows):
+### 2. Spustit aplikaci (jen Windows):
 
-V adresáři web-scan-app spustit start.bat
+        V adresáři web-scan-app spustit start.bat
 
-Tento skript spustí:
+        Tento skript spustí:
 
-Docker infrastrukturu (MongoDB, Keycloak)
+        Docker infrastrukturu (MongoDB, Keycloak)
 
-Všechny Spring Boot mikroslužby
+        Všechny Spring Boot mikroslužby
 
-Frontend s npm install && npm run dev (včetně stažení závislostí)
+        Frontend s npm install && npm run dev (včetně stažení závislostí)
 
-3. Otevřít frontend v prohlížeči:
-http://localhost:5173
+### 3. Otevřít frontend v prohlížeči:
+        http://localhost:5173
 
-Uživatelské přihlašovací údaje:
-Username: test
-Password: test
+        Uživatelské přihlašovací údaje:
+        Username: test
+        Password: test
 
 
-Přihlášení do Keycloaku
-Admin konzole: http://localhost:8181
+        Přihlášení do Keycloaku
+        Admin konzole: http://localhost:8181
 
-Realm: network-scanner
+        Realm: network-scanner
 
-Admin účet:
-Username: admin
+        Admin účet:
+        Username: admin
 
-Password: admin
+        Password: admin
