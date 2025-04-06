@@ -1,11 +1,11 @@
 CREATE DATABASE IF NOT EXISTS `users`;
+USE `users`;
 
 CREATE TABLE `user` (
     `id` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`)
 );
 
--- Create scan table with all necessary columns and constraints
 CREATE TABLE `scan` (
     `scan_id` VARCHAR(255) NOT NULL,
     `user_id` VARCHAR(255) NOT NULL,
