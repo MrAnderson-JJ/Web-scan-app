@@ -25,5 +25,4 @@ public class Scan {
     private Double elapsedTime;
     private boolean active;
     private String scanIp;
-    private Boolean internalNetwork;
 }

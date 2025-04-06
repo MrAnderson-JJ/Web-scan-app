@@ -25,6 +25,11 @@ public class StartScanService {
     private final ScanReportProducer scanReportProducer;
     private final XmlToJsonService xmlToJsonService;
 
+    /**
+     * Starts nmap scan and return its output to message queue if nmap doesnt fail
+     * before it builds List of nmap options given in params
+     * @param scanRequest request with needed params to start scan (ip, options..)
+     */
     public void startScanByUser(ScanRequest scanRequest) {
         // create options for nmap scan
         Flags flags = Command.getFlagsByScanType(scanRequest.getScanType());
@@ -40,13 +45,11 @@ public class StartScanService {
                         {
                             System.out.println(xmlOutput);
                             if (xmlOutput == null) {
-                                System.out.println("dasdasdasdas");
                                 scanReportProducer.sendMessage(scanRequest.getWebSocketId() ,null, scanRequest.getScanType(), scanRequest.getUserId(), scanRequest.getIp());
                             }
                             // send this xml output to queue
                             try {
                                 String scanOutputToJson = xmlToJsonService.jsonConvert(xmlOutput);
-                                System.out.println("scanIP: " + scanRequest.getIp());
                                 scanReportProducer.sendMessage(scanRequest.getWebSocketId() ,scanOutputToJson, scanRequest.getScanType(), scanRequest.getUserId(), scanRequest.getIp());
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -55,26 +58,31 @@ public class StartScanService {
 
     }
 
+    /**
+     * Asynch functin that starts nmap scanning using given params
+     * @param target target ip address to be scanned
+     * @param options options for nmap scan (T1, sn, ..) - tels nmap how to scan
+     * @return raw XML output of scan if nmap succeded, null if nmap started but failed
+     * because of wrong parameters (wrong ip address etc.)
+     * and throws exception if proccess fails
+     */
     public CompletableFuture<String> startScanAsync(String target, List<String> options) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                ensureOutputDirectoryExists();
                 String[] command = buildCommandXml(target, options);
-                System.out.println("Running Nmap command: " + String.join(" ", command));
 
                 ProcessBuilder processBuilder = new ProcessBuilder(command);
                 processBuilder.redirectErrorStream(true); // Combine stdout and stderr
                 Process process = processBuilder.start();
 
-                BufferedReader readerE = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                // Uložíme XML výstup do proměnné
+                // Save XML output to variable
                 StringBuilder xmlOutput = new StringBuilder();
                 try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         xmlOutput.append(line).append("\n");
+                        // Kill proccess and retutn null if scan fails (Wrong command etc.)
                         if (line.contains("exit=\"error\"")) {
-                            System.out.println("Detected scan error - killing process.");
                             process.destroyForcibly();
                             return null;
                         }
@@ -85,9 +93,9 @@ public class StartScanService {
                 int exitCode = process.waitFor();
                 String rawXml = xmlOutput.toString().trim();
 
+                // If proccess is completed, return raw XML output
                 if (exitCode == 0) {
                     return rawXml;
-                    //return xmlOutput.toString().trim(); // Vrátí čisté XML
                 } else {
                     throw new Exception("Scan failed with exit code: " + exitCode);
                 }
@@ -97,56 +105,13 @@ public class StartScanService {
         });
     }
 
-/*    private String buildCommand(String target, List<String> options) {
-        // Define the output path for the scan results
-        String savePath = "data/scanOutput/scan_" +
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".xml";
-
-        // Initialize nmap4j
-        Nmap4j nmap4j = new Nmap4j("C:\\Program Files (x86)\\Nmap");
-
-        try {
-            // Validate the target
-            if (target == null || target.isEmpty()) {
-                throw new IllegalArgumentException("Target host cannot be null or empty");
-            }
-            nmap4j.includeHosts(target);
-
-            String flags = "";
-            for (String flag:
-                 options) {
-                flags = flags + " " + flag;
-            }
-            // Add Nmap options
-            nmap4j.addFlags("-oX " + savePath + " " + flags); // Set output file for XML
-
-
-            // Execute the Nmap scan
-            nmap4j.execute();
-
-            // Debug: Print execution details
-            System.out.println("Executed Command: " + nmap4j.getExecutionResults().getExecutedCommand());
-            System.out.println("Command Output: " + nmap4j.getExecutionResults().getOutput());
-            System.out.println("Errors: " + nmap4j.getExecutionResults().getErrors());
-
-            // Check if the execution was successful
-            if (!nmap4j.hasError()) {
-                System.out.println(nmap4j.getOutput());
-                System.out.println("Scan completed successfully. Results saved to: " + savePath);
-            } else {
-                System.err.println("Nmap execution error: " + nmap4j.getExecutionResults().getErrors());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(nmap4j.getResult().getXmloutputversion());
-        return nmap4j.getResult().getXmloutputversion();
-    }*/
-
+    /**
+     * Builds nmap command using given ip address and scan options
+     * @param target ip address to be scanned
+     * @param options options for nmap scan (T1, sn, ..) - tels nmap how to scan
+     * @return full nmap command
+     */
     private String[] buildCommandXml(String target, List<String> options) {
-        // Generate the save path
-        String savePath = "data/scanOutput/scan_" +
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".xml";
 
         // Build the command array
         String[] command = new String[options.size() + 4];
@@ -160,12 +125,5 @@ public class StartScanService {
         }
 
         return command;
-    }
-
-    private void ensureOutputDirectoryExists() {
-        File directory = new File("data/scanOutput");
-        if (!directory.exists()) {
-            directory.mkdirs(); // Create directories if they don't exist
-        }
     }
 }

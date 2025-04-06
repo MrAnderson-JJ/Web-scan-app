@@ -4,6 +4,7 @@ package com.scan_app.output_service.entity;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.annotation.Generated;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class Osmatch {
     private String line;
     @JsonProperty("osclass")
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    private List<Osclass> osclass;
+    private List<Osclass> osclass = new ArrayList<>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 

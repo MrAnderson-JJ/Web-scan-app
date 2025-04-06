@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
-  AppBar,
   Toolbar,
   Typography,
   Drawer,
@@ -13,26 +12,16 @@ import {
   Divider,
   Avatar,
   Button,
-  IconButton,
 } from "@mui/material";
 import {
-  Menu,
   Logout,
   Home,
-  Settings,
   History,
   Dashboard,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import AppNavBar from "../appBar/AppNavBar";
 import { useKeycloak } from "@react-keycloak/web";
-
-// Example user data
-const user = {
-  name: "John",
-  sureName: "Doe",
-  email: "johndoe@example.com",
-};
 
 const drawerWidth = 240;
 
@@ -41,17 +30,27 @@ const drawerItems = [
   { text: "Home", link: "/", icon: <Home /> },
   { text: "Dashboard", link: "/dashboard", icon: <Dashboard /> },
   { text: "History", link: "/history", icon: <History /> },
-  { text: "Settings", link: "/settings", icon: <Settings /> },
 ];
 
 const Sidebar = () => {
   const { keycloak } = useKeycloak();
   const [smallOpen, setsmallOpen] = useState(false);
+  const [userName, setUserName] = useState("");
 
   // Toggle Drawer for small
   const handleDrawerToggle = () => {
     setsmallOpen(!smallOpen);
   };
+  useEffect(() => {
+    const loadUserProfile = async () => {
+      if (keycloak?.authenticated) {
+        const profile = await keycloak.loadUserProfile();
+        setUserName(profile.username || "");
+      }
+    };
+
+    loadUserProfile();
+  }, [keycloak]);
 
   // Drawer Content (Same for all screen sizes)
   const drawerContent = (
@@ -76,13 +75,10 @@ const Sidebar = () => {
         <Avatar
           sx={{ width: 56, height: 56, mx: "auto", bgcolor: "primary.main" }}
         >
-          {user.name.charAt(0) + user.sureName.charAt(0)}
+          {userName.charAt(0).toUpperCase()}
         </Avatar>
         <Typography variant="subtitle1" sx={{ mt: 1 }}>
-          {user.name}
-        </Typography>
-        <Typography variant="caption" color="textSecondary">
-          {user.email}
+          {userName}
         </Typography>
         <Button
           variant="contained"

@@ -4,6 +4,7 @@ package com.scan_app.output_service.entity;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.annotation.Generated;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +18,11 @@ import java.util.Map;
 public class Os {
 
     @JsonProperty("portused")
-    private List<Portused> portused;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Portused> portused = new ArrayList<>();
     @JsonProperty("osmatch")
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    private List<Osmatch> osmatch;
+    private List<Osmatch> osmatch = new ArrayList<>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 

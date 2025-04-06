@@ -14,7 +14,6 @@ public class ScanConsumer {
 
     @RabbitListener(queues = RabbitMqConfig.QUEUE_NAME)
     public void receiveMessage(ScanRequest scanRequest) {
-        System.out.println("Zpráva přijata: " + scanRequest);
         startScanService.startScanByUser(scanRequest);
     }
 }

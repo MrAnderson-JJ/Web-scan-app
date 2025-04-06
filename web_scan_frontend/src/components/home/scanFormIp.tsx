@@ -33,13 +33,6 @@ const ScanFormIp = ({ onSubmit }: ScanFormProps) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (
-      !isValidScanId(scanId) ||
-      (!isValidPortRange(portRange) && scanOption !== ScanTypes.SCAN_PING)
-    ) {
-      return;
-    }
-
     let portRangeFlag = "";
     if (scanOption === ScanTypes.SCAN_PING) {
       portRangeFlag = "";
@@ -69,44 +62,24 @@ const ScanFormIp = ({ onSubmit }: ScanFormProps) => {
     }
   };
 
-  const isValidScanId = (value: string): boolean => {
-    if (scanOption === ScanTypes.SCAN_PING || internalNetwork) return true;
-    return !value.includes(",") && !value.includes("/");
-  };
-
   return (
     <Box
       component="form"
       onSubmit={handleSubmit}
       sx={{ display: "flex", gap: 2, alignItems: "center", mb: 3 }}
     >
-      <FormControlLabel
-        control={
-          <Switch
-            checked={internalNetwork}
-            onChange={(e) => setInternalNetwork(e.target.checked)}
-            color="primary"
-          />
-        }
-        label="Internal network"
-      />
-
       <TextField
+        style={{ marginTop: "22px" }}
         label="Scan ID (IP address)"
         variant="outlined"
         value={scanId}
         onChange={(e) => setScanId(e.target.value)}
         required
-        error={!isValidScanId(scanId)}
-        helperText={
-          !isValidScanId(scanId)
-            ? "Only a single IP allowed unless Internal network is enabled or scan is Ping"
-            : ""
-        }
+        helperText="Enter IP address or domain in format: scanme.nmap.org, 10.0.0.10 or 10.0.0.0/24"
       />
 
       {/* Dropdown with human-readable labels */}
-      <FormControl variant="outlined" required sx={{ minWidth: 200 }}>
+      <FormControl variant="outlined" required sx={{ minWidth: 200, maxWidth: 300 }}>
         <InputLabel>Scan Option</InputLabel>
         <Select
           value={scanOption}
@@ -167,10 +140,7 @@ const ScanFormIp = ({ onSubmit }: ScanFormProps) => {
         type="submit"
         variant="contained"
         color="primary"
-        disabled={
-          !isValidScanId(scanId) ||
-          (scanOption !== ScanTypes.SCAN_PING && !isValidPortRange(portRange))
-        }
+        disabled={!isValidPortRange(portRange)}
       >
         Start Scan
       </Button>

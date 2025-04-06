@@ -38,8 +38,7 @@ public class ScanService {
 
     public Nmaprun getScanById(String id){
         if (nmaprunRepository.findById(id).isPresent()) {
-            Nmaprun nmaprun = nmaprunRepository.findById(id).get();
-            return nmaprun;
+            return nmaprunRepository.findById(id).get();
         } else {
             throw new NoSuchElementException("No scan found with ID: " + id);
         }
@@ -47,11 +46,9 @@ public class ScanService {
 
     public List<HostDto> getQuickScanByScanId(String id) {
         Nmaprun nmaprun = getScanById(id);
-        //Host host = nmaprun.getHost();
         List<Host> hosts = nmaprun.getHost();
-        //hosts.add(host);
         if (hosts.isEmpty()) {
-            throw new NoSuchElementException("No hosts found for scan ID: " + id);
+            return new ArrayList<>();
         }
 
         List<HostDto> result = new ArrayList<>();
@@ -64,21 +61,10 @@ public class ScanService {
         return result;
     }
 
-    public PingDto getPingByScanId(String id) {
-        Nmaprun nmaprun = getScanById(id);
-        List<HostDto> hosts = getQuickScanByScanId(id);
-
-        return PingDto.builder()
-                .host(hosts.get(0))
-                .elapsed(nmaprun.getRunstats().getFinished().getElapsed())
-                .build();
-    }
-
     public NmapRunDto getNmapRunByScanId(String id) {
         List<HostDto> hosts = getQuickScanByScanId(id);
-        NmapRunDto nmapRunDto = new NmapRunDto(hosts);
 
-        return nmapRunDto;
+        return new NmapRunDto(hosts);
     }
 
     public boolean deleteScans(List<String> scanIds) {
@@ -121,7 +107,6 @@ public class ScanService {
         return HostDto.builder()
                 .hostStatusDto(mapToHostStatus(host))
                 .address(mapToAddress(host))
-                //.ports(portsDto)
                 .ports(Optional.ofNullable(host.getPorts()).map(ports -> ports.getPort().stream().map(this::mapToPorts).toList()).orElse(null))
                 .trace(Optional.ofNullable(host.getTrace()).map(this::mapToTrace).orElse(null))
                 .os(Optional.ofNullable(host.getOs()).map(this::mapToOs).orElse(null))
@@ -171,10 +156,38 @@ public class ScanService {
     }
 
     public List<String> filterScans(FilterScansDto filterScansDto){
-        System.out.println("second");
         List<Nmaprun> nmapruns = nmaprunRepository.filterScans(filterScansDto.getScanIds(), filterScansDto.getPort(), filterScansDto.getMaxDistance());
-        System.out.println("k");
-        System.out.println("third");
+        if (!nmapruns.isEmpty()) {
+            // Filter by maxOpenPorts
+            if (filterScansDto.getMaxOpenPorts() != null) {
+                List<Nmaprun> temp = new ArrayList<>();
+                for (Nmaprun nmaprun : nmapruns) {
+                    if (nmaprun.getHost() == null) continue;
+
+                    for (Host host : nmaprun.getHost()) {
+                        if (host.getPorts() == null || host.getPorts().getPort() == null) continue;
+
+                        if (host.getPorts().getPort().size() <= filterScansDto.getMaxOpenPorts()) {
+                            temp.add(nmaprun);
+                            break;
+                        }
+                    }
+                }
+                nmapruns = temp;
+            }
+
+            // Filter by oneHost
+            if (Boolean.TRUE.equals(filterScansDto.getOneHost())) {
+                List<Nmaprun> temp = new ArrayList<>();
+                for (Nmaprun nmaprun : nmapruns) {
+                    if (nmaprun.getHost().size() == 1) {
+                        System.out.println(nmaprun.getHost().size());
+                        temp.add(nmaprun);
+                    }
+                }
+                nmapruns = temp;
+            }
+        }
         return nmapruns.stream().map(Nmaprun::get_id).toList();
     }
 }

@@ -63,11 +63,14 @@ public class Nmaprun {
     @JsonProperty("runstats")
     private Runstats runstats;
     @JsonProperty("scaninfo")
-    private Scaninfo scaninfo;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Scaninfo> scaninfo = new ArrayList<>();
     @JsonProperty("taskbegin")
-    private List<Taskbegin> taskbegin;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Taskbegin> taskbegin = new ArrayList<>();
     @JsonProperty("taskend")
-    private List<Taskend> taskend;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Taskend> taskend  = new ArrayList<>();
     @JsonProperty("verbose")
     private Verbose verbose;
     @JsonIgnore
@@ -182,12 +185,12 @@ public class Nmaprun {
     }
 
     @JsonProperty("scaninfo")
-    public Scaninfo getScaninfo() {
+    public List<Scaninfo> getScaninfo() {
         return scaninfo;
     }
 
     @JsonProperty("scaninfo")
-    public void setScaninfo(Scaninfo scaninfo) {
+    public void setScaninfo(List<Scaninfo> scaninfo) {
         this.scaninfo = scaninfo;
     }
 

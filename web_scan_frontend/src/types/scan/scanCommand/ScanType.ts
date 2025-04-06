@@ -6,6 +6,6 @@ export enum ScanTypes {
 
 export const ScanTypeLabels: Record<ScanTypes, string> = {
     [ScanTypes.SCAN_PING]: "Ping Scan (Check if Host is Up)",
-    [ScanTypes.SCAN_QUICK]: "Quick Scan (Fast and Basic Ports)",
-    [ScanTypes.SCAN_FULL]: "Full Scan (Deep Port Analysis)",
+    [ScanTypes.SCAN_QUICK]: "Port Scan (Scan ports - default 100 most common)",
+    [ScanTypes.SCAN_FULL]: "Full Scan (Ports, OS detection, Traceroute)",
 };

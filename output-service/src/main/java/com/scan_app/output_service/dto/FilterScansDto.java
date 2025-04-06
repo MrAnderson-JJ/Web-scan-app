@@ -15,4 +15,6 @@ public class FilterScansDto {
     private List<String> scanIds;
     private Integer port;
     private Integer maxDistance;
+    private Integer maxOpenPorts;
+    private Boolean oneHost;
 }

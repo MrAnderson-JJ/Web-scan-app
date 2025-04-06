@@ -19,18 +19,14 @@ public class ScanReportConsumer {
     @RabbitListener(queues = "reportQueue")
     public void processScanResult(ScanResultMessage message) {
 
-        // Odeslat výsledek na WebSocket frontend
+        // Send result to WebSocket frontend
         if (message.getJsonData() == null) {
-            System.out.println("Scan result is null");
             webSocketController.notifyScanResult(message, "null");
             return;
         }
         try {
             Nmaprun nmaprun = scanService.saveScanJson(message.getJsonData());
-            if (message.getUserId() != null) {
-                System.out.println(message.getScanIp());
-                userScanService.saveScan(message.getUserId(), message.getScanIp(), nmaprun, message.getScanType());
-            }
+            userScanService.saveScan(message.getUserId(), message.getScanIp(), nmaprun, message.getScanType());
             webSocketController.notifyScanResult(message, nmaprun.get_id());
         } catch (Exception e) {
             e.printStackTrace();

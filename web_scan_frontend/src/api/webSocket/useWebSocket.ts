@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
 import { WebSocketMessage } from "./model/webSocetMessage";
 
@@ -27,7 +26,7 @@ const useWebSocket = (webSocketId: string | null) => {
       const subscription = stompClient.subscribe(
         `/topic/scanResults/${webSocketId}`,
         (message) => {
-          console.log("📡 Received message:", message.body);
+          console.log("Received message:", message.body);
 
           try {
             const parsedMessage: WebSocketMessage = JSON.parse(message.body);

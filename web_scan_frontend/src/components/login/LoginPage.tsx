@@ -51,7 +51,8 @@ function LoginPage() {
             noValidate
             sx={{ mt: 1 }}
           >
-            <TextField
+            {/* For future development so user does not have to sign via keycloak dirrectly */}
+{/*             <TextField
               margin="normal"
               required
               fullWidth
@@ -70,15 +71,7 @@ function LoginPage() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
+            /> */}
             <Button
               onClick={() => keycloak.login()}
               type="submit"
@@ -89,11 +82,6 @@ function LoginPage() {
               Sign In Via Keycloak
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}

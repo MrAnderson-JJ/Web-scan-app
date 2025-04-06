@@ -1,31 +1,34 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { TextField, Button, Grid, MenuItem, Paper } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Grid,
+  MenuItem,
+  Paper,
+  FormControlLabel,
+  Switch,
+} from "@mui/material";
 import { FilterScansDto } from "@/types";
 
-export type FilterValues = {
-  port: string;
-  maxDistance: string;
-  os: string;
+const initialFilters: FilterScansDto = {
+  port: null,
+  maxDistance: null,
+  maxOpenPorts: null,
+  oneHost: false,
 };
 
 interface UserScanProps {
-    onFilter: (FilterScansDto: FilterScansDto) => void;
+  onFilter: (FilterScansDto: FilterScansDto) => void;
 }
 
-/* type NmapFilterFormProps = {
-  onFilter: (filters: FilterValues) => void;
-}; */
-
-const osOptions = ["Windows", "Linux", "macOS", "Other"];
-
 const UserScanFilterForm = ({ onFilter }: UserScanProps) => {
-const [filters, setFilters] = useState<FilterScansDto>({});
+  const [filters, setFilters] = useState<FilterScansDto>(initialFilters);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFilters((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: value === "" ? null : Number(value),
     }));
   };
 
@@ -35,55 +38,65 @@ const [filters, setFilters] = useState<FilterScansDto>({});
   };
 
   const handleReset = () => {
-    const resetValues: FilterScansDto = {};
-    setFilters(resetValues);
-    onFilter(resetValues);
+    setFilters(initialFilters);
+    onFilter(initialFilters);
   };
 
   return (
     <Paper elevation={3} sx={{ p: 2, mb: 3 }}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <TextField
-              label="Port"
+              label="Filter by port number"
               name="port"
               type="number"
-              value={filters.port}
+              value={filters.port ?? ""}
               onChange={handleChange}
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <TextField
-              label="Max vzdálenost"
+              label="Max distance from host"
               name="maxDistance"
               type="number"
-              value={filters.maxDistance}
+              value={filters.maxDistance ?? ""}
               onChange={handleChange}
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <TextField
-              label="Operační systém"
-              name="os"
-              select
-              value="os"
+              label="Max opened ports in host"
+              name="maxOpenPorts"
+              type="number"
+              value={filters.maxOpenPorts ?? ""}
               onChange={handleChange}
               fullWidth
-            >
-              <MenuItem value="">Vše</MenuItem>
-              {osOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField>
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={filters.oneHost ?? false}
+                  onChange={(e) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      oneHost: e.target.checked,
+                    }))
+                  }
+                  name="oneHost"
+                  color="primary"
+                />
+              }
+              label="Scans with only one host"
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Button variant="contained" type="submit" fullWidth>
-              Filtrovat
+              Filter
             </Button>
           </Grid>
           <Grid item xs={12} sm={6}>

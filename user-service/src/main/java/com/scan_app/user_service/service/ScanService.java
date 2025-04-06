@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service class for handling user scan requests
@@ -38,21 +37,16 @@ public class ScanService {
     public Scan mapToScan(UserScanRequest userScanResponse) {
         if (userService.userExistsInDb(userScanResponse.userId())) {
 
-            System.out.println(userScanResponse.dateStart());
-            System.out.println(userScanResponse.elapsedTime());
-            System.out.println(userScanResponse.active());
-        Scan scan = Scan.builder()
-                .user(userService.getUserById(userScanResponse.userId()))
-                .scanId(userScanResponse.scanId())
-                .scanType(userScanResponse.scanType().name())
-                .scanStartTime(userScanResponse.dateStart())
-                .scanEndTime(userScanResponse.dateEnd())
-                .elapsedTime(userScanResponse.elapsedTime())
-                .active(userScanResponse.active())
-                .scanIp(userScanResponse.scanIp())
-                .build();
-
-        return scan;
+            return Scan.builder()
+                    .user(userService.getUserById(userScanResponse.userId()))
+                    .scanId(userScanResponse.scanId())
+                    .scanType(userScanResponse.scanType().name())
+                    .scanStartTime(userScanResponse.dateStart())
+                    .scanEndTime(userScanResponse.dateEnd())
+                    .elapsedTime(userScanResponse.elapsedTime())
+                    .active(userScanResponse.active())
+                    .scanIp(userScanResponse.scanIp())
+                    .build();
         } else {
             throw new IllegalArgumentException("User does not exist in database");
         }

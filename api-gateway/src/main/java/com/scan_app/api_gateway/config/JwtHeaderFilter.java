@@ -9,10 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.server.ServerWebExchange;
-import org.springframework.web.server.WebFilter;
-import org.springframework.web.server.WebFilterChain;
-import org.springframework.stereotype.Component;
-import reactor.core.publisher.Mono;
 
 @Configuration
 public class JwtHeaderFilter {

@@ -1,7 +1,9 @@
 
 package com.scan_app.output_service.entity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 
@@ -26,7 +28,8 @@ public class Extraports {
     @JsonProperty("state")
     private String state;
     @JsonProperty("extrareasons")
-    private Extrareasons extrareasons;
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<Extrareasons> extrareasons = new ArrayList<>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -51,12 +54,12 @@ public class Extraports {
     }
 
     @JsonProperty("extrareasons")
-    public Extrareasons getExtrareasons() {
+    public List<Extrareasons> getExtrareasons() {
         return extrareasons;
     }
 
     @JsonProperty("extrareasons")
-    public void setExtrareasons(Extrareasons extrareasons) {
+    public void setExtrareasons(List<Extrareasons> extrareasons) {
         this.extrareasons = extrareasons;
     }
 

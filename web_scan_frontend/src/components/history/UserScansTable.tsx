@@ -4,22 +4,24 @@ import { UserScan } from "@/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import { deleteUserScans } from "@/api/userApi";
 import { useKeycloak } from "@react-keycloak/web";
 import { format } from "date-fns";
-import { Outlet, Navigate } from "react-router-dom";
-import { dashboardPath } from "../../routes/routePaths";
 
 interface UserScansTableProps {
   userScans: UserScan[];
 }
 
-const paginationModel = { page: 0, pageSize: 10 };
+const paginationModel = { page: 0, pageSize: 25 };
 
 const UserScansTable: React.FC<UserScansTableProps> = ({ userScans }) => {
   const { keycloak } = useKeycloak();
   const navigate = useNavigate(); // navigate to use navigate
   const [rows, setRows] = useState<UserScan[]>(userScans);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   useEffect(() => {
     setRows(userScans);
@@ -34,11 +36,13 @@ const UserScansTable: React.FC<UserScansTableProps> = ({ userScans }) => {
       try {
         await deleteUserScans(keycloak.subject, [scanId]);
         console.log(`Scan ${scanId} deleted successfully`);
-
-        // remove deleted row instantly
         setRows((prevRows) => prevRows.filter((row) => row.scanId !== scanId));
+        setSnackbarMessage(`Scan ${scanId} was deleted successfully.`);
+        setSnackbarOpen(true);
       } catch (error) {
         console.error("Error deleting scan:", error);
+        setSnackbarMessage("Failed to delete scan.");
+        setSnackbarOpen(true);
       }
     },
     [keycloak.subject]
@@ -46,10 +50,14 @@ const UserScansTable: React.FC<UserScansTableProps> = ({ userScans }) => {
 
   const handleButtonDetail = useCallback(
     (scanId: string) => {
-      navigate(`/dashboard/${scanId}`); // Navigate programmatically
+      navigate(`/dashboard/${scanId}`); // Navigate
     },
     [navigate]
   );
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   const columns: GridColDef[] = [
     { field: "scanId", headerName: "ID", width: 250 },
@@ -93,24 +101,35 @@ const UserScansTable: React.FC<UserScansTableProps> = ({ userScans }) => {
     { 
       field: "dateEnd", 
       headerName: "Scan finished", 
-      width: 1,
+      width: 160,
       renderCell: (params) => params.value ? format(new Date(params.value), "dd.MM.yyyy HH:mm:ss") : "N/A"
     },
   ];
 
   return (
-    <Paper sx={{ height: "100%", width: "100%" }}>
-      <DataGrid
-        getRowId={(row) => row.scanId}
-        rows={rows}
-        columns={columns}
-        initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10, 25, 50]}
-        checkboxSelection
-        disableRowSelectionOnClick={true}
-        sx={{ border: 0 }}
-      />
-    </Paper>
+    <>
+      <Paper sx={{ height: "100%", width: "100%" }}>
+        <DataGrid
+          getRowId={(row) => row.scanId}
+          rows={rows}
+          columns={columns}
+          initialState={{ pagination: { paginationModel } }}
+          pageSizeOptions={[5, 10, 25, 50]}
+          disableRowSelectionOnClick={true}
+          sx={{ border: 0 }}
+        />
+      </Paper>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={4000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: "100%" }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
+    </>
   );
 };
 

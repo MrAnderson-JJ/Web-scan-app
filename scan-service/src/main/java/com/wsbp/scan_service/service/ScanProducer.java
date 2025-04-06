@@ -16,6 +16,5 @@ public class ScanProducer {
 
     public void sendMessage(ScanRequest scanRequest) {
         rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_NAME, RabbitMqConfig.ROUTING_KEY, scanRequest);
-        System.out.println("Zpráva odeslána: " + scanRequest);
     }
 }

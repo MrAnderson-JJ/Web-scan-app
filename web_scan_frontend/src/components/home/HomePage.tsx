@@ -1,33 +1,29 @@
 import React, { useState } from "react";
 import ScanFormIp from "./scanFormIp";
 import ScanFormTable from "./ScanFormTableComponent";
-import { fetchTest } from "../../api/scanApi";
 import { Card, Typography } from "@mui/material";
 
 const HomePage = () => {
-  fetchTest("test");
-  console.log(fetchTest("test"));
   const [webSocketId, setScanMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleScanResult = (result: string) => {
     setLoading(false);
     setScanMessage(result);
-    console.log("KOKOKOOKOKOKOT", result);
   };
 
   return (
     <>
       <div style={{ padding: "40px", maxWidth: "1600px", margin: "0 auto" }}>
         <Typography variant="h4" gutterBottom>
-          Síťový skener
+          Network scanner
         </Typography>
         <Typography variant="body1" gutterBottom>
-          Zadejte IP adresu nebo rozsah pro spuštění nového skenování sítě.
+          Enter an IP address or range to start a new network scan.
         </Typography>
         <Card style={{ padding: "20px", marginBottom: "20px" }}>
           <Typography variant="h5" style={{ paddingBottom: "5px" }}>
-            Nové skenování sítě
+            New network scan
           </Typography>
           <ScanFormIp onSubmit={handleScanResult} />
         </Card>

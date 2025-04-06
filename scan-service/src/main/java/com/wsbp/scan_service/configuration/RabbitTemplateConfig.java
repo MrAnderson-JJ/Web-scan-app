@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Class that changes configuration of RabbitTemplate
- * Converts Java classes objects to Json object that goes to message queue
+ * Converts Java class objects to Json object that goes to message queue
  * Then converts it back when the Json is widthrawed from the queue
  * **/
 @Configuration

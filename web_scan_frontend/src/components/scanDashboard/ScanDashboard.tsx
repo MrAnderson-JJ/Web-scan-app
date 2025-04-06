@@ -41,11 +41,11 @@ const ScanDashboard: React.FC = () => {
   const renderHeader = () => (
     <div style={{ marginBottom: "20px" }}>
       <h1 style={{ fontSize: "2rem", color: "#2c3e50", marginBottom: "10px" }}>
-        Dashboard skenování
+        Scan dashboard
       </h1>
       <p style={{ fontSize: "1rem", color: "#555" }}>
-        Zde najdeš výsledky{" "}
-        {isLatest ? "posledního skenu uživatele" : "konkrétního skenu"}.
+        Results of{" "}
+        {isLatest ? "last scan" : "selected scan"}.
       </p>
     </div>
   );
@@ -53,24 +53,6 @@ const ScanDashboard: React.FC = () => {
   return (
     <div style={{ padding: "20px" }}>
       {renderHeader()}
-
-      <h1 style={{ marginBottom: "10px" }}>
-        {isLatest && (
-          <span
-            style={{
-              backgroundColor: "#e0f7fa",
-              color: "#00796b",
-              fontSize: "0.6em",
-              padding: "4px 8px",
-              borderRadius: "12px",
-              marginLeft: "10px",
-              verticalAlign: "middle",
-            }}
-          >
-            Poslední sken uživatele
-          </span>
-        )}
-      </h1>
 
       <div>
         {intenseScan && (

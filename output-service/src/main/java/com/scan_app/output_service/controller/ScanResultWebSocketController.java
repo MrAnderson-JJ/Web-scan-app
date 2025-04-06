@@ -17,8 +17,6 @@ public class ScanResultWebSocketController {
     // Method to send WebSocket messages from backend to frontend
     public void notifyScanResult(ScanResultMessage message, String scanId) {
         ScanToFrontendMessage scanToFrontendMessage = new ScanToFrontendMessage(scanId, message);
-        System.out.println("Sending WebSocket message: " + message.getWebSocketId());
-        System.out.println("Sending WebSocket message: " + message.getScanType());
         messagingTemplate.convertAndSend("/topic/scanResults/" + message.getWebSocketId(), scanToFrontendMessage);
     }
 }

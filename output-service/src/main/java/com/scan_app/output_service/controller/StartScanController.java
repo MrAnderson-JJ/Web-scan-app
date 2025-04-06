@@ -18,7 +18,6 @@ public class StartScanController {
     @PostMapping("/send")
     public String sendMessage(@RequestBody ScanRequest scanRequest) {
         scanRequest.setWebSocketId(new ObjectId().toString());
-        System.out.println(scanRequest.getScanType());
         return scanClient.startScan(scanRequest);
     }
 }

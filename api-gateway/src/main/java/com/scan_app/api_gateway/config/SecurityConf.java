@@ -1,7 +1,5 @@
 package com.scan_app.api_gateway.config;
 
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -25,7 +23,6 @@ public class SecurityConf {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/api/**").authenticated()
-                        .pathMatchers("/ws").permitAll()
                         .anyExchange().permitAll()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
@@ -46,15 +43,5 @@ public class SecurityConf {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
-
-    @Bean
-    public RouteLocator websocketRoutes(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route("websocket-route", r -> r
-                        .path("/ws/**")
-                        .uri("ws://localhost:8082")
-                )
-                .build();
     }
 }

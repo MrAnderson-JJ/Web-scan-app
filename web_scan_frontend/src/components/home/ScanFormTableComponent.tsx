@@ -12,10 +12,10 @@ interface MessageProps {
 
 const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
   const { scanResult, isConnected } = useWebSocket(webSocketId);
-  const [message, setMessage] = useState<string>("Čekání na výsledek skenu...");
   const [hosts, setHosts] = useState<Host[]>();
   const [selectedHost, setSelectedHost] = useState<Host | null>(null);
   const [scanFail, setScanFail] = useState<string>();
+  const [scanEmpty, setScanEmpty] = useState<string>();
 
   // Update message when scanResult is received
   useEffect(() => {
@@ -29,12 +29,18 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
           if (scanResult.scanResultMessage.scanType === ScanTypes.SCAN_PING) {
             const data = await fetchIntense(scanResult.scanId);
             setHosts(data);
+            if (data.length === 0) {
+              setScanEmpty("Scanning returned no results. Check your prompt.");
+            }
             setSelectedHost((data[0] || null));
           } else if (
             scanResult.scanResultMessage.scanType === ScanTypes.SCAN_QUICK
           ) {
             const data = await fetchIntense(scanResult.scanId);
             setHosts(data);
+            if (data.length === 0) {
+              setScanEmpty("Scanning returned no results. Check your prompt.");
+            }
             setSelectedHost((data[0] || null));
           } else if (
             scanResult.scanResultMessage.scanType === ScanTypes.SCAN_FULL
@@ -42,6 +48,9 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
             const data = await fetchIntense(scanResult.scanId);
             console.log(data);
             setHosts(data);
+            if (data.length === 0) {
+              setScanEmpty("Scanning returned no results. Check your prompt.");
+            }
             setSelectedHost((data[0] || null));
           }
         } catch (err) {
@@ -49,18 +58,13 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
         }
       };
       loadHosts();
-      setMessage(
-        JSON.stringify(scanResult.scanResultMessage.jsonData, null, 2)
-      ); // Format JSON for display
-      console.log(scanResult);
-      console.log(selectedHost)
     }
   }, [scanResult]);
 
   return (
     <div>
       <Typography variant="h6">
-        Status WebSocketu: {isConnected ? "🔵 Připojeno" : "🔴 Odpojeno"}
+        WS status: {isConnected ? "Connected" : "Disconnected"}
       </Typography>
       {!scanResult && (
         <div style={{ textAlign: "center" }}>
@@ -83,6 +87,13 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
               {scanFail}
             </Typography>
           )}
+          {scanEmpty && (
+            <Typography
+              style={{ color: "red", fontSize: "1.5rem", textAlign: "center" }}
+            >
+              {scanEmpty}
+            </Typography>
+          )}
         </div>
         {!scanFail && hosts && (
           <div>
@@ -97,7 +108,6 @@ const ScanFormTable: React.FC<MessageProps> = ({ webSocketId }) => {
                 </Button>
               ))}
             </div>
-
             {selectedHost && <ChartsDashboard host={selectedHost} />}
           </div>
         )}

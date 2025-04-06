@@ -15,6 +15,8 @@ services:
     image: rabbitmq:3-management
     container_name: scan-rabbitmq
     hostname: my-rabbit
+    networks:
+      - scan-net
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -64,3 +66,43 @@ services:
     depends_on:
       - keycloak-mysql
     restart: always  
+  
+  # User service
+  userservice:
+    build: ./user-service
+    container_name: userservice
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/users
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    ports:
+      - "8083:8083" # otevře se pro vývoj, později můžeš skrýt
+    restart: always
+
+  # Scan service
+  scan-service:
+    build: ./scan-service
+    container_name: scan-service
+    depends_on:
+      - rabbitmq
+    environment:
+      SPRING_RABBITMQ_HOST: scan-rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    networks:
+      - scan-net
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN  
+    ports:
+      - "8080:8080" # otevře se pro vývoj, později můžeš skrýt
+    restart: always
+
+networks:
+  scan-net:
+    driver: bridge
+
+  

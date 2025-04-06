@@ -1,6 +1,5 @@
 package com.scan_app.output_service.dto.scan;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

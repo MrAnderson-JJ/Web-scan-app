@@ -10,6 +10,12 @@ import java.io.IOException;
 @Service
 public class XmlToJsonService {
 
+    /**
+     * Converts XML to JSON
+     * @param xmlString nmap output in XML
+     * @return nmap output in JSON
+     * @throws IOException
+     */
     public String jsonConvert(String xmlString) throws IOException {
         // Create an XmlMapper to read XML
         XmlMapper xmlMapper = new XmlMapper();

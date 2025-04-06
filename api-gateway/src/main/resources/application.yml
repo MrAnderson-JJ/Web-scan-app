@@ -4,6 +4,7 @@ server:
 spring:
   main:
     web-application-type: reactive
+
   cloud:
     gateway:
       routes:
@@ -25,10 +26,6 @@ spring:
             - Path=/**
           filters:
             - SetRequestHeader=X-Forwarded-Proto, https
-        - id: websocket-route
-          uri: ws://localhost:8082  # Adresa WebSocket služby
-          predicates:
-              - Path=/ws
 
   application:
     name: api-gateway

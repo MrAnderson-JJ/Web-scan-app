@@ -15,17 +15,17 @@ import java.util.Map;
 public class Distance {
 
     @JsonProperty("value")
-    private String value;
+    private Integer value;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("value")
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
     @JsonProperty("value")
-    public void setValue(String value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 
