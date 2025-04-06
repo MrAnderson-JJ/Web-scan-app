@@ -3,6 +3,8 @@
 REM Spustit zbytek v Dockeru
 docker-compose up -d
 
+timeout /t 15 /nobreak >nul
+
 REM Spustit user-service
 start cmd /k "cd user-service && mvnw spring-boot:run"
 
@@ -16,4 +18,4 @@ REM Spustit api-gateway
 start cmd /k "cd api-gateway && mvnw spring-boot:run"
 
 REM Spustit frontend
-start cmd /k "cd web_scan_frontend && npm run dev"
+start cmd /k "cd web_scan_frontend && npm install && npm run dev"

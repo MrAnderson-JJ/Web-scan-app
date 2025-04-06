@@ -1,5 +1,3 @@
-DELETE FROM users.flyway_schema_history where version = 5
-
 
 CREATE TABLE `user` (
     `id` VARCHAR(255) NOT NULL,
