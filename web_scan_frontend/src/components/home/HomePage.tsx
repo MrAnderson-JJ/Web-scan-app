@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ScanFormIp from "./scanFormIp";
-import ScanFormTable from "./ScanFormTableComponent";
+import ScanFormIp from "./ScanForm";
+import ScanFormTable from "./ScanPageTable";
 import { Card, Typography } from "@mui/material";
 
 const HomePage = () => {
@@ -28,3 +28,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
