@@ -20,17 +20,17 @@ import lombok.NoArgsConstructor;
 public class Debugging {
 
     @JsonProperty("level")
-    private String level;
+    private Integer level;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("level")
-    public String getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
     @JsonProperty("level")
-    public void setLevel(String level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 

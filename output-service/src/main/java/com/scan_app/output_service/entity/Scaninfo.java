@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Scaninfo {
 
     @JsonProperty("numservices")
-    private String numservices;
+    private Integer numservices;
     @JsonProperty("protocol")
     private String protocol;
     @JsonProperty("services")
@@ -34,12 +34,12 @@ public class Scaninfo {
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("numservices")
-    public String getNumservices() {
+    public Integer getNumservices() {
         return numservices;
     }
 
     @JsonProperty("numservices")
-    public void setNumservices(String numservices) {
+    public void setNumservices(Integer numservices) {
         this.numservices = numservices;
     }
 

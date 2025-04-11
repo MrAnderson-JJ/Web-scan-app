@@ -1,7 +1,7 @@
 import { axiosInstanceApiGateway as api } from "./axiosConfig";
-import { Host, NmapRunDto } from "../types";
-import { ScanTypes } from "@/types/scan/scanCommand/ScanType";
-import { ScanTiming } from "@/types/scan/scanCommand/ScanTiming";
+import { Host, NmapRunDto } from "../dtos";
+import { ScanTypes } from "@/enums/ScanType";
+import { ScanTiming } from "@/enums/ScanTiming";
 
 export const fetchIntense = async (scanId: string): Promise<Host[]> => {
   try {

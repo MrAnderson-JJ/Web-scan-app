@@ -45,9 +45,9 @@ public class Host {
     @DBRef // References nmaprun collection
     private Nmaprun nmaprun;
     @JsonProperty("starttime")
-    private String starttime;
+    private Integer starttime;
     @JsonProperty("endtime")
-    private String endtime;
+    private Integer endtime;
     @JsonProperty("status")
     private Status status;
     @JsonProperty("address")
@@ -93,22 +93,22 @@ public class Host {
     }
 
     @JsonProperty("starttime")
-    public String getStarttime() {
+    public Integer getStarttime() {
         return starttime;
     }
 
     @JsonProperty("starttime")
-    public void setStarttime(String starttime) {
+    public void setStarttime(Integer starttime) {
         this.starttime = starttime;
     }
 
     @JsonProperty("endtime")
-    public String getEndtime() {
+    public Integer getEndtime() {
         return endtime;
     }
 
     @JsonProperty("endtime")
-    public void setEndtime(String endtime) {
+    public void setEndtime(Integer endtime) {
         this.endtime = endtime;
     }
 

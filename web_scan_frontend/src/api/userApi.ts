@@ -1,5 +1,5 @@
 import { axiosInstanceApiGateway as api } from "./axiosConfig";
-import { FilterScansDto, UserScan } from "@/types";
+import { FilterScansDto, UserScan } from "@/dtos";
 
 // Function to fetch ports by scan ID
 export const saveUserIfNotExists = async (userId: string): Promise<Boolean> => {

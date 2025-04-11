@@ -22,41 +22,41 @@ import lombok.NoArgsConstructor;
 public class Hosts {
 
     @JsonProperty("down")
-    private String down;
+    private Integer down;
     @JsonProperty("total")
-    private String total;
+    private Integer total;
     @JsonProperty("up")
-    private String up;
+    private Integer up;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("down")
-    public String getDown() {
+    public Integer getDown() {
         return down;
     }
 
     @JsonProperty("down")
-    public void setDown(String down) {
+    public void setDown(Integer down) {
         this.down = down;
     }
 
     @JsonProperty("total")
-    public String getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
     @JsonProperty("total")
-    public void setTotal(String total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 
     @JsonProperty("up")
-    public String getUp() {
+    public Integer getUp() {
         return up;
     }
 
     @JsonProperty("up")
-    public void setUp(String up) {
+    public void setUp(Integer up) {
         this.up = up;
     }
 

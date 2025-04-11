@@ -8,7 +8,7 @@ import {
   FormControlLabel,
   Switch,
 } from "@mui/material";
-import { FilterScansDto } from "@/types";
+import { FilterScansDto } from "@/dtos";
 
 const initialFilters: FilterScansDto = {
   port: null,

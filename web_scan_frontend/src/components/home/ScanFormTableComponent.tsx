@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useWebSocket from "../../api/webSocket/useWebSocket";
-import { Host } from "../../types";
+import { Host } from "../../dtos";
 import { fetchIntense } from "../../api/scanApi";
-import { ScanTypes } from "@/types/scan/scanCommand/ScanType";
+import { ScanTypes } from "@/enums/ScanType";
 import ChartsDashboard from "../table/intenseScan/ScanTable";
 import { CircularProgress, Typography, Button } from "@mui/material";
 

@@ -7,7 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Trace } from "@/types/scan/Trace";
+import { Trace } from "@/dtos/scan/Trace";
 
 interface TraceProps {
   data: Trace;

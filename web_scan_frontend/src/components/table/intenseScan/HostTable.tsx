@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
-import { Host } from "../../../types/scan/Host";
+import { Host } from "../../../dtos/scan/Host";
 import OpenPortsTable from "./OpenPortsTable";
 
 interface HostTableProps {

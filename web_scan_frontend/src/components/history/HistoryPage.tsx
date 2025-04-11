@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchUserScans, fetchFilteredScans } from "@/api/userApi";
 import { useKeycloak } from "@react-keycloak/web";
-import { FilterScansDto, UserScan } from "@/types";
+import { FilterScansDto, UserScan } from "@/dtos";
 import UserScansTable from "./UserScansTable";
 import FilterUserScansTableForm from "./FilterUserScansTableForm";
 

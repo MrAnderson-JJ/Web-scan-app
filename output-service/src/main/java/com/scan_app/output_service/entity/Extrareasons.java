@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Extrareasons {
 
     @JsonProperty("count")
-    private String count;
+    private Integer count;
     @JsonProperty("ports")
     private String ports;
     @JsonProperty("proto")
@@ -34,12 +34,12 @@ public class Extrareasons {
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("count")
-    public String getCount() {
+    public Integer getCount() {
         return count;
     }
 
     @JsonProperty("count")
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 

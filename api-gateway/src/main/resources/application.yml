@@ -20,12 +20,6 @@ spring:
           uri: http://localhost:8083
           predicates:
             - Path=/api/user/**
-        - id: frontend
-          uri: http://localhost:5173
-          predicates:
-            - Path=/**
-          filters:
-            - SetRequestHeader=X-Forwarded-Proto, https
 
   application:
     name: api-gateway
@@ -37,3 +31,5 @@ spring:
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
+
+

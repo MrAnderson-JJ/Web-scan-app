@@ -98,7 +98,7 @@ public class ScanService {
     public HostStatusDto mapToHostStatus(Host host) {
         return HostStatusDto.builder()
                 .reason(host.getStatus().getReason())
-                .reasonTtl(host.getStatus().getReasonTtl())
+                .reasonTtl(host.getStatus().getReasonTtl().toString())
                 .state(host.getStatus().getState())
                 .build();
     }

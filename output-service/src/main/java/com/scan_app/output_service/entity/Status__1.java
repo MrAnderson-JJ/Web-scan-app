@@ -24,7 +24,7 @@ public class Status__1 {
     @JsonProperty("reason")
     private String reason;
     @JsonProperty("reason_ttl")
-    private String reasonTtl;
+    private Integer reasonTtl;
     @JsonProperty("state")
     private String state;
     @JsonIgnore
@@ -41,12 +41,12 @@ public class Status__1 {
     }
 
     @JsonProperty("reason_ttl")
-    public String getReasonTtl() {
+    public Integer getReasonTtl() {
         return reasonTtl;
     }
 
     @JsonProperty("reason_ttl")
-    public void setReasonTtl(String reasonTtl) {
+    public void setReasonTtl(Integer reasonTtl) {
         this.reasonTtl = reasonTtl;
     }
 

@@ -11,11 +11,11 @@ import {
   Switch,
 } from "@mui/material";
 import { startScanFromOutput } from "../../api/scanApi";
-import { ScanTypes, ScanTypeLabels } from "@/types/scan/scanCommand/ScanType";
+import { ScanTypes, ScanTypeLabels } from "@/enums/ScanType";
 import {
   ScanTiming,
   scanTimingLabels,
-} from "@/types/scan/scanCommand/ScanTiming";
+} from "@/enums/ScanTiming";
 import { useKeycloak } from "@react-keycloak/web";
 
 interface ScanFormProps {

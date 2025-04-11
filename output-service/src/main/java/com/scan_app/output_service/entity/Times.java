@@ -22,41 +22,41 @@ import lombok.NoArgsConstructor;
 public class Times {
 
     @JsonProperty("rttvar")
-    private String rttvar;
+    private Integer rttvar;
     @JsonProperty("srtt")
-    private String srtt;
+    private Integer srtt;
     @JsonProperty("to")
-    private String to;
+    private Integer to;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @JsonProperty("rttvar")
-    public String getRttvar() {
+    public Integer getRttvar() {
         return rttvar;
     }
 
     @JsonProperty("rttvar")
-    public void setRttvar(String rttvar) {
+    public void setRttvar(Integer rttvar) {
         this.rttvar = rttvar;
     }
 
     @JsonProperty("srtt")
-    public String getSrtt() {
+    public Integer getSrtt() {
         return srtt;
     }
 
     @JsonProperty("srtt")
-    public void setSrtt(String srtt) {
+    public void setSrtt(Integer srtt) {
         this.srtt = srtt;
     }
 
     @JsonProperty("to")
-    public String getTo() {
+    public Integer getTo() {
         return to;
     }
 
     @JsonProperty("to")
-    public void setTo(String to) {
+    public void setTo(Integer to) {
         this.to = to;
     }
 

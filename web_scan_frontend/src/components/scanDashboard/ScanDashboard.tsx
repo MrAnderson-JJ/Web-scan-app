@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Host, NmapRunDto } from "../../types";
+import { Host, NmapRunDto } from "../../dtos";
 import { fetchIntense, fetchLastScan } from "../../api/scanApi";
 import ChartsDashboard from "../table/intenseScan/ScanTable";
 import { Typography, Button } from "@mui/material";

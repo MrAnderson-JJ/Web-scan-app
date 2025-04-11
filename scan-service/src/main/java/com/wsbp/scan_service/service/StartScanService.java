@@ -59,7 +59,7 @@ public class StartScanService {
     }
 
     /**
-     * Asynch functin that starts nmap scanning using given params
+     * Asynch function that starts nmap scanning using given params
      * @param target target ip address to be scanned
      * @param options options for nmap scan (T1, sn, ..) - tels nmap how to scan
      * @return raw XML output of scan if nmap succeded, null if nmap started but failed
@@ -72,16 +72,14 @@ public class StartScanService {
                 String[] command = buildCommandXml(target, options);
 
                 ProcessBuilder processBuilder = new ProcessBuilder(command);
-                processBuilder.redirectErrorStream(true); // Combine stdout and stderr
+                processBuilder.redirectErrorStream(true);
                 Process process = processBuilder.start();
 
-                // Save XML output to variable
                 StringBuilder xmlOutput = new StringBuilder();
                 try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         xmlOutput.append(line).append("\n");
-                        // Kill proccess and retutn null if scan fails (Wrong command etc.)
                         if (line.contains("exit=\"error\"")) {
                             process.destroyForcibly();
                             return null;

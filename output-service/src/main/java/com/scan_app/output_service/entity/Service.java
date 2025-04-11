@@ -40,7 +40,7 @@ public class Service {
     @JsonProperty("method")
     private String method;
     @JsonProperty("conf")
-    private String conf;
+    private Integer conf;
     @JsonProperty("cpe")
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private List<String> cpe;
@@ -108,12 +108,12 @@ public class Service {
     }
 
     @JsonProperty("conf")
-    public String getConf() {
+    public Integer getConf() {
         return conf;
     }
 
     @JsonProperty("conf")
-    public void setConf(String conf) {
+    public void setConf(Integer conf) {
         this.conf = conf;
     }
 
