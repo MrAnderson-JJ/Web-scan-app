@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ScanFormIp from "./scanFormIp";
 import ScanFormTable from "./ScanFormTableComponent";
 import { Card, Typography } from "@mui/material";
 
 const HomePage = () => {
   const [webSocketId, setScanMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleScanResult = (result: string) => {
-    setLoading(false);
-    setScanMessage(result);
-  };
 
   return (
     <>
@@ -25,10 +19,9 @@ const HomePage = () => {
           <Typography variant="h5" style={{ paddingBottom: "5px" }}>
             New network scan
           </Typography>
-          <ScanFormIp onSubmit={handleScanResult} />
+          <ScanFormIp onSubmit={setScanMessage} />
         </Card>
-        {webSocketId && <ScanFormTable key={webSocketId} webSocketId={webSocketId} />}{" "} {/** when the key changes it remounts whole component */}
-        {/* Shows table only when scanId is set */}
+        {webSocketId && <ScanFormTable key={webSocketId} webSocketId={webSocketId} />}{" "}
       </div>
     </>
   );
