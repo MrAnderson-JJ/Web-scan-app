@@ -3,21 +3,25 @@ services:
   mongodb:
     image: mongo:7.0.5
     container_name: scan-processing-output-mongodb
-    ports:
-      - "27017:27017"
+#    ports:
+#      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: web-scan-app
     volumes:
       - ./data:/data/db
+    networks:
+      - scan-net  
   rabbitmq:
     image: rabbitmq:3-management
     container_name: scan-rabbitmq
     hostname: my-rabbit
-    ports:
-      - "5672:5672"
-      - "15672:15672"
+    networks:
+      - scan-net
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"
 
   # User service
   mysql:
@@ -25,11 +29,13 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: mysql
-    ports:
-       - "3306:3306"
+#    ports:
+#       - "3306:3306"
     volumes:
       - ./mysql:/var/lib/mysql
       - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - scan-net
 
   # Api gateway service and authentication service (Keycloak)
   keycloak-mysql:
@@ -44,11 +50,17 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_HOST: '%'
     restart: always
+    networks:
+      - scan-net
 
   keycloak:
     container_name: keycloak
     image: quay.io/keycloak/keycloak:24.0.1
-    command: [ "start-dev", "--import-realm" ]
+    command:
+      [
+        "start-dev",
+        "--import-realm"
+      ]
     environment:
       KC_DB: mysql
       KC_DB_URL_HOST: keycloak-mysql
@@ -63,4 +75,73 @@ services:
       - ./docker/keycloak/realms/:/opt/keycloak/data/import/
     depends_on:
       - keycloak-mysql
-    restart: always  
+    restart: always
+    networks:
+      - scan-net
+  
+  # User service
+  userservice:
+    build: ./user-service
+    container_name: userservice
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/users
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    ports:
+      - "8083:8083" # otevře se pro vývoj, později můžeš skrýt
+    restart: always
+    networks:
+      - scan-net
+
+  # Scan service
+  scan-service:
+    build: ./scan-service
+    container_name: scan-service
+    depends_on:
+      - rabbitmq
+    environment:
+      SPRING_RABBITMQ_HOST: scan-rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    networks:
+      - scan-net
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN  
+#    ports:
+#      - "8080:8080" # otevře se pro vývoj, později můžeš skrýt
+    restart: always
+
+  output-service:
+    build: ./output-service
+    container_name: output-service
+    depends_on:
+      - mongodb
+      - scan-service
+      - userservice
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:password@scan-processing-output-mongodb:27017/web-scan-app?authSource=admin
+    networks:
+      - scan-net
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    depends_on:
+      - output-service
+      - scan-service
+      - userservice
+      - keycloak
+    ports:
+      - "9000:9000"
+    networks:
+      - scan-net
+
+networks:
+  scan-net:
+    driver: bridge

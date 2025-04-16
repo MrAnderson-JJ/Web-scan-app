@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(name = "scan-service", url = "http://localhost:8081")
+@FeignClient(name = "scan-service", url = "http://output-service:8081")
 public interface OutputClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/output/scans/filterScans")

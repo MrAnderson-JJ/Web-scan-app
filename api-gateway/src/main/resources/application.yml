@@ -9,15 +9,15 @@ spring:
     gateway:
       routes:
         - id: output-service
-          uri: http://localhost:8081
+          uri: http://output-service:8081
           predicates:
             - Path=/api/output/**
         - id: scan-service
-          uri: http://localhost:8080
+          uri: http://scan-service:8080
           predicates:
             - Path=/api/scan/**
         - id: user-service
-          uri: http://localhost:8083
+          uri: http://userservice:8083
           predicates:
             - Path=/api/user/**
 
@@ -28,6 +28,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8181/realms/network-scanner
+          jwk-set-uri: http://keycloak:8181/realms/network-scanner/protocol/openid-connect/certs
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
