@@ -3,441 +3,55 @@
   <ID>JAVA</ID>
   <OriginalElement>com.scan_app.output_service.entity</OriginalElement>
   <nodes>
-    <node x="3045.0" y="449.0">com.scan_app.output_service.entity.Hostname</node>
-    <node x="2057.2012683683315" y="1586.0">com.scan_app.output_service.entity.Example</node>
-    <node x="1744.3865474241334" y="1586.0">com.scan_app.output_service.entity.Verbose</node>
-    <node x="3960.6849315068494" y="170.0">com.scan_app.output_service.entity.Extrareasons</node>
-    <node x="996.5163368614822" y="582.0">com.scan_app.output_service.entity.Hostnames__1</node>
-    <node x="2011.516336861482" y="640.0">com.scan_app.output_service.entity.Finished</node>
-    <node x="1226.5163368614822" y="1329.0552295478083">com.scan_app.output_service.entity.Hosthint</node>
-    <node x="1527.838394162138" y="1116.5160510873316">com.scan_app.output_service.entity.Debugging</node>
-    <node x="3398.3765337182663" y="1353.342194664637">com.scan_app.output_service.entity.Tcptssequence</node>
-    <node x="4035.9071340713404" y="1929.0">com.scan_app.output_service.entity.Address</node>
-    <node x="3335.0" y="416.0">com.scan_app.output_service.entity.Port</node>
-    <node x="996.5163368614822" y="286.21398987574787">com.scan_app.output_service.entity.Hostname__1</node>
-    <node x="4166.74506699384" y="1734.5953861158116">com.scan_app.output_service.entity.Distance</node>
-    <node x="4540.684931506848" y="159.0">com.scan_app.output_service.entity.Osclass</node>
-    <node x="2301.516336861482" y="662.0">com.scan_app.output_service.entity.Hosts</node>
-    <node x="4470.110446387483" y="1712.5953861158116">com.scan_app.output_service.entity.Uptime</node>
-    <node x="1744.3865474241334" y="818.0">com.scan_app.output_service.entity.Scaninfo</node>
-    <node x="3045.0" y="1171.6265560165975">com.scan_app.output_service.entity.Trace</node>
-    <node x="3045.0" y="684.0">com.scan_app.output_service.entity.Hostnames</node>
-    <node x="1286.5163368614822" y="582.0">com.scan_app.output_service.entity.Address__1</node>
-    <node x="2156.516336861482" y="840.0">com.scan_app.output_service.entity.Runstats</node>
-    <node x="3090.6849315068494" y="126.0">com.scan_app.output_service.entity.Service</node>
-    <node x="2472.543734121756" y="1207.5008944723186">com.scan_app.output_service.entity.Taskbegin</node>
-    <node x="3480.0" y="651.0">com.scan_app.output_service.entity.Ports</node>
-    <node x="3380.6849315068494" y="181.0">com.scan_app.output_service.entity.Script</node>
-    <node x="3770.0" y="662.0">com.scan_app.output_service.entity.Tcpsequence</node>
-    <node x="3843.869863013698" y="1096.4892791505004">com.scan_app.output_service.entity.Host</node>
-    <node x="1401.2013558466392" y="829.0">com.scan_app.output_service.entity.Status__1</node>
-    <node x="4277.272727272727" y="1005.7272727272727">com.scan_app.output_service.entity.Os</node>
-    <node x="4640.0" y="673.0">com.scan_app.output_service.entity.Ipidsequence</node>
-    <node x="2755.0" y="427.0">com.scan_app.output_service.entity.Hop</node>
-    <node x="2057.2012683683315" y="1152.0">com.scan_app.output_service.entity.Nmaprun</node>
-    <node x="4250.684931506848" y="438.0">com.scan_app.output_service.entity.Portused</node>
-    <node x="4930.0" y="662.0">com.scan_app.output_service.entity.Status</node>
-    <node x="2472.543734121756" y="1322.5684647302903">com.scan_app.output_service.entity.Taskend</node>
-    <node x="5220.0" y="662.0">com.scan_app.output_service.entity.Times</node>
-    <node x="3670.6849315068494" y="181.0">com.scan_app.output_service.entity.State</node>
-    <node x="3960.684931506849" y="438.0">com.scan_app.output_service.entity.Extraports</node>
-    <node x="4540.684931506848" y="427.0">com.scan_app.output_service.entity.Osmatch</node>
-    <node x="3380.6849315068494" y="0.0">com.scan_app.output_service.entity.Table</node>
+    <node x="969.0" y="1012.0">com.scan_app.output_service.entity.Hostname</node>
+    <node x="969.0" y="1320.0">com.scan_app.output_service.entity.Verbose</node>
+    <node x="1292.0" y="1320.0">com.scan_app.output_service.entity.Example</node>
+    <node x="969.0" y="0.0">com.scan_app.output_service.entity.Finished</node>
+    <node x="323.0" y="451.0">com.scan_app.output_service.entity.Extrareasons</node>
+    <node x="0.0" y="1463.0">com.scan_app.output_service.entity.Hostnames__1</node>
+    <node x="323.0" y="660.0">com.scan_app.output_service.entity.Hosthint</node>
+    <node x="323.0" y="1463.0">com.scan_app.output_service.entity.Debugging</node>
+    <node x="1292.0" y="1012.0">com.scan_app.output_service.entity.Tcptssequence</node>
+    <node x="1292.0" y="0.0">com.scan_app.output_service.entity.Port</node>
+    <node x="0.0" y="1177.0">com.scan_app.output_service.entity.Address</node>
+    <node x="323.0" y="1177.0">com.scan_app.output_service.entity.Hostname__1</node>
+    <node x="646.0" y="1463.0">com.scan_app.output_service.entity.Distance</node>
+    <node x="646.0" y="660.0">com.scan_app.output_service.entity.Hosts</node>
+    <node x="0.0" y="451.0">com.scan_app.output_service.entity.Osclass</node>
+    <node x="646.0" y="1177.0">com.scan_app.output_service.entity.Uptime</node>
+    <node x="646.0" y="451.0">com.scan_app.output_service.entity.Scaninfo</node>
+    <node x="969.0" y="660.0">com.scan_app.output_service.entity.Trace</node>
+    <node x="969.0" y="1463.0">com.scan_app.output_service.entity.Hostnames</node>
+    <node x="969.0" y="1177.0">com.scan_app.output_service.entity.Address__1</node>
+    <node x="1292.0" y="1177.0">com.scan_app.output_service.entity.Runstats</node>
+    <node x="646.0" y="0.0">com.scan_app.output_service.entity.Service</node>
+    <node x="0.0" y="1320.0">com.scan_app.output_service.entity.Taskbegin</node>
+    <node x="1292.0" y="660.0">com.scan_app.output_service.entity.Script</node>
+    <node x="969.0" y="451.0">com.scan_app.output_service.entity.Ports</node>
+    <node x="0.0" y="847.0">com.scan_app.output_service.entity.Tcpsequence</node>
+    <node x="0.0" y="0.0">com.scan_app.output_service.entity.Host</node>
+    <node x="323.0" y="847.0">com.scan_app.output_service.entity.Status__1</node>
+    <node x="323.0" y="1320.0">com.scan_app.output_service.entity.Os</node>
+    <node x="646.0" y="1320.0">com.scan_app.output_service.entity.Ipidsequence</node>
+    <node x="1292.0" y="451.0">com.scan_app.output_service.entity.Hop</node>
+    <node x="323.0" y="0.0">com.scan_app.output_service.entity.Nmaprun</node>
+    <node x="646.0" y="847.0">com.scan_app.output_service.entity.Portused</node>
+    <node x="969.0" y="847.0">com.scan_app.output_service.entity.Taskend</node>
+    <node x="1292.0" y="847.0">com.scan_app.output_service.entity.Status</node>
+    <node x="0.0" y="1012.0">com.scan_app.output_service.entity.State</node>
+    <node x="323.0" y="1012.0">com.scan_app.output_service.entity.Times</node>
+    <node x="646.0" y="1012.0">com.scan_app.output_service.entity.Extraports</node>
+    <node x="0.0" y="660.0">com.scan_app.output_service.entity.Osmatch</node>
+    <node x="1292.0" y="1463.0">com.scan_app.output_service.entity.Table</node>
   </nodes>
   <notes />
-  <edges>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Tcpsequence" relationship="DEPENDENCY">
-      <point x="45.0" y="-203.0" />
-      <point x="118.8698630136978" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hosthint" target="com.scan_app.output_service.entity.Status__1" relationship="DEPENDENCY">
-      <point x="47.185018985156944" y="-60.0" />
-      <point x="-127.5" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Trace" target="com.scan_app.output_service.entity.Hop" relationship="DEPENDENCY">
-      <point x="-135.0" y="-15.0" />
-      <point x="2905.0" y="1216.6265560165975" />
-      <point x="15.0" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Hostnames" relationship="DEPENDENCY">
-      <point x="0.0" y="-203.0" />
-      <point x="3978.869863013698" y="866.5" />
-      <point x="3195.0" y="866.5" />
-      <point x="15.0" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Os" target="com.scan_app.output_service.entity.Osmatch" relationship="DEPENDENCY">
-      <point x="135.0" y="0.0" />
-      <point x="4622.5" y="1054.7272727272727" />
-      <point x="-53.18493150684844" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Debugging" relationship="DEPENDENCY">
-      <point x="-135.0" y="-60.0" />
-      <point x="1677.838394162138" y="1284.0" />
-      <point x="15.0" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Port" target="com.scan_app.output_service.entity.Service" relationship="TO_ONE">
-      <point x="-116.81506849315065" y="-82.0" />
-      <point x="127.5" y="115.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Script" target="com.scan_app.output_service.entity.Table" relationship="DEPENDENCY">
-      <point x="15.0" y="-60.0" />
-      <point x="15.0" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Times" relationship="TO_ONE">
-      <point x="135.0" y="-15.0" />
-      <point x="5355.0" y="1284.4892791505004" />
-      <point x="0.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Trace" target="com.scan_app.output_service.entity.Hop" relationship="TO_MANY">
-      <point x="-135.0" y="0.0" />
-      <point x="2890.0" y="1231.6265560165975" />
-      <point x="0.0" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Verbose" relationship="DEPENDENCY">
-      <point x="-135.0" y="90.05522954780827" />
-      <point x="1894.3865474241334" y="1434.0552295478083" />
-      <point x="15.0" y="-38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Ports" target="com.scan_app.output_service.entity.Port" relationship="TO_MANY">
-      <point x="-127.5" y="-71.0" />
-      <point x="17.5" y="82.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Os" target="com.scan_app.output_service.entity.Osmatch" relationship="TO_MANY">
-      <point x="135.0" y="-15.0" />
-      <point x="4607.5" y="1039.7272727272727" />
-      <point x="-68.18493150684844" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hostnames" target="com.scan_app.output_service.entity.Hostname" relationship="DEPENDENCY">
-      <point x="0.0" y="-38.0" />
-      <point x="0.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Address" relationship="DEPENDENCY">
-      <point x="64.53727105764256" y="203.0" />
-      <point x="-127.49999999999955" y="-49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Runstats" target="com.scan_app.output_service.entity.Finished" relationship="DEPENDENCY">
-      <point x="-17.5" y="-49.0" />
-      <point x="2274.016336861482" y="733.0" />
-      <point x="2274.016336861482" y="733.0" />
-      <point x="127.5" y="82.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Ports" target="com.scan_app.output_service.entity.Port" relationship="DEPENDENCY">
-      <point x="-17.5" y="-71.0" />
-      <point x="127.5" y="82.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hostnames" target="com.scan_app.output_service.entity.Hostname" relationship="TO_MANY">
-      <point x="15.0" y="-38.0" />
-      <point x="15.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Uptime" relationship="DEPENDENCY">
-      <point x="135.0" y="60.0" />
-      <point x="4605.110446387483" y="1359.4892791505004" />
-      <point x="0.0" y="-49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Distance" relationship="DEPENDENCY">
-      <point x="135.0" y="90.0" />
-      <point x="4238.398921382595" y="1389.4892791505004" />
-      <point x="-63.34614561124454" y="-38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Nmaprun" relationship="TO_ONE">
-      <point x="15.000136986302095" y="203.0" />
-      <point x="3993.87" y="1564.0953861158116" />
-      <point x="2192.201336861482" y="1564.0953861158116" />
-      <point x="6.849315059298533E-5" y="192.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Extraports" target="com.scan_app.output_service.entity.Extrareasons" relationship="DEPENDENCY">
-      <point x="-14.999999999999545" y="-60.0" />
-      <point x="-15.0" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Uptime" relationship="TO_ONE">
-      <point x="135.0" y="0.0" />
-      <point x="4590.110446387483" y="1299.4892791505004" />
-      <point x="-15.0" y="-49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Runstats" relationship="DEPENDENCY">
-      <point x="-29.999931506849407" y="-192.0" />
-      <point x="-129.31499999999983" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Host" relationship="TO_MANY">
-      <point x="6.849315059298533E-5" y="-192.0" />
-      <point x="2192.201336861482" y="1542.9764868603042" />
-      <point x="3952.5318118948826" y="1542.9764868603042" />
-      <point x="3952.5318118948826" y="1302.016" />
-      <point x="-134.9998630136979" y="2.526720849499725" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Runstats" target="com.scan_app.output_service.entity.Hosts" relationship="TO_ONE">
-      <point x="127.5" y="-49.0" />
-      <point x="2419.016336861482" y="722.0" />
-      <point x="2419.016336861482" y="722.0" />
-      <point x="-17.5" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Status" relationship="TO_ONE">
-      <point x="135.0" y="-30.0" />
-      <point x="5065.0" y="1269.4892791505004" />
-      <point x="0.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Port" target="com.scan_app.output_service.entity.State" relationship="DEPENDENCY">
-      <point x="135.0" y="15.0" />
-      <point x="3820.6849315068494" y="513.0" />
-      <point x="15.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Port" target="com.scan_app.output_service.entity.Service" relationship="DEPENDENCY">
-      <point x="-127.5" y="-82.0" />
-      <point x="116.81506849315065" y="115.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hosthint" target="com.scan_app.output_service.entity.Address__1" relationship="DEPENDENCY">
-      <point x="-30.0" y="-60.0" />
-      <point x="-90.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Example" target="com.scan_app.output_service.entity.Nmaprun" relationship="TO_ONE">
-      <point x="-29.999931506849407" y="-38.0" />
-      <point x="-29.999931506849407" y="192.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hostnames__1" target="com.scan_app.output_service.entity.Hostname__1" relationship="DEPENDENCY">
-      <point x="0.0" y="-38.0" />
-      <point x="0.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Port" target="com.scan_app.output_service.entity.Script" relationship="DEPENDENCY">
-      <point x="60.68493150684935" y="-82.0" />
-      <point x="15.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Scaninfo" relationship="DEPENDENCY">
-      <point x="-135.0" y="-90.0" />
-      <point x="1894.3865474241334" y="1254.0" />
-      <point x="15.0" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Ipidsequence" relationship="DEPENDENCY">
-      <point x="135.0" y="-60.0" />
-      <point x="4775.0" y="1239.4892791505004" />
-      <point x="0.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hosthint" target="com.scan_app.output_service.entity.Hostnames__1" relationship="TO_ONE">
-      <point x="-102.5" y="-60.0" />
-      <point x="127.5" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Tcptssequence" relationship="TO_ONE">
-      <point x="-135.0" y="117.85291551413661" />
-      <point x="135.0" y="15.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Times" relationship="DEPENDENCY">
-      <point x="135.0" y="45.0" />
-      <point x="5370.0" y="1344.4892791505004" />
-      <point x="15.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Port" target="com.scan_app.output_service.entity.Script" relationship="TO_MANY">
-      <point x="45.68493150684935" y="-82.0" />
-      <point x="0.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Verbose" relationship="TO_ONE">
-      <point x="-135.0" y="75.05522954780827" />
-      <point x="1879.3865474241334" y="1419.0552295478083" />
-      <point x="0.0" y="-38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Os" relationship="TO_ONE">
-      <point x="135.0" y="-90.0" />
-      <point x="4412.272727272727" y="1209.4892791505004" />
-      <point x="0.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Hosthint" relationship="DEPENDENCY">
-      <point x="-135.0" y="60.05522954780827" />
-      <point x="135.0" y="15.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Ipidsequence" relationship="TO_ONE">
-      <point x="135.0" y="-75.0" />
-      <point x="4760.0" y="1224.4892791505004" />
-      <point x="-15.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Debugging" relationship="TO_ONE">
-      <point x="-135.0" y="-45.0" />
-      <point x="1662.838394162138" y="1299.0" />
-      <point x="0.0" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Distance" relationship="TO_ONE">
-      <point x="135.0" y="75.0" />
-      <point x="4301.74506699384" y="1374.4892791505004" />
-      <point x="0.0" y="-38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Ports" target="com.scan_app.output_service.entity.Extraports" relationship="TO_MANY">
-      <point x="7.5" y="-71.0" />
-      <point x="3622.5" y="528.0" />
-      <point x="-135.0" y="30.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Trace" relationship="DEPENDENCY">
-      <point x="-135.0" y="-67.86272313390282" />
-      <point x="135.0" y="0.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Ports" relationship="DEPENDENCY">
-      <point x="85.0" y="-203.0" />
-      <point x="4063.869863013698" y="622.5" />
-      <point x="3693.1849315068494" y="622.5" />
-      <point x="78.18493150684935" y="-71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Ports" target="com.scan_app.output_service.entity.Host" relationship="DEPENDENCY">
-      <point x="-15.0" y="71.0" />
-      <point x="3600.0" y="1108.5" />
-      <point x="-135.0" y="-190.98927915050035" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hosthint" target="com.scan_app.output_service.entity.Address__1" relationship="TO_MANY">
-      <point x="-15.0" y="-60.0" />
-      <point x="-75.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Osmatch" target="com.scan_app.output_service.entity.Osclass" relationship="TO_MANY">
-      <point x="0.0" y="-71.0" />
-      <point x="0.0" y="82.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Taskend" relationship="TO_MANY">
-      <point x="135.0" y="53.568464730290316" />
-      <point x="-135.0" y="15.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Ports" target="com.scan_app.output_service.entity.Extraports" relationship="DEPENDENCY">
-      <point x="63.18493150684935" y="-71.0" />
-      <point x="3678.1849315068494" y="543.0" />
-      <point x="-135.0" y="45.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Status" relationship="DEPENDENCY">
-      <point x="135.0" y="-45.0" />
-      <point x="5050.0" y="1254.4892791505004" />
-      <point x="-15.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hosthint" target="com.scan_app.output_service.entity.Status__1" relationship="TO_ONE">
-      <point x="127.5" y="-60.0" />
-      <point x="-47.185018985156944" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Example" target="com.scan_app.output_service.entity.Nmaprun" relationship="DEPENDENCY">
-      <point x="-14.999931506849407" y="-38.0" />
-      <point x="-14.999931506849407" y="192.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Hostnames" relationship="TO_ONE">
-      <point x="-30.0" y="-203.0" />
-      <point x="3948.869863013698" y="942.8897134967208" />
-      <point x="3180.0" y="942.8897134967208" />
-      <point x="0.0" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Taskend" relationship="DEPENDENCY">
-      <point x="135.0" y="38.568464730290316" />
-      <point x="-135.0" y="0.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Osmatch" target="com.scan_app.output_service.entity.Osclass" relationship="DEPENDENCY">
-      <point x="15.0" y="-71.0" />
-      <point x="15.0" y="82.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Tcpsequence" relationship="TO_ONE">
-      <point x="30.0" y="-203.0" />
-      <point x="103.8698630136978" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Taskbegin" relationship="DEPENDENCY">
-      <point x="135.0" y="-61.49910552768142" />
-      <point x="2607.543734121756" y="1282.5008944723186" />
-      <point x="2607.543734121756" y="1271.5008944723186" />
-      <point x="-135.0" y="15.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Os" target="com.scan_app.output_service.entity.Portused" relationship="TO_MANY">
-      <point x="0.0" y="-49.0" />
-      <point x="26.58779576587858" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Hosthint" relationship="TO_MANY">
-      <point x="-135.0" y="45.05522954780827" />
-      <point x="135.0" y="0.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Runstats" target="com.scan_app.output_service.entity.Finished" relationship="TO_ONE">
-      <point x="-127.5" y="-49.0" />
-      <point x="2164.016336861482" y="733.0" />
-      <point x="2164.016336861482" y="733.0" />
-      <point x="17.5" y="82.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Os" target="com.scan_app.output_service.entity.Portused" relationship="DEPENDENCY">
-      <point x="-26.58779576587858" y="-49.0" />
-      <point x="0.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Address" relationship="TO_MANY">
-      <point x="127.5" y="203.0" />
-      <point x="-64.5372710576421" y="-49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Tcptssequence" relationship="DEPENDENCY">
-      <point x="-135.0" y="102.85291551413661" />
-      <point x="135.0" y="0.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Scaninfo" relationship="TO_MANY">
-      <point x="-135.0" y="-75.0" />
-      <point x="1879.3865474241334" y="1269.0" />
-      <point x="0.0" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hostnames__1" target="com.scan_app.output_service.entity.Hostname__1" relationship="TO_ONE">
-      <point x="15.0" y="-38.0" />
-      <point x="15.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Port" target="com.scan_app.output_service.entity.State" relationship="TO_ONE">
-      <point x="135.0" y="0.0" />
-      <point x="3805.6849315068494" y="498.0" />
-      <point x="0.0" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Extraports" target="com.scan_app.output_service.entity.Extrareasons" relationship="TO_MANY">
-      <point x="4.547473508864641E-13" y="-60.0" />
-      <point x="0.0" y="71.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Runstats" relationship="TO_ONE">
-      <point x="99.31506849315042" y="-192.0" />
-      <point x="0.0" y="49.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Runstats" target="com.scan_app.output_service.entity.Hosts" relationship="DEPENDENCY">
-      <point x="17.5" y="-49.0" />
-      <point x="2309.016336861482" y="722.0" />
-      <point x="2309.016336861482" y="722.0" />
-      <point x="-127.5" y="60.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Taskbegin" relationship="TO_MANY">
-      <point x="135.0" y="-76.49910552768142" />
-      <point x="2607.543734121756" y="1267.5008944723186" />
-      <point x="2607.543734121756" y="1256.5008944723186" />
-      <point x="-135.0" y="0.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Trace" relationship="TO_ONE">
-      <point x="-135.0" y="-52.86272313390282" />
-      <point x="135.0" y="15.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Nmaprun" target="com.scan_app.output_service.entity.Host" relationship="DEPENDENCY">
-      <point x="137.07753951252107" y="143.4417769800316" />
-      <point x="2612.7554413141893" y="1487.4417769800316" />
-      <point x="2612.7554413141893" y="1475.607060055344" />
-      <point x="-135.4821582795712" y="176.11778090484358" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Nmaprun" relationship="DEPENDENCY">
-      <point x="-135.0" y="195.5" />
-      <point x="2612.7554413141893" y="1494.9892791505004" />
-      <point x="2612.7554413141893" y="1500.7789217314294" />
-      <point x="133.4130425881358" y="156.77892173142936" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Script" target="com.scan_app.output_service.entity.Table" relationship="TO_MANY">
-      <point x="0.0" y="-60.0" />
-      <point x="0.0" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Os" relationship="DEPENDENCY">
-      <point x="100.0" y="-203.0" />
-      <point x="4078.869863013698" y="1054.7272727272727" />
-      <point x="-135.0" y="0.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Hosthint" target="com.scan_app.output_service.entity.Hostnames__1" relationship="DEPENDENCY">
-      <point x="-127.5" y="-60.0" />
-      <point x="102.5" y="38.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Ports" target="com.scan_app.output_service.entity.Host" relationship="TO_ONE">
-      <point x="0.0" y="71.0" />
-      <point x="3615.0" y="836.5" />
-      <point x="3993.869863013698" y="836.5" />
-      <point x="15.0" y="-203.0" />
-    </edge>
-    <edge source="com.scan_app.output_service.entity.Host" target="com.scan_app.output_service.entity.Ports" relationship="TO_ONE">
-      <point x="-15.0" y="-203.0" />
-      <point x="3963.869863013698" y="821.5" />
-      <point x="3700.877" y="821.5" />
-      <point x="85.87699999999995" y="71.0" />
-    </edge>
-  </edges>
-  <settings layout="Hierarchic" zoom="0.39437386569872956" showDependencies="true" x="2745.0" y="920.0" />
+  <edges />
+  <settings layout="Hierarchic" zoom="0.4291212315586915" showDependencies="true" x="785.0" y="769.5" />
   <SelectedNodes>
     <node>com.scan_app.output_service.entity.Hostname__1</node>
   </SelectedNodes>
   <Categories>
+    <Category>Inner Classes</Category>
     <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>

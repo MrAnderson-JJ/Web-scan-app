@@ -28,7 +28,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8181/realms/network-scanner
-          jwk-set-uri: http://keycloak:8181/realms/network-scanner/protocol/openid-connect/certs
+          jwk-set-uri: http://keycloak:8080/realms/network-scanner/protocol/openid-connect/certs
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
