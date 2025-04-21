@@ -1,7 +1,7 @@
 @echo off
 
 REM Spustit zbytek v Dockeru
-docker-compose up -d
+docker-compose -f docker-compose.win.yml up -d
 
 timeout /t 15 /nobreak >nul
 
