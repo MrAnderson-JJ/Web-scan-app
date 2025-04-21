@@ -3,55 +3,43 @@
   <ID>JAVA</ID>
   <OriginalElement>com.scan_app.output_service.entity</OriginalElement>
   <nodes>
-    <node x="969.0" y="1012.0">com.scan_app.output_service.entity.Hostname</node>
-    <node x="969.0" y="1320.0">com.scan_app.output_service.entity.Verbose</node>
-    <node x="1292.0" y="1320.0">com.scan_app.output_service.entity.Example</node>
-    <node x="969.0" y="0.0">com.scan_app.output_service.entity.Finished</node>
-    <node x="323.0" y="451.0">com.scan_app.output_service.entity.Extrareasons</node>
-    <node x="0.0" y="1463.0">com.scan_app.output_service.entity.Hostnames__1</node>
-    <node x="323.0" y="660.0">com.scan_app.output_service.entity.Hosthint</node>
-    <node x="323.0" y="1463.0">com.scan_app.output_service.entity.Debugging</node>
-    <node x="1292.0" y="1012.0">com.scan_app.output_service.entity.Tcptssequence</node>
-    <node x="1292.0" y="0.0">com.scan_app.output_service.entity.Port</node>
-    <node x="0.0" y="1177.0">com.scan_app.output_service.entity.Address</node>
-    <node x="323.0" y="1177.0">com.scan_app.output_service.entity.Hostname__1</node>
-    <node x="646.0" y="1463.0">com.scan_app.output_service.entity.Distance</node>
-    <node x="646.0" y="660.0">com.scan_app.output_service.entity.Hosts</node>
-    <node x="0.0" y="451.0">com.scan_app.output_service.entity.Osclass</node>
-    <node x="646.0" y="1177.0">com.scan_app.output_service.entity.Uptime</node>
-    <node x="646.0" y="451.0">com.scan_app.output_service.entity.Scaninfo</node>
-    <node x="969.0" y="660.0">com.scan_app.output_service.entity.Trace</node>
-    <node x="969.0" y="1463.0">com.scan_app.output_service.entity.Hostnames</node>
-    <node x="969.0" y="1177.0">com.scan_app.output_service.entity.Address__1</node>
-    <node x="1292.0" y="1177.0">com.scan_app.output_service.entity.Runstats</node>
-    <node x="646.0" y="0.0">com.scan_app.output_service.entity.Service</node>
-    <node x="0.0" y="1320.0">com.scan_app.output_service.entity.Taskbegin</node>
-    <node x="1292.0" y="660.0">com.scan_app.output_service.entity.Script</node>
-    <node x="969.0" y="451.0">com.scan_app.output_service.entity.Ports</node>
-    <node x="0.0" y="847.0">com.scan_app.output_service.entity.Tcpsequence</node>
+    <node x="0.0" y="1254.0">com.scan_app.output_service.entity.Verbose</node>
+    <node x="1284.0" y="1111.0">com.scan_app.output_service.entity.Example</node>
+    <node x="963.0" y="451.0">com.scan_app.output_service.entity.Extrareasons</node>
+    <node x="963.0" y="1111.0">com.scan_app.output_service.entity.Hostnames__1</node>
+    <node x="1284.0" y="0.0">com.scan_app.output_service.entity.Finished</node>
+    <node x="1284.0" y="803.0">com.scan_app.output_service.entity.Hosthint</node>
+    <node x="642.0" y="1111.0">com.scan_app.output_service.entity.Debugging</node>
+    <node x="963.0" y="0.0">com.scan_app.output_service.entity.Port</node>
+    <node x="0.0" y="1111.0">com.scan_app.output_service.entity.Hostname__1</node>
+    <node x="642.0" y="0.0">com.scan_app.output_service.entity.Osclass</node>
+    <node x="963.0" y="803.0">com.scan_app.output_service.entity.Hosts</node>
+    <node x="642.0" y="451.0">com.scan_app.output_service.entity.Scaninfo</node>
+    <node x="1284.0" y="968.0">com.scan_app.output_service.entity.Address__1</node>
+    <node x="963.0" y="968.0">com.scan_app.output_service.entity.Runstats</node>
+    <node x="642.0" y="968.0">com.scan_app.output_service.entity.Taskbegin</node>
+    <node x="321.0" y="451.0">com.scan_app.output_service.entity.Ports</node>
+    <node x="642.0" y="803.0">com.scan_app.output_service.entity.Script</node>
+    <node x="321.0" y="803.0">com.scan_app.output_service.entity.Tcpsequence</node>
     <node x="0.0" y="0.0">com.scan_app.output_service.entity.Host</node>
-    <node x="323.0" y="847.0">com.scan_app.output_service.entity.Status__1</node>
-    <node x="323.0" y="1320.0">com.scan_app.output_service.entity.Os</node>
-    <node x="646.0" y="1320.0">com.scan_app.output_service.entity.Ipidsequence</node>
-    <node x="1292.0" y="451.0">com.scan_app.output_service.entity.Hop</node>
-    <node x="323.0" y="0.0">com.scan_app.output_service.entity.Nmaprun</node>
-    <node x="646.0" y="847.0">com.scan_app.output_service.entity.Portused</node>
-    <node x="969.0" y="847.0">com.scan_app.output_service.entity.Taskend</node>
-    <node x="1292.0" y="847.0">com.scan_app.output_service.entity.Status</node>
-    <node x="0.0" y="1012.0">com.scan_app.output_service.entity.State</node>
-    <node x="323.0" y="1012.0">com.scan_app.output_service.entity.Times</node>
-    <node x="646.0" y="1012.0">com.scan_app.output_service.entity.Extraports</node>
-    <node x="0.0" y="660.0">com.scan_app.output_service.entity.Osmatch</node>
-    <node x="1292.0" y="1463.0">com.scan_app.output_service.entity.Table</node>
+    <node x="0.0" y="803.0">com.scan_app.output_service.entity.Status__1</node>
+    <node x="321.0" y="968.0">com.scan_app.output_service.entity.Os</node>
+    <node x="0.0" y="968.0">com.scan_app.output_service.entity.Ipidsequence</node>
+    <node x="321.0" y="0.0">com.scan_app.output_service.entity.Nmaprun</node>
+    <node x="1284.0" y="638.0">com.scan_app.output_service.entity.Portused</node>
+    <node x="963.0" y="638.0">com.scan_app.output_service.entity.Status</node>
+    <node x="642.0" y="638.0">com.scan_app.output_service.entity.Taskend</node>
+    <node x="321.0" y="638.0">com.scan_app.output_service.entity.Times</node>
+    <node x="0.0" y="638.0">com.scan_app.output_service.entity.State</node>
+    <node x="1284.0" y="451.0">com.scan_app.output_service.entity.Extraports</node>
+    <node x="0.0" y="451.0">com.scan_app.output_service.entity.Osmatch</node>
+    <node x="321.0" y="1111.0">com.scan_app.output_service.entity.Table</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic" zoom="0.4291212315586915" showDependencies="true" x="785.0" y="769.5" />
-  <SelectedNodes>
-    <node>com.scan_app.output_service.entity.Hostname__1</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic" zoom="0.6555555555555556" showDependencies="true" x="780.0" y="665.0" />
+  <SelectedNodes />
   <Categories>
-    <Category>Inner Classes</Category>
     <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>
