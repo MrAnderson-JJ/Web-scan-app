@@ -1,11 +1,17 @@
-# Java 17 (případně jinou podle toho, co máš v projektu)
+
+FROM maven:3.9.6-eclipse-temurin-21 AS build
+
+WORKDIR /build
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
 FROM openjdk:21-jdk
 
-# Nastav pracovní adresář
 WORKDIR /app
 
-# Zkopíruj JAR soubor
-COPY target/*.jar app.jar
+COPY --from=build /build/target/*.jar app.jar
 
-# Spusť aplikaci
 ENTRYPOINT ["java", "-jar", "app.jar"]
