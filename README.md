@@ -2,7 +2,15 @@
 
 Aplikace pro skenování sítě mikroservisní architekturou pomocí Nmapu.
 
-## Požadavky
+## Možnost 1
+
+Spuštění celé aplikace přes docker compose (skenování bude na windows pomalejší kvůli WSL)
+
+V kořenovém adresáři spustit příkaz: ```bash docker compose up -d ```
+
+## Možnost 2
+
+### Požadavky
 
 Nutno mít nainstalované:
 
@@ -10,7 +18,7 @@ Nutno mít nainstalované:
 - [Java JDK 22+](https://adoptium.net/)
 - [Node.js](https://nodejs.org/) (doporučeno LTS)
 
-## Jak aplikaci spustit
+### Jak aplikaci spustit
 
 ### 1. Naklonovat repozitář:
 
@@ -31,7 +39,7 @@ cd web-scan-app
 
     Frontend s npm install && npm run dev (včetně stažení závislostí)
 
-### 3. Otevřít frontend v prohlížeči:
+## Otevření aplikace a přístupové údaje
     http://localhost:5173
 
     Uživatelské přihlašovací údaje:
