@@ -12,8 +12,10 @@ const axiosInstanceScan: AxiosInstance = axios.create({
 });
 
 const axiosInstanceApiGateway: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:9000/api/',
-    headers: {"ngrok-skip-browser-warning": "true"}
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:9000/api/',
+  headers: {
+    "ngrok-skip-browser-warning": "true"
+  }
 });
 
 axiosInstanceApiGateway.interceptors.request.use(async (config) => {

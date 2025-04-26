@@ -89,6 +89,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/users
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: mysql
+      OUTPUT_SERVICE_URI: http://output-service:8081
     ports:
       - "8083:8083" # otevře se pro vývoj, později můžeš skrýt
     restart: always
@@ -131,6 +132,8 @@ services:
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: guest
       SPRING_RABBITMQ_PASSWORD: guest
+      SCAN_SERVICE_URI: http://scan-service:8080
+      USER_SERVICE_URI: http://userservice:8083
     networks:
       - scan-net
 
@@ -144,6 +147,11 @@ services:
       - keycloak
     ports:
       - "9000:9000"
+    environment:
+      - OUTPUT_SERVICE_URI=http://output-service:8081
+      - SCAN_SERVICE_URI=http://scan-service:8080
+      - USER_SERVICE_URI=http://userservice:8083
+      - KEYCLOAK_URI=http://keycloak:8080/realms/network-scanner/protocol/openid-connect/certs
     networks:
       - scan-net
 
@@ -155,6 +163,9 @@ services:
     depends_on:
       - api-gateway
       - keycloak
+    environment:
+      - VITE_WEBSOCKET_URL=ws://output-service:8081/ws
+      - VITE_API_BASE_URL=http://api-gateway:9000/api/
     networks:
       - scan-net
 

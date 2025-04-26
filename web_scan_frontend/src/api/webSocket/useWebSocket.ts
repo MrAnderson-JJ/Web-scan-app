@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import { WebSocketMessage } from "./model/webSocetMessage";
 
-const WEBSOCKET_URL = "ws://localhost:8081/ws"; // URL backendu
+const WEBSOCKET_URL = import.meta.env.VITE_WEBSOCKET_URL || "ws://localhost:8081/ws";
 
 const useWebSocket = (webSocketId: string | null) => {
   const [scanResult, setScanResult] = useState<WebSocketMessage | null>(null);
